@@ -59,9 +59,19 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       },
+
+      // I added
       jade: {
         files: ['<%= yeoman.app %>/jade/**/*.jade'],
         tasks: ['jade']
+      },
+      test: {
+        files: [
+          '<%= yeoman.app %>/scripts/**/*.coffee',
+          'test/support/**/*.coffee',
+          'karma.conf.js'
+        ],
+        tasks: ['test']
       }
     },
 
