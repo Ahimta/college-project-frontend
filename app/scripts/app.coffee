@@ -9,9 +9,8 @@ angular
   ])
   .config ($routeProvider) ->
     $routeProvider
-      .when '/',
-        templateUrl: 'views/main.html'
-        controller: 'MainCtrl'
+      .when '/applicants',
+        templateUrl: 'views/applicants.html'
+        controller: 'ApplicantsCtrl'
       .otherwise
-        redirectTo: '/'
-
+        redirectTo: '/applicants'

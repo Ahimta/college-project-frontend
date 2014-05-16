@@ -1,17 +1,17 @@
 'use strict'
 
-describe 'Controller: MainCtrl', ->
+describe 'Controller: ApplicantsCtrl', ->
 
   # load the controller's module
   beforeEach module 'collegeProjectFrontendApp'
 
-  MainCtrl = {}
+  ApplicantsCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
-    MainCtrl = $controller 'MainCtrl', {
+    ApplicantsCtrl = $controller 'ApplicantsCtrl', {
       $scope: scope
     }
 

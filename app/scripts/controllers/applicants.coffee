@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .controller 'MainCtrl', ($scope) ->
+  .controller 'ApplicantsCtrl', ($scope) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
