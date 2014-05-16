@@ -1,6 +1,16 @@
 {
-  "name": "collegeprojectfrontend",
-  "version": "0.0.0",
+  "name": "college-project-frontend",
+  "version": "0.0.1",
+  "desctiprtion": "A frontend for college-project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ahimta/college-project-frontend"
+  },
+  "author": "Abdullah Alansari <ahimta@gmail.com>",
+  "homepage": "https://github.com/Ahimta/college-project-frontend",
+  "bugs": {
+    "url": "https://github.com/Ahimta/college-project-frontend/issues"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
