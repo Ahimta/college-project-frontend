@@ -11,11 +11,14 @@ angular
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
       .when '/applicants',
-        templateUrl: 'views/applicants.html'
+        templateUrl: 'views/applicants/index.html'
         controller: 'ApplicantsCtrl'
       .when '/',
         templateUrl: 'views/index.html'
         controller: 'IndexCtrl'
+      .when '/applicants/new',
+        templateUrl: 'views/applicants/new.html'
+        controller: 'ApplicantnewCtrl'
       .otherwise
         redirectTo: '/'
 
