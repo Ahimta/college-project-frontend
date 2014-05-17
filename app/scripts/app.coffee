@@ -59,6 +59,7 @@ angular
         SINGULAR: 'متقدم'
         PLURAL: 'متقدمين'
         TITLE: 'المتقدمين'
+        NEW: 'تقديم طلب'
       COURSES:
         SINGULAR: 'مادة'
         PLURAL: 'مواد'

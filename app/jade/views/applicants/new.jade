@@ -12,5 +12,6 @@ form(name='myForm')
   input(type='text' placeholder="{{ 'DEGREE' | translate }}"
     ng-model='applicant.degree' required)
 
-  input.button.success.expand(type='submit' value='Apply'
+  input.button.success.expand(type='submit'
+    value='{{ "APPLICANTS.NEW" | translate }}'
     ng-disabled='myForm.$pristine')
