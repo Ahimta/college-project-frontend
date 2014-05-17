@@ -26,6 +26,19 @@ angular
       APPLICANTS:
         SINGULAR: 'Applicant'
         PLURAL: 'Applicants'
+        TITLE: 'Applicants'
+      COURSES:
+        SINGULAR: 'Course'
+        PLURAL: 'Courses'
+        TITLE: 'Courses'
+      TEACHERS:
+        SINGULAR: 'Teacher'
+        PLURAL: 'Teachers'
+        TITLE: 'Teachers'
+      STUDENTS:
+        SINGULAR: 'Student'
+        PLURAL: 'Students'
+        TITLE: 'Students'
 
     $translateProvider.translations 'ar',
       SWITCH_LANG: 'English'
@@ -33,3 +46,16 @@ angular
       APPLICANTS:
         SINGULAR: 'متقدم'
         PLURAL: 'متقدمين'
+        TITLE: 'المتقدمين'
+      COURSES:
+        SINGULAR: 'مادة'
+        PLURAL: 'مواد'
+        TITLE: 'المواد'
+      TEACHERS:
+        SINGULAR: 'أستاذ'
+        PLURAL: 'أساتذة'
+        TITLE: 'اﻷساتذة'
+      STUDENTS:
+        SINGULAR: 'طالب'
+        PLURAL: 'طلاب'
+        TITLE: 'الطلاب'
