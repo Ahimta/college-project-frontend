@@ -34,13 +34,13 @@
             </ul>
 
             <section class='top-bar-section'>
-              <ul class='left'>
+              <ul ng-class='{right: isArabic(), left: !isArabic()}'>
                 <li><a href='/' translate>HOMEPAGE</a></li>
                 <li class='active'>
                   <a href='#/applicants' translate>APPLICANTS.PLURAL</a>
                 </li>
               </ul>
-              <ul class='right'>
+              <ul ng-class='{right: !isArabic(), left: isArabic()}'>
                 <li>
                   <a class='button success' translate
                     ng-click='switchLang()'>SWITCH_LANG</a>
