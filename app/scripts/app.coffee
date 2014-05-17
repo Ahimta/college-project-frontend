@@ -44,12 +44,15 @@ angular
         PLURAL: 'Students'
         TITLE: 'Students'
 
+      NAME: 'Name'
       FIRST_NAME: 'First name'
       LAST_NAME: 'Last name'
       PHONE: 'Phone'
       ADDRESS: 'Address'
       SPECIALIZATION: 'Specialization'
       DEGREE: 'Degree'
+      ACCEPT: 'Accept'
+      REJECT: 'Reject'
 
 
     $translateProvider.translations 'ar',
@@ -73,9 +76,12 @@ angular
         PLURAL: 'طلاب'
         TITLE: 'الطلاب'
 
+      NAME: 'الاسم'
       FIRST_NAME: 'الاسم الأول'
       LAST_NAME: 'الاسم الأخير'
       PHONE: 'رقم الهاتف'
       ADDRESS: 'العنوان'
       SPECIALIZATION: 'التخصص'
       DEGREE: 'الدرجة العلمية'
+      ACCEPT: 'قبول'
+      REJECT: 'رفض'

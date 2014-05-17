@@ -15,6 +15,12 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <style type='text/css' media='screen'>
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
     <!-- endbuild -->
   </head>
   <body ng-app="collegeProjectFrontendApp">
@@ -61,7 +67,7 @@
           </nav>
         </div>
 
-        <div dir='ltr'>
+        <div dir='ltr' class='show-for-large-up'>
           <ul class="example-orbit" data-orbit>
             <li>
               <img src='http://placehold.it/1920x300&text=Logo1' alt="slide 1" />
