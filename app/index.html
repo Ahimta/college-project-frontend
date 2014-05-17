@@ -35,13 +35,16 @@
 
             <section class='top-bar-section'>
               <ul class='left'>
-                <li><a href='/'>Homepage</a></li>
+                <li><a href='/' translate>HOMEPAGE</a></li>
                 <li class='active'>
-                  <a href='/applicants'>Applicants</a>
+                  <a href='#/applicants' translate>APPLICANTS.PLURAL</a>
                 </li>
               </ul>
               <ul class='right'>
-                <li><a class='button success'>عربي</a></li>
+                <li>
+                  <a class='button success' translate
+                    ng-click='switchLang()'>SWITCH_LANG</a>
+                </li>
               </ul>
             </section>
           </nav>
