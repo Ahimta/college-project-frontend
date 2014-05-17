@@ -2,10 +2,11 @@
 
 angular
   .module('collegeProjectFrontendApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
+    'ngCookies'
+    'ngResource'
+    'ngSanitize'
     'ngRoute'
+    'pascalprecht.translate'
   ])
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
