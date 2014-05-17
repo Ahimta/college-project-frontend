@@ -35,12 +35,14 @@
 
             <section class='top-bar-section'>
               <ul ng-class='{right: isArabic(), left: !isArabic()}'>
-                <li ng-repeat='link in links'
+                <li ng-repeat-start='link in links' class='divider'></li>
+                <li ng-repeat-end
                   ng-class='{active: isActive(link.path)}'>
                   <a ng-href='{{link.path}}' translate>
                     {{ link.title }}
                   </a>
                 </li>
+                <li class='divider'></li>
               </ul>
               <ul ng-class='{right: !isArabic(), left: isArabic()}'>
                 <li>
