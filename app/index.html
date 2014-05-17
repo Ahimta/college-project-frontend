@@ -24,7 +24,7 @@
 
     <div ng-controller='MainCtrl'>
       <header>
-        <div class='sticky contain-to-grid'>
+        <div class='sticky contain-to-grid' ng-controller='NavbarCtrl'>
           <nav class='top-bar' data-topbar>
             <ul class='title-area'>
               <li class='name'></li>
@@ -36,8 +36,9 @@
             <section class='top-bar-section'>
               <ul ng-class='{right: isArabic(), left: !isArabic()}'>
                 <li><a href='/' translate>HOMEPAGE</a></li>
-                <li class='active'>
-                  <a href='#/applicants' translate>APPLICANTS.TITLE</a>
+                <li ng-repeat='link in links'
+                  ng-class='{active: isActive(link.path)}'>
+                  <a ng-href='{{link.path}}' translate> {{ link.title }}
                 </li>
               </ul>
               <ul ng-class='{right: !isArabic(), left: isArabic()}'>
@@ -134,6 +135,7 @@
         <script src="scripts/services/translatable.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/index.js"></script>
+        <script src="scripts/controllers/navbar.js"></script>
         <!-- endbuild -->
 
     <script>
