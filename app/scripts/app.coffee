@@ -13,8 +13,11 @@ angular
       .when '/applicants',
         templateUrl: 'views/applicants.html'
         controller: 'ApplicantsCtrl'
+      .when '/',
+        templateUrl: 'views/index.html'
+        controller: 'IndexCtrl'
       .otherwise
-        redirectTo: '/applicants'
+        redirectTo: '/'
 
   .config ($translateProvider) ->
     $translateProvider.translations 'en',
