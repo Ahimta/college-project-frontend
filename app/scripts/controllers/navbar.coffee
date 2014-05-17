@@ -12,8 +12,15 @@ angular.module('collegeProjectFrontendApp')
         path: '#/'
       }
       {
+        hasDropDown: true
         title: 'APPLICANTS.TITLE'
         path: '#/applicants'
+        sublinks: [
+          {
+            title: 'APPLICANTS.NEW'
+            path: '#/applicants/new'
+          }
+        ]
       }
       {
         title: 'TEACHERS.TITLE'

@@ -30,6 +30,7 @@ angular
         SINGULAR: 'Applicant'
         PLURAL: 'Applicants'
         TITLE: 'Applicants'
+        NEW: 'Apply'
       COURSES:
         SINGULAR: 'Course'
         PLURAL: 'Courses'

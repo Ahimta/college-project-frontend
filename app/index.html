@@ -24,7 +24,7 @@
 
     <div ng-controller='MainCtrl' lang='{{ getLang() }}' dir='{{ getDir() }}'>
       <header>
-        <div class='sticky contain-to-grid' ng-controller='NavbarCtrl'>
+        <div class='contain-to-grid' ng-controller='NavbarCtrl'>
           <nav class='top-bar' data-topbar>
             <ul class='title-area'>
               <li class='name'></li>
@@ -37,10 +37,17 @@
               <ul ng-class='{right: isArabic(), left: !isArabic()}'>
                 <li ng-repeat-start='link in links' class='divider'></li>
                 <li ng-repeat-end
-                  ng-class='{active: isActive(link.path)}'>
+                  ng-class="{active: isActive(link.path), 'has-dropdown': link.hasDropDown}">
                   <a ng-href='{{link.path}}' translate>
                     {{ link.title }}
                   </a>
+                  <ul class='dropdown' ng-if='link.hasDropDown'>
+                    <li ng-repeat='sublink in link.sublinks'
+                      ng-class='{active: isActive(sublink.path)}'>
+                      <a ng-href='{{ sublink.path }}' translate>
+                        {{ sublink.title }}
+                      </a>
+                  </ul>
                 </li>
                 <li class='divider'></li>
               </ul>
@@ -80,16 +87,7 @@
 
       <hr>
 
-      <div class='row'>
-        <div class='large-4 columns'>
-
-        </div>
-
-        <div class='large-4 columns' ng-view=''></div>
-
-        <div class='large-4 columns'>
-
-        </div>
+      <div class='row' ng-view=''>
       </div>
 
       <hr>
@@ -143,7 +141,9 @@
         <!-- endbuild -->
 
     <script>
-      $(document).foundation()
+      $(function() {
+        $(document).foundation();
+      });
     </script>
 </body>
 </html>

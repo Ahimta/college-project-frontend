@@ -1,1 +1,16 @@
-p /applicants/new
+form(name='myForm')
+  input(type='text' placeholder="{{ 'FIRST_NAME' | translate }}"
+    ng-model='applicant.first_name' required)
+  input(type='text' placeholder="{{ 'LAST_NAME' | translate }}"
+    ng-model='applicant.last_name' required)
+  input(type='text' placeholder="{{ 'PHONE' | translate }}"
+    ng-model='applicant.phone' required)
+  input(type='text' placeholder="{{ 'ADDRESS' | translate }}"
+    ng-model='applicant.address' required)
+  input(type='text' placeholder="{{ 'SPECIALIZATION' | translate }}"
+    ng-model='applicant.specialization' required)
+  input(type='text' placeholder="{{ 'DEGREE' | translate }}"
+    ng-model='applicant.degree' required)
+
+  input.button.success.expand(type='submit' value='Apply'
+    ng-disabled='myForm.$pristine')
