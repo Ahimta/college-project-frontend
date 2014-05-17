@@ -22,7 +22,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ng-controller='MainCtrl'>
+    <div ng-controller='MainCtrl' lang='{{ getLang() }}' dir='{{ getDir() }}'>
       <header>
         <div class='sticky contain-to-grid' ng-controller='NavbarCtrl'>
           <nav class='top-bar' data-topbar>
@@ -35,10 +35,11 @@
 
             <section class='top-bar-section'>
               <ul ng-class='{right: isArabic(), left: !isArabic()}'>
-                <li><a href='/' translate>HOMEPAGE</a></li>
                 <li ng-repeat='link in links'
                   ng-class='{active: isActive(link.path)}'>
-                  <a ng-href='{{link.path}}' translate> {{ link.title }}
+                  <a ng-href='{{link.path}}' translate>
+                    {{ link.title }}
+                  </a>
                 </li>
               </ul>
               <ul ng-class='{right: !isArabic(), left: isArabic()}'>
@@ -51,7 +52,7 @@
           </nav>
         </div>
 
-        <div>
+        <div dir='ltr'>
           <ul class="example-orbit" data-orbit>
             <li>
               <img src='http://placehold.it/1920x300&text=Logo1' alt="slide 1" />

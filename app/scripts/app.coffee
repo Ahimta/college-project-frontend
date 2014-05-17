@@ -43,6 +43,14 @@ angular
         PLURAL: 'Students'
         TITLE: 'Students'
 
+      FIRST_NAME: 'First name'
+      LAST_NAME: 'Last name'
+      PHONE: 'Phone'
+      ADDRESS: 'Address'
+      SPECIALIZATION: 'Specialization'
+      DEGREE: 'Degree'
+
+
     $translateProvider.translations 'ar',
       SWITCH_LANG: 'English'
       HOMEPAGE: 'الصفحة الرئيسية'
@@ -62,3 +70,10 @@ angular
         SINGULAR: 'طالب'
         PLURAL: 'طلاب'
         TITLE: 'الطلاب'
+
+      FIRST_NAME: 'الاسم الأول'
+      LAST_NAME: 'الاسم الأخير'
+      PHONE: 'رقم الهاتف'
+      ADDRESS: 'العنوان'
+      SPECIALIZATION: 'التخصص'
+      DEGREE: 'الدرجة العلمية'
