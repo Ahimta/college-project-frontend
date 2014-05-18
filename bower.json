@@ -9,7 +9,6 @@
     "angular-cookies": "~1.2.0",
     "angular-sanitize": "~1.2.0",
     "angular-route": "~1.2.0",
-    "foundation": "zurb/bower-foundation#~5.2.2",
     "underscore": "~1.6.0",
     "angular-translate": "~2.1.0"
   },
