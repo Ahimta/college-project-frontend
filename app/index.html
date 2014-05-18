@@ -11,6 +11,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
@@ -29,70 +30,43 @@
 
     <div ng-controller='MainCtrl' lang='{{ getLang() }}' dir='{{ getDir() }}'>
       <header>
-        <div class='contain-to-grid fixed' ng-controller='NavbarCtrl'>
-          <nav class='top-bar' data-topbar>
-            <ul class='title-area'>
-              <li class='name'></li>
-              <li class='menu-icon toggle-topbar'>
-                <a><span></span></a>
-              </li>
-            </ul>
+        <nav class='navbar navbar-default navbar-inverse navbar-static'
+          role='navigation' ng-controller='NavbarCtrl'>
+          <div class='container'>
+            <div class='navbar-header'>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
 
-            <section class='top-bar-section'>
-              <ul ng-class='{right: isArabic(), left: !isArabic()}'>
-                <li ng-repeat-start='link in links' class='divider'></li>
-                <li ng-repeat-end
-                  ng-class="{active: isActive(link.path), 'has-dropdown': link.hasDropDown}">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav"
+                ng-class="{'navbar-right': isArabic(), 'navbar-left': !isArabic()}">
+                <li ng-repeat='link in links'
+                  ng-class='{active: isActive(link.path)}'>
                   <a ng-href='{{link.path}}' translate>
                     {{ link.title }}
                   </a>
-                  <ul class='dropdown' ng-if='link.hasDropDown'>
-                    <li ng-repeat='sublink in link.sublinks'
-                      ng-class='{active: isActive(sublink.path)}'>
-                      <a ng-href='{{ sublink.path }}' translate>
-                        {{ sublink.title }}
-                      </a>
-                  </ul>
-                </li>
-                <li class='divider'></li>
-              </ul>
-              <ul ng-class='{right: !isArabic(), left: isArabic()}'>
-                <li>
-                  <a class='button success' translate
-                    ng-click='switchLang()'>SWITCH_LANG</a>
                 </li>
               </ul>
-            </section>
-          </nav>
-        </div>
 
-        <div dir='ltr' class='show-for-large-up'>
-          <ul class="example-orbit" data-orbit>
-            <li>
-              <img src='http://placehold.it/1920x300&text=Logo1' alt="slide 1" />
-              <div class="orbit-caption">
-                Caption One.
-              </div>
-            </li>
-            <li class="active">
-              <img src='http://placehold.it/1920x300&text=Logo2' />
-              <div class="orbit-caption">
-                Caption Two.
-              </div>
-            </li>
-            <li>
-              <img src='http://placehold.it/1920x300&text=Log3' alt="slide 3" />
-              <div class="orbit-caption">
-                Caption Three.
-              </div>
-            </li>
-          </ul>
-        </div>
+              <ul class="nav navbar-nav navbar-right">
+
+              </ul>
+
+              <button ng-class="{'pull-left': isArabic(), 'navbar-right': !isArabic()}"
+                class="navbar-btn btn btn-success ng-binding navbar-right"
+                type="button" ng-click="switchLang()" translate='SWITCH_LANG'></button>
+          </div>
+        </nav>
       </header>
 
       <hr>
 
-      <div class='row' ng-view=''>
+      <div class='container' ng-view=''>
       </div>
 
       <hr>
@@ -119,6 +93,7 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -126,6 +101,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

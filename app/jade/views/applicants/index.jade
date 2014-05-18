@@ -1,14 +1,33 @@
-ul.vcard.medium-4.columns(ng-repeat='applicant in applicants')
-  li.fn {{ applicant.first_name }} {{ applicant.last_name }}
-  li.locality {{ applicant.address }}
-  li.phone {{ applicant.phone }}
-  li.specialization {{ applicant.specialization }}
-  li.degree {{ applicant.degree }}
-  hr
-  li
-    div.button-bar
-      ul.button-group
-        li: a.button.success.tiny(ng-click='accept(applicant.id)'
-          translate='ACCEPT')
-        li: a.button.alert.tiny(ng-click='reject(applicant.id)'
-          translate='REJECT')
+div.row
+  article.lead.col-sm-4(ng-repeat='applicant in applicants')
+    div.panel.panel-default
+      header.panel-heading
+        h3.panel-title {{ applicant.first_name }} {{ applicant.last_name }}
+
+      div.panel-body
+        p
+          span.glyphicon.glyphicon-home
+          &nbsp;
+          span {{ applicant.address }}
+
+        p
+          span.glyphicon.glyphicon-earphone
+          &nbsp;
+          span {{ applicant.phone }}
+
+        hr
+
+        p
+          span.glyphicon.glyphicon-book
+          &nbsp;
+          span {{ applicant.specialization }}
+        p
+          span.glyphicon.glyphicon-bookmark
+          &nbsp;
+          span {{ applicant.degree }}
+
+      footer.panel-footer
+        div
+          button.btn.btn-success(type='button' translate='ACCEPT')
+          &nbsp;
+          button.btn.btn-danger(type='button' translate='REJECT')
