@@ -85,3 +85,5 @@ angular
       DEGREE: 'الدرجة العلمية'
       ACCEPT: 'قبول'
       REJECT: 'رفض'
+
+  .constant 'BACKEND', 'https://college-project.herokuapp.com/api/v1'

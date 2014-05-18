@@ -1,15 +1,14 @@
-div(ng-init="applicants = [{first_name: 'a',last_name:'b',specialization:'s',degree:'d'}]")
-  ul.vcard.medium-4.columns(ng-repeat='applicant in applicants')
-    li.fn {{ applicant.first_name }} {{ applicant.last_name }}
-    li.locality {{ applicant.address }}
-    li.phone {{ applicant.phone }}
-    li.specialization {{ applicant.specialization }}
-    li.degree {{ applicant.degree }}
-    hr
-    li
-      div.button-bar
-        ul.button-group
-          li: a.button.success.tiny(ng-click='accept(applicant.id)'
-            translate='ACCEPT')
-          li: a.button.alert.tiny(ng-click='reject(applicant.id)'
-            translate='REJECT')
+ul.vcard.medium-4.columns(ng-repeat='applicant in applicants')
+  li.fn {{ applicant.first_name }} {{ applicant.last_name }}
+  li.locality {{ applicant.address }}
+  li.phone {{ applicant.phone }}
+  li.specialization {{ applicant.specialization }}
+  li.degree {{ applicant.degree }}
+  hr
+  li
+    div.button-bar
+      ul.button-group
+        li: a.button.success.tiny(ng-click='accept(applicant.id)'
+          translate='ACCEPT')
+        li: a.button.alert.tiny(ng-click='reject(applicant.id)'
+          translate='REJECT')
