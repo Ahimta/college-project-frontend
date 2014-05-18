@@ -8,5 +8,11 @@ angular.module('collegeProjectFrontendApp')
       'Karma'
     ]
 
-    $http.get("#{BACKEND}/applicants").then (response) ->
-      $scope.applicants = response.data.applicants
+    invalidate = ->
+      $http.get("#{BACKEND}/applicants").then (response) ->
+        $scope.applicants = response.data.applicants
+
+    $scope.destroy = (id) ->
+      $http.delete("#{BACKEND}/applicants/#{id}").then invalidate
+
+    invalidate()

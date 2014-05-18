@@ -1,4 +1,4 @@
-form(name='myForm' ng-submit='createApplicant')
+form(name='myForm' ng-submit='create()')
   div.form-group: input.form-control(type='text' placeholder="{{ 'FIRST_NAME' | translate }}"
       ng-model='applicant.first_name' required)
   div.form-group: input.form-control(type='text' placeholder="{{ 'LAST_NAME' | translate }}"
