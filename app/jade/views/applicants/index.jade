@@ -1,6 +1,11 @@
+div: a.btn.btn-success.btn-lg.btn-block(href='#/applicants/new'
+  translate='APPLICANTS.NEW')
+
+hr
+
 div.row
-  article.lead.col-sm-4(ng-repeat='applicant in applicants')
-    div.panel.panel-default
+  article.lead.col-md-6.col-lg-4(ng-repeat='applicant in applicants')
+    div.panel.panel-primary
       header.panel-heading
         h3.panel-title {{ applicant.first_name }} {{ applicant.last_name }}
 

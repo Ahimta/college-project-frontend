@@ -1,17 +1,17 @@
-form(name='myForm')
-  input(type='text' placeholder="{{ 'FIRST_NAME' | translate }}"
-    ng-model='applicant.first_name' required)
-  input(type='text' placeholder="{{ 'LAST_NAME' | translate }}"
-    ng-model='applicant.last_name' required)
-  input(type='text' placeholder="{{ 'PHONE' | translate }}"
-    ng-model='applicant.phone' required)
-  input(type='text' placeholder="{{ 'ADDRESS' | translate }}"
-    ng-model='applicant.address' required)
-  input(type='text' placeholder="{{ 'SPECIALIZATION' | translate }}"
-    ng-model='applicant.specialization' required)
-  input(type='text' placeholder="{{ 'DEGREE' | translate }}"
-    ng-model='applicant.degree' required)
+form(name='myForm' ng-submit='createApplicant')
+  div.form-group: input.form-control(type='text' placeholder="{{ 'FIRST_NAME' | translate }}"
+      ng-model='applicant.first_name' required)
+  div.form-group: input.form-control(type='text' placeholder="{{ 'LAST_NAME' | translate }}"
+      ng-model='applicant.last_name' required)
+  div.form-group: input.form-control(type='text' placeholder="{{ 'PHONE' | translate }}"
+      ng-model='applicant.phone' required)
+  div.form-group: input.form-control(type='text' placeholder="{{ 'ADDRESS' | translate }}"
+      ng-model='applicant.address' required)
+  div.form-group: input.form-control(type='text' placeholder="{{ 'SPECIALIZATION' | translate }}"
+      ng-model='applicant.specialization' required)
+  div.form-group: input.form-control(type='text' placeholder="{{ 'DEGREE' | translate }}"
+      ng-model='applicant.degree' required)
 
-  input.button.success.expand(type='submit'
-    value='{{ "APPLICANTS.NEW" | translate }}'
-    ng-disabled='myForm.$pristine')
+  div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+      value='{{ "APPLICANTS.NEW" | translate }}'
+      ng-disabled='myForm.$pristine')

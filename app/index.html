@@ -15,12 +15,6 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <style type='text/css' media='screen'>
-      .center {
-        margin-left: auto;
-        margin-right: auto;
-      }
-    </style>
     <!-- endbuild -->
   </head>
   <body ng-app="collegeProjectFrontendApp">
@@ -30,7 +24,7 @@
 
     <div ng-controller='MainCtrl' lang='{{ getLang() }}' dir='{{ getDir() }}'>
       <header>
-        <nav class='navbar navbar-default navbar-inverse navbar-static'
+        <nav class='navbar navbar-default navbar-inverse navbar-static-top'
           role='navigation' ng-controller='NavbarCtrl'>
           <div class='container'>
             <div class='navbar-header'>
@@ -60,6 +54,7 @@
               <button ng-class="{'pull-left': isArabic(), 'navbar-right': !isArabic()}"
                 class="navbar-btn btn btn-success ng-binding navbar-right"
                 type="button" ng-click="switchLang()" translate='SWITCH_LANG'></button>
+            </div>
           </div>
         </nav>
       </header>
