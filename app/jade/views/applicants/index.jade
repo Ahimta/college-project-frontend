@@ -36,6 +36,14 @@ div.row
 
       footer.panel-footer
         div
-          button.btn.btn-success(type='button' translate='ACCEPT')
+          button.btn.btn-success(type='button' translate='ACCEPT'
+            ng-click='accept(applicant.id)' ng-show="applicant.accepted != 'accepted'")
+          button.btn.btn-success(type='button' translate='ACCEPTED' disabled
+            ng-show="applicant.accepted == 'accepted'")
+
           &nbsp;
-          button.btn.btn-danger(type='button' translate='REJECT')
+
+          button.btn.btn-danger(type='button' translate='REJECT'
+            ng-click='reject(applicant.id)' ng-show="applicant.accepted != 'rejected'")
+          button.btn.btn-danger(type='button' translate='REJECTED' disabled
+            ng-show="applicant.accepted == 'rejected'")

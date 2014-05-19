@@ -53,6 +53,8 @@ angular
       DEGREE: 'Degree'
       ACCEPT: 'Accept'
       REJECT: 'Reject'
+      ACCEPTED: 'Accepted'
+      REJECTED: 'Rejected'
 
 
     $translateProvider.translations 'ar',
@@ -85,5 +87,7 @@ angular
       DEGREE: 'الدرجة العلمية'
       ACCEPT: 'قبول'
       REJECT: 'رفض'
+      ACCEPTED: 'تم القبول'
+      REJECTED: 'تم الرفض'
 
   .constant 'BACKEND', 'https://college-project.herokuapp.com/api/v1'
