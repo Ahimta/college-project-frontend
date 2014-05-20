@@ -3,8 +3,12 @@ div: a.btn.btn-success.btn-lg.btn-block(href='#/applicants/new'
 
 hr
 
-div.row
-  article.lead.col-md-6.col-lg-4(ng-repeat='applicant in applicants')
+div.progress.progress-striped.active(ng-hide='applicants')
+  div.progress-bar(role='progressbar' style='width: 100%')
+    span.sr-only Loading
+
+div.row.lead(ng-show='applicants')
+  article.col-md-6.col-lg-4(ng-repeat='applicant in applicants')
     div.panel.panel-primary
       header.panel-heading
         button.pull-right.close(type='button' ng-click='destroy(applicant.id)'
