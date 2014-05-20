@@ -36,4 +36,4 @@ angular.module('collegeProjectFrontendApp')
       }
     ]
 
-    $scope.links = if $scope.isArabic() then links.reverse() else links
+    $scope.links = links.reverse()
