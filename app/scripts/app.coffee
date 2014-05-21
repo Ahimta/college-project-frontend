@@ -44,6 +44,8 @@ angular
         PLURAL: 'Students'
         TITLE: 'Students'
 
+      DASHBOARD: 'Dashboard'
+
       NAME: 'Name'
       FIRST_NAME: 'First name'
       LAST_NAME: 'Last name'
@@ -77,6 +79,8 @@ angular
         SINGULAR: 'طالب'
         PLURAL: 'طلاب'
         TITLE: 'الطلاب'
+
+      DASHBOARD: 'لوحة التحكم'
 
       NAME: 'الاسم'
       FIRST_NAME: 'الاسم الأول'
