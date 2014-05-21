@@ -1,29 +1,11 @@
 header
-  nav.navbar.navbar-default.navbar-inverse.navbar-static-top(role='navigation'
-    ng-controller='NavbarCtrl')
-    div.container
-      div.navbar-header
-        button.navbar-toggle(data-toggle='collapse' type='button'
-          data-target='#bs-example-navbar-collapse-1')
-          span.sr-only Toggle navigation
-          each _ in [1,2,3]
-            span.icon-bar
+  include ../views/_navbar
+  block header
 
-      div#idbs-example-navbar-collapse-1.collapse.navbar-collapse
-        ul.nav.navbar-nav(ng-class="{'navbar-right': isArabic(), 'navbar-left': !isArabic()}")
-          li(ng-repeat='link in links'
-            ng-class='{active: isActive(link.path)}')
-            a(ng-href='{{link.path}}' translate='{{ link.title }}')
+hr
 
-        ul.nav.navbar-nav.navbar-right
-
-        button.navbar-btn.btn.btn-success.ng-binding.navbar-right(
-          ng-class="{'pull-left': isArabic(), 'navbar-right': !isArabic()}"
-          type="button" ng-click="switchLang()" translate='SWITCH_LANG'
-          lang="{{ isArabic() ? 'en' : 'ar' }}")
-
-  div.container
-    block content
+div.container
+  block content
 
 hr
 
