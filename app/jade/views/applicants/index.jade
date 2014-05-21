@@ -1,52 +1,55 @@
-include _new_button
+extends ../../layouts/main
 
-hr
+block content
+  include _new_button
 
-div.progress.progress-striped.active(ng-hide='applicants')
-  div.progress-bar(role='progressbar' style='width: 100%')
-    span.sr-only Loading
+  hr
 
-div.row.lead(ng-show='applicants')
-  article.col-md-6.col-lg-4(ng-repeat='applicant in applicants')
-    div.panel.panel-primary
-      header.panel-heading
-        button.pull-right.close(type='button' ng-click='destroy(applicant.id)'
-          ng-class="{'pull-left': isArabic(), 'pull-right': !isArabic()}").
-          &times;
-        h3.panel-title {{ applicant.first_name }} {{ applicant.last_name }}
+  div.progress.progress-striped.active(ng-hide='applicants')
+    div.progress-bar(role='progressbar' style='width: 100%')
+      span.sr-only Loading
 
-      div.panel-body
-        p
-          span.glyphicon.glyphicon-home
-          &nbsp;
-          span {{ applicant.address }}
+  div.row.lead(ng-show='applicants')
+    article.col-md-6.col-lg-4(ng-repeat='applicant in applicants')
+      div.panel.panel-primary
+        header.panel-heading
+          button.pull-right.close(type='button' ng-click='destroy(applicant.id)'
+            ng-class="{'pull-left': isArabic(), 'pull-right': !isArabic()}").
+            &times;
+          h3.panel-title {{ applicant.first_name }} {{ applicant.last_name }}
 
-        p
-          span.glyphicon.glyphicon-earphone
-          &nbsp;
-          span {{ applicant.phone }}
+        div.panel-body
+          p
+            span.glyphicon.glyphicon-home
+            | &nbsp;
+            span {{ applicant.address }}
 
-        hr
+          p
+            span.glyphicon.glyphicon-earphone
+            | &nbsp;
+            span {{ applicant.phone }}
 
-        p
-          span.glyphicon.glyphicon-book
-          &nbsp;
-          span {{ applicant.specialization }}
-        p
-          span.glyphicon.glyphicon-bookmark
-          &nbsp;
-          span {{ applicant.degree }}
+          hr
 
-      footer.panel-footer
-        div
-          button.btn.btn-success(type='button' translate='ACCEPT'
-            ng-click='accept(applicant.id)' ng-show="applicant.accepted != 'accepted'")
-          button.btn.btn-success(type='button' translate='ACCEPTED' disabled
-            ng-show="applicant.accepted == 'accepted'")
+          p
+            span.glyphicon.glyphicon-book
+            | &nbsp;
+            span {{ applicant.specialization }}
+          p
+            span.glyphicon.glyphicon-bookmark
+            | &nbsp;
+            span {{ applicant.degree }}
 
-          &nbsp;
+        footer.panel-footer
+          div
+            button.btn.btn-success(type='button' translate='ACCEPT'
+              ng-click='accept(applicant.id)' ng-show="applicant.accepted != 'accepted'")
+            button.btn.btn-success(type='button' translate='ACCEPTED' disabled
+              ng-show="applicant.accepted == 'accepted'")
 
-          button.btn.btn-danger(type='button' translate='REJECT'
-            ng-click='reject(applicant.id)' ng-show="applicant.accepted != 'rejected'")
-          button.btn.btn-danger(type='button' translate='REJECTED' disabled
-            ng-show="applicant.accepted == 'rejected'")
+            | &nbsp;
+
+            button.btn.btn-danger(type='button' translate='REJECT'
+              ng-click='reject(applicant.id)' ng-show="applicant.accepted != 'rejected'")
+            button.btn.btn-danger(type='button' translate='REJECTED' disabled
+              ng-show="applicant.accepted == 'rejected'")

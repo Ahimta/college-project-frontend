@@ -23,56 +23,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ng-controller='MainCtrl' lang='{{ getLang() }}' dir='{{ getDir() }}'>
-      <header>
-        <nav class='navbar navbar-default navbar-inverse navbar-static-top'
-          role='navigation' ng-controller='NavbarCtrl'>
-          <div class='container'>
-            <div class='navbar-header'>
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav"
-                ng-class="{'navbar-right': isArabic(), 'navbar-left': !isArabic()}">
-                <li ng-repeat='link in links'
-                  ng-class='{active: isActive(link.path)}'>
-                  <a ng-href='{{link.path}}' translate>
-                    {{ link.title }}
-                  </a>
-                </li>
-              </ul>
-
-              <ul class="nav navbar-nav navbar-right">
-
-              </ul>
-
-              <button ng-class="{'pull-left': isArabic(), 'navbar-right': !isArabic()}"
-                class="navbar-btn btn btn-success ng-binding navbar-right"
-                type="button" ng-click="switchLang()" translate='SWITCH_LANG'
-                lang="{{ isArabic() ? 'en' : 'ar' }}"></button>
-            </div>
-          </div>
-        </nav>
-      </header>
-      <div>
-
-        <div class='container' ng-view=''>
-        </div>
-
-      </div>
-
-      <hr>
-
-      <footer class='container text-center clearfix'>
-        &copy;
-        2014
-      </footer>
+    <div ng-controller='MainCtrl' lang='{{getLang()}}' dir='{{getDir()}}' ng-view=''>
     </div>
 
      <script>
