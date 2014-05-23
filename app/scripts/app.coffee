@@ -48,6 +48,7 @@ angular
         TITLE: 'Students'
 
       DASHBOARD: 'Dashboard'
+      DETAILS: 'Details'
 
       NAME: 'Name'
       FIRST_NAME: 'First name'
@@ -84,6 +85,7 @@ angular
         TITLE: 'الطلاب'
 
       DASHBOARD: 'لوحة التحكم'
+      DETAILS: 'التفاصيل'
 
       NAME: 'الاسم'
       FIRST_NAME: 'الاسم الأول'
