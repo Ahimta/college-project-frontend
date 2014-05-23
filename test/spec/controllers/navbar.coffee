@@ -14,3 +14,6 @@ describe 'Controller: NavbarCtrl', ->
     NavbarCtrl = $controller 'NavbarCtrl', {
       $scope: scope
     }
+
+  it 'should attach a list of awesomeThings to the scope', ->
+    expect(!!scope).toBe true

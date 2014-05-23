@@ -2,11 +2,6 @@
 
 angular.module('collegeProjectFrontendApp')
   .controller 'SidebarCtrl', ($scope, Navbarable) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
 
     links = [
       {
