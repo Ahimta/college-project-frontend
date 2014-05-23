@@ -1,10 +1,7 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .controller 'NavbarCtrl', ($scope, $location) ->
-
-    $scope.isActive = (path) ->
-      "##{$location.path()}" == path
+  .controller 'NavbarCtrl', ($scope, Navbarable) ->
 
     links = [
       {
@@ -17,4 +14,4 @@ angular.module('collegeProjectFrontendApp')
       }
     ]
 
-    $scope.links = links.reverse()
+    Navbarable $scope, links
