@@ -1,0 +1,5 @@
+mixin progress-bar(hideCondition)
+  div.row
+    div.progress.progress-striped.active(ng-hide=hideCondition)
+      div.progress-bar(role='progressbar' style='width: 100%')
+        span.sr-only Loading
