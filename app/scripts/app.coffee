@@ -49,6 +49,7 @@ angular
 
       DASHBOARD: 'Dashboard'
       DETAILS: 'Details'
+      LOGO: 'Logo'
 
       NAME: 'Name'
       FIRST_NAME: 'First name'
@@ -86,6 +87,7 @@ angular
 
       DASHBOARD: 'لوحة التحكم'
       DETAILS: 'التفاصيل'
+      LOGO: 'الشعار'
 
       NAME: 'الاسم'
       FIRST_NAME: 'الاسم الأول'
