@@ -10,21 +10,21 @@ angular.module('collegeProjectFrontendApp')
 
     links = [
       {
-        title: 'APPLICANTS'
+        title: 'APPLICANTS.TITLE'
         path: '#/applicants'
       }
       {
-        title: 'COURSES'
+        title: 'COURSES.TITLE'
         path: '#/courses'
       }
       {
-        title: 'TEACHERS'
+        title: 'TEACHERS.TITLE'
         path: '#/teachers'
       }
       {
-        title: 'STUDENTS'
+        title: 'STUDENTS.TITLE'
         path: '#/students'
       }
     ]
 
-    Navbarable $scope, links
+    Navbarable $scope, links.reverse()
