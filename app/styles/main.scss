@@ -2,12 +2,12 @@
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
-// bower:css
+// "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/fonts/"
+
 @import url(http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
 @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 @import url(http://fonts.googleapis.com/earlyaccess/lateef.css);
 @import url(http://fonts.googleapis.com/earlyaccess/thabit.css);
 @import url(http://fonts.googleapis.com/earlyaccess/amiri.css);
-// endbower
 
 [lang=ar] { font-family: 'Droid Arabic Naskh' }
