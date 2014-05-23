@@ -19,6 +19,9 @@ angular
       .when '/applicants/new',
         templateUrl: 'views/applicants/new.html'
         controller: 'ApplicantnewCtrl'
+      .when '/dashboard',
+        templateUrl: 'views/dashboard.html'
+        controller: 'DashboardCtrl'
       .otherwise
         redirectTo: '/'
 
