@@ -5,4 +5,4 @@ div.row
     p {{ section.body }}
 
     footer: a.btn.btn-primary(role='button' ng-href='{{section.link}}'
-      translate='DETAILS')
+      translate='DETAILS' ng-disabled='{{!section.done}}')
