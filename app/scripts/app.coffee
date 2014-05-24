@@ -22,6 +22,15 @@ angular
       .when '/dashboard',
         templateUrl: 'views/dashboard.html'
         controller: 'DashboardCtrl'
+      .when '/students',
+        templateUrl: 'views/students/index.html'
+        controller: 'StudentsCtrl'
+      .when '/teachers',
+        templateUrl: 'views/teachers/index.html'
+        controller: 'TeachersCtrl'
+      .when '/courses',
+        templateUrl: 'views/courses/index.html'
+        controller: 'CoursesCtrl'
       .otherwise
         redirectTo: '/'
 
