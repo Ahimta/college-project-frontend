@@ -1,7 +1,9 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .controller 'ApplicantsCtrl', ($scope, $http, BACKEND) ->
+  .controller 'ApplicantsCtrl', ($scope, $http, BACKEND, Utils) ->
+
+    Utils.setPageTitle 'APPLICANTS.TITLE'
 
     invalidate = ->
       $http.get("#{BACKEND}/applicants").then (response) ->

@@ -36,6 +36,7 @@ angular
 
   .config ($translateProvider) ->
     $translateProvider.translations 'en',
+      APPNAME: 'College Services'
       SWITCH_LANG: 'عربي'
       HOMEPAGE: 'Homepage'
       APPLICANTS:
@@ -78,6 +79,7 @@ angular
 
 
     $translateProvider.translations 'ar',
+      APPNAME: 'خدمات الكلية'
       SWITCH_LANG: 'English'
       HOMEPAGE: 'الصفحة الرئيسية'
       APPLICANTS:
@@ -117,5 +119,3 @@ angular
       REJECT: 'رفض'
       ACCEPTED: 'تم القبول'
       REJECTED: 'تم الرفض'
-
-  .constant 'BACKEND', 'https://college-project.herokuapp.com/api/v1'
