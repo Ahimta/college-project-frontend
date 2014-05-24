@@ -7,18 +7,22 @@ angular.module('collegeProjectFrontendApp')
       {
         title: 'APPLICANTS.TITLE'
         path: '#/applicants'
+        done: true
       }
       {
         title: 'COURSES.TITLE'
         path: '#/courses'
+        done: false
       }
       {
         title: 'TEACHERS.TITLE'
         path: '#/teachers'
+        done: false
       }
       {
         title: 'STUDENTS.TITLE'
         path: '#/students'
+        done: false
       }
     ]
 

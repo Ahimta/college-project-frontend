@@ -6,7 +6,8 @@ div.container-fluid
     div.col-sm-3.col-md-2.sidebar(ng-controller='SidebarCtrl'
       ng-class="{'col-md-push-10': isArabic(), 'col-sm-push-9': isArabic()}")
       ul.nav.nav-sidebar
-        li(ng-repeat='link in links' ng-class='{active: isActive(link.path)}')
+        li(ng-repeat='link in links'
+          ng-class='{active: isActive(link.path), disabled: !link.done}')
           a(ng-href='{{ link.path }}' translate='{{ link.title }}')
 
 
