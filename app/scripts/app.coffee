@@ -34,18 +34,22 @@ angular
         PLURAL: 'Applicants'
         TITLE: 'Applicants'
         NEW: 'Apply'
+        BODY: 'Applicants for academic jobs.'
       COURSES:
         SINGULAR: 'Course'
         PLURAL: 'Courses'
         TITLE: 'Courses'
+        BODY: 'Courses for students and teachers.'
       TEACHERS:
         SINGULAR: 'Teacher'
         PLURAL: 'Teachers'
         TITLE: 'Teachers'
+        BODY: 'Teachers information.'
       STUDENTS:
         SINGULAR: 'Student'
         PLURAL: 'Students'
         TITLE: 'Students'
+        BODY: 'Students information.'
 
       DASHBOARD: 'Dashboard'
       DETAILS: 'Details'
@@ -72,18 +76,22 @@ angular
         PLURAL: 'متقدمين'
         TITLE: 'المتقدمين'
         NEW: 'تقديم طلب'
+        BODY: 'المتقدمين للوظائف اﻷكاديمية.'
       COURSES:
         SINGULAR: 'مادة'
         PLURAL: 'مواد'
         TITLE: 'المواد'
+        BODY: 'مواد الطلاب و الأساتذة.'
       TEACHERS:
         SINGULAR: 'أستاذ'
         PLURAL: 'أساتذة'
         TITLE: 'اﻷساتذة'
+        BODY: 'بيانات الأساتذة.'
       STUDENTS:
         SINGULAR: 'طالب'
         PLURAL: 'طلاب'
         TITLE: 'الطلاب'
+        BODY: 'بيانات الطلاب.'
 
       DASHBOARD: 'لوحة التحكم'
       DETAILS: 'التفاصيل'
