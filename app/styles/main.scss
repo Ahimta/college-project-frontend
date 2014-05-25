@@ -1,9 +1,9 @@
-$icon-font-path: "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/fonts/";
+$icon-font-path: "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/fonts/";
 
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
-@import url(http://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
 
 [lang=ar] { font-family: 'Droid Arabic Naskh' }
