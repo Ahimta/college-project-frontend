@@ -2,8 +2,7 @@ div.row.lead(ng-show='applicants')
   article.col-md-6.col-lg-4(ng-repeat='applicant in applicants')
     div.panel.panel-primary
       header.panel-heading
-        button.pull-right.close(type='button' ng-click='destroy(applicant.id)'
-          ng-class="{'pull-left': isArabic(), 'pull-right': !isArabic()}").
+        button.pull-left.close(type='button' ng-click='destroy(applicant.id)').
           &times;
         h3.panel-title {{ applicant.first_name }} {{ applicant.last_name }}
 
