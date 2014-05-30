@@ -1,8 +1,8 @@
 div.row
   article.col-sm-6.col-md-4.text-center(ng-repeat='section in sections')
-    header: h2(translate='{{section.title}}')
+    header: h2(ng-bind='section.title')
 
-    p(translate='{{section.body}}')
+    p(ng-bind='section.body')
 
     footer: a.btn.btn-primary(role='button' ng-href='{{section.link}}'
-      translate='DETAILS' ng-disabled='{{!section.done}}')
+      ng-disabled='{{!section.done}}') التفاصيل

@@ -3,6 +3,6 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'IndexCtrl', ($scope, Sectionable, Utils) ->
 
-    Utils.setPageTitle 'HOMEPAGE'
+    Utils.setPageTitle 'الصفحة الرئيسية'
 
     Sectionable $scope

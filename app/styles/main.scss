@@ -6,4 +6,8 @@ $icon-font-path: "https://netdna.bootstrapcdn.com/bootstrap/3.1.1/fonts/";
 
 @import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
 
-[lang=ar] { font-family: 'Droid Arabic Naskh' }
+body {
+  font-family: 'Droid Arabic Naskh';
+  padding-bottom: 20px;
+  padding-top: 50px;
+}

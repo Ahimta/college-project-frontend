@@ -3,6 +3,6 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'DashboardCtrl', ($scope, Sectionable, Utils) ->
 
-    Utils.setPageTitle 'DASHBOARD'
+    Utils.setPageTitle 'لوحة التحكم'
 
     Sectionable $scope

@@ -3,7 +3,7 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantsCtrl', ($scope, $http, BACKEND, Utils) ->
 
-    Utils.setPageTitle 'APPLICANTS.TITLE'
+    Utils.setPageTitle 'المتقدمين'
 
     invalidate = ->
       $http.get("#{BACKEND}/applicants").then (response) ->

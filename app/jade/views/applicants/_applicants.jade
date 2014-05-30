@@ -16,29 +16,29 @@ div.row.lead(ng-show='applicants')
         p
           span.glyphicon.glyphicon-earphone
           | &nbsp;
-          span {{ applicant.phone }}
+          span(ng-bind='applicant.phone')
 
         hr
 
         p
           span.glyphicon.glyphicon-book
           | &nbsp;
-          span {{ applicant.specialization }}
+          span(ng-bind='applicant.specialization')
         p
           span.glyphicon.glyphicon-bookmark
           | &nbsp;
-          span {{ applicant.degree }}
+          span(ng-bind='applicant.degree')
 
       footer.panel-footer
         div
-          button.btn.btn-success(type='button' translate='ACCEPT'
-            ng-click='accept(applicant.id)' ng-show="applicant.accepted != 'accepted'")
-          button.btn.btn-success(type='button' translate='ACCEPTED' disabled
-            ng-show="applicant.accepted == 'accepted'")
+          button.btn.btn-success(type='button'
+            ng-click='accept(applicant.id)' ng-show="applicant.accepted != 'accepted'") قبول
+          button.btn.btn-success(type='button' disabled
+            ng-show="applicant.accepted == 'accepted'") تم القبول
 
           | &nbsp;
 
-          button.btn.btn-danger(type='button' translate='REJECT'
-            ng-click='reject(applicant.id)' ng-show="applicant.accepted != 'rejected'")
-          button.btn.btn-danger(type='button' translate='REJECTED' disabled
-            ng-show="applicant.accepted == 'rejected'")
+          button.btn.btn-danger(type='button'
+            ng-click='reject(applicant.id)' ng-show="applicant.accepted != 'rejected'") رفض
+          button.btn.btn-danger(type='button' disabled
+            ng-show="applicant.accepted == 'rejected'") تم الرفض

@@ -3,7 +3,7 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'CoursesCtrl', ($scope, Utils) ->
 
-    Utils.setPageTitle 'COURSES.TITLE'
+    Utils.setPageTitle 'المواد'
 
     $scope.awesomeThings = [
       'HTML5 Boilerplate'

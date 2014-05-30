@@ -1,22 +1,15 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .service 'Translatable', ($locale, $translate) ->
+  .service 'Translatable', ($locale) ->
     # AngularJS will instantiate a singleton by calling "new" on this function
     (scope) ->
 
       scope.isArabic = ->
         true
 
-      scope.getDir = ->
-        if scope.isArabic() then 'rtl' else 'ltr'
+      scope.getDir = -> 'rtl'
 
-      scope.getLang = ->
-        if scope.isArabic() then 'ar' else 'en'
+      scope.getLang = -> 'ar'
 
       scope.switchLang = ->
-        lang = if scope.isArabic() then 'en' else 'ar'
-        $locale.id = lang
-        $translate.use lang
-
-      $translate.use if scope.isArabic() then 'ar' else 'en'

@@ -1,4 +1,4 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .constant 'APPNAME', 'APPNAME'
+  .constant 'APPNAME', 'كلية العلوم و الدراسات الإنسانية'

@@ -5,26 +5,26 @@ angular.module('collegeProjectFrontendApp')
 
     links = [
       {
-        description: 'APPLICANTS.BODY'
-        title: 'APPLICANTS.TITLE'
+        description: 'المتقدمين للوظائف اﻷكاديمية.'
+        title: 'المتقدمين'
         path: '#/applicants'
         done: true
       }
       {
-        description: 'COURSES.BODY'
-        title: 'COURSES.TITLE'
+        description: 'مواد الطلاب و الأساتذة.'
+        title: 'المواد'
         path: '#/courses'
         done: false
       }
       {
-        description: 'TEACHERS.BODY'
-        title: 'TEACHERS.TITLE'
+        description: 'بيانات الأساتذة.'
+        title: 'اﻷساتذة'
         path: '#/teachers'
         done: false
       }
       {
-        description: 'STUDENTS.BODY'
-        title: 'STUDENTS.TITLE'
+        description: 'بيانات الطلاب.'
+        title: 'الطلاب'
         path: '#/students'
         done: false
       }

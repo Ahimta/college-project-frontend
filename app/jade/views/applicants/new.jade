@@ -2,19 +2,19 @@ extends ../../layouts/visitors
 
 block content
   form(name='myForm' ng-submit='create()')
-    div.form-group: input.form-control(type='text' placeholder="{{ 'FIRST_NAME' | translate }}"
+    div.form-group: input.form-control(type='text' placeholder="الاسم الأول"
         ng-model='applicant.first_name' required autofocus)
-    div.form-group: input.form-control(type='text' placeholder="{{ 'LAST_NAME' | translate }}"
+    div.form-group: input.form-control(type='text' placeholder="الاسم الأخير"
         ng-model='applicant.last_name' required)
-    div.form-group: input.form-control(type='text' placeholder="{{ 'PHONE' | translate }}"
+    div.form-group: input.form-control(type='text' placeholder="رقم الهاتف"
         ng-model='applicant.phone' required)
-    div.form-group: input.form-control(type='text' placeholder="{{ 'ADDRESS' | translate }}"
+    div.form-group: input.form-control(type='text' placeholder="العنوان"
         ng-model='applicant.address' required)
-    div.form-group: input.form-control(type='text' placeholder="{{ 'SPECIALIZATION' | translate }}"
+    div.form-group: input.form-control(type='text' placeholder="التخصص"
         ng-model='applicant.specialization' required)
-    div.form-group: input.form-control(type='text' placeholder="{{ 'DEGREE' | translate }}"
+    div.form-group: input.form-control(type='text' placeholder="الدرجة العلمية"
         ng-model='applicant.degree' required)
 
     div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
-        value='{{ "APPLICANTS.NEW" | translate }}'
+        value='تقديم الطلب'
         ng-disabled='myForm.$pristine')

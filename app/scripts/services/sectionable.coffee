@@ -7,26 +7,26 @@ angular.module('collegeProjectFrontendApp')
 
       scope.sections = [
         {
-          title: 'APPLICANTS.TITLE'
-          body: 'APPLICANTS.BODY'
+          title: 'المتقدمين'
+          body: 'المتقدمين للوظائف اﻷكاديمية.'
           link: '#/applicants'
           done: true
         }
         {
-          title: 'COURSES.TITLE'
-          body: 'COURSES.BODY'
+          title: 'المواد'
+          body: 'مواد الطلاب و الأساتذة.'
           link: '#/courses'
           done: false
         }
         {
-          title: 'TEACHERS.TITLE'
-          body: 'TEACHERS.BODY'
+          title: 'اﻷساتذة'
+          body: 'بيانات الأساتذة.'
           link: '#/teachers'
           done: false
         }
         {
-          title: 'STUDENTS.TITLE'
-          body: 'STUDENTS.BODY'
+          title: 'الطلاب'
+          body: 'بيانات الطلاب.'
           link: '#/students'
           done: false
         }

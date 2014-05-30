@@ -3,15 +3,14 @@ header
 
 div.container-fluid
   div.row
-    div.col-sm-3.col-md-2.sidebar(ng-controller='SidebarCtrl'
-      ng-class="{'col-md-push-10': isArabic(), 'col-sm-push-9': isArabic()}")
+    div.col-sm-3.col-md-2.sidebar.col-md-push-10.col-sm-push-9(
+      ng-controller='SidebarCtrl')
       ul.nav.nav-sidebar
-        li(ng-repeat='link in links' title='{{link.description | translate}}'
+        li(ng-repeat='link in links'
           ng-class='{active: isActive(link.path), disabled: !link.done}')
-          a(ng-href='{{ link.path }}' translate='{{ link.title }}')
+          a(ng-href='{{ link.path }}' ng-bind='link.title')
 
 
-    div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main(
-      ng-class="{'col-md-pull-2': isArabic(), 'col-sm-pull-3': isArabic()}")
-      h1.page-header(translate='DASHBOARD')
+    div.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.col-md-pull-2.col-sm-pull-3.main
+      h1.page-header لوحة التحكم
       block content
