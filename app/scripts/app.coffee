@@ -121,5 +121,3 @@ angular
         REJECT: 'رفض'
         ACCEPTED: 'تم القبول'
         REJECTED: 'تم الرفض'
-
-      .useLocalStorage()

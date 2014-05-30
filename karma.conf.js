@@ -18,8 +18,6 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-translate/angular-translate.js',
-      'app/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
-      'app/bower_components/angular-translate-storage-local/angular-translate-storage-local.js',
 
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',

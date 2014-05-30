@@ -6,7 +6,7 @@ angular.module('collegeProjectFrontendApp')
     (scope) ->
 
       scope.isArabic = ->
-        $locale.id[0..1] == 'ar'
+        true
 
       scope.getDir = ->
         if scope.isArabic() then 'rtl' else 'ltr'
