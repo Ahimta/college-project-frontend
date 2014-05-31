@@ -1,4 +1,20 @@
-extends ../layouts/visitors
+header
+  include _navbar
+  include _logo
 
-block content
-  include _sections
+hr
+
+div.container
+  div.row
+    section.col-md-3
+    section.col-md-6
+      include _sections
+    section.col-md-3
+      ul.list-group
+        li.list-group-item: a بوابة المسؤولين
+        li.list-group-item: a بوابة المرشدين
+        li.list-group-item: a بوابة الطلاب
+
+hr
+
+include _footer

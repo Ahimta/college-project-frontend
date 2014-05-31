@@ -1,6 +1,8 @@
-extends ../../layouts/visitors
+header
+  include ../_navbar
 
-block content
+div.container
+  div.page-header: h1.text-center تقديم طلب
   form(name='myForm' ng-submit='create()')
     div.form-group: input.form-control(type='text' placeholder="الاسم الأول"
         ng-model='applicant.first_name' required autofocus)
@@ -18,3 +20,7 @@ block content
     div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
         value='تقديم الطلب'
         ng-disabled='myForm.$pristine')
+
+hr
+
+include ../_footer
