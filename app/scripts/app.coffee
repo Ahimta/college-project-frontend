@@ -18,6 +18,9 @@ angular
       .when '/applicants/new',
         templateUrl: 'views/applicants/new.html'
         controller: 'ApplicantnewCtrl'
+      .when '/applicants/:id',
+        templateUrl: 'views/applicants/show.html'
+        controller: 'ApplicantshowCtrl'
       .when '/dashboard',
         templateUrl: 'views/dashboard.html'
         controller: 'DashboardCtrl'

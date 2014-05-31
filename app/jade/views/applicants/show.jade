@@ -1,0 +1,11 @@
+extends ../../layouts/dashboard
+include ../_progressbar
+
+
+block header
+  | المتقدمين -&nbsp;{{applicant.first_name}}&nbsp;{{applicant.last_name}}
+
+block content
+  +progress-bar('applicant')
+
+  include _applicant
