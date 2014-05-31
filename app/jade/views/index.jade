@@ -5,15 +5,18 @@ header
 hr
 
 div.container
-  div.row
-    section.col-md-3
-    section.col-md-6
-      include _sections
-    section.col-md-3
-      ul.list-group
-        li.list-group-item: a بوابة المسؤولين
-        li.list-group-item: a بوابة المرشدين
-        li.list-group-item: a بوابة الطلاب
+  article.text-center(ng-repeat='gate in gates')
+    header: h2(ng-bind='gate.name')
+    p(ng-bind='gate.description')
+    footer
+      - myHtml = "<form ng-submit='gate.action()'><div class='form-group'><input type='text' class='form-control' placeholder='اسم المستخدم' ng-model='user.username' required/></div><div class='form-group'><input type='password' class='form-control' placeholder='كلمة المرور' ng-model='user.password' required/></div><div class='form-group'><input type='submit' value='تسجيل دخول' class='btn btn-primary form-control'/></div></form>"
+      script
+        $('article > footer > button').popover({html:true, container: 'body'})
+      button.btn.btn-success(type='button'
+        data-container="body" data-toggle="popover"
+        data-placement="bottom" data-content=myHtml).
+        تسجيل دخول
+    hr
 
 hr
 

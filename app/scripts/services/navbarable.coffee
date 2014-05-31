@@ -8,4 +8,4 @@ angular.module('collegeProjectFrontendApp')
       scope.isActive = (path) ->
         "##{$location.path()}" == path
 
-      scope.links = links.reverse()
+      scope.links = links
