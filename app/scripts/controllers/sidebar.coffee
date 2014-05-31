@@ -11,12 +11,6 @@ angular.module('collegeProjectFrontendApp')
         done: true
       }
       {
-        description: 'مواد الطلاب و الأساتذة.'
-        title: 'المواد'
-        path: '#/courses'
-        done: false
-      }
-      {
         description: 'بيانات الأساتذة.'
         title: 'اﻷساتذة'
         path: '#/teachers'
@@ -30,4 +24,4 @@ angular.module('collegeProjectFrontendApp')
       }
     ]
 
-    Navbarable $scope, links.reverse()
+    Navbarable $scope, links

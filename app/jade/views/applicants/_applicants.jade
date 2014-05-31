@@ -1,4 +1,19 @@
-div.row.lead(ng-show='applicants')
+div.row(ng-show='applicants')
+  div.table-responsive
+    table.table.table-striped.text-center
+      thead
+        tr
+          th.text-center الاسم
+          th.text-center العنوان
+          th.text-center التخصص
+      tbody
+        tr(ng-repeat='applicant in applicants'
+            ng-class='getClass(applicant.accepted)')
+          td: a(ng-href='#/applicants/{{applicant.id}}')
+            {{ applicant.first_name }} {{ applicant.last_name }}
+          td(ng-bind='applicant.address')
+          td(ng-bind='applicant.specialization')
+
   article.col-md-6.col-lg-4(ng-repeat='applicant in applicants')
     div.panel.panel-primary
       header.panel-heading

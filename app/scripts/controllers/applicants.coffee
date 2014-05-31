@@ -21,4 +21,12 @@ angular.module('collegeProjectFrontendApp')
     $scope.reject = (id) ->
       decide 'reject', id
 
+    $scope.getClass = (isAccepted) ->
+      switch isAccepted
+        when 'pending'   then 'warning'
+        when 'rejected'  then 'danger'
+        when 'accepted'  then 'success'
+
+
+
     invalidate()
