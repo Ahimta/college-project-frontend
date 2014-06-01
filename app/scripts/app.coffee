@@ -33,5 +33,14 @@ angular
       .when '/courses',
         templateUrl: 'views/courses/index.html'
         controller: 'CoursesCtrl'
+      .when '/login/admin',
+        templateUrl: 'views/login/admin.html'
+        controller: 'AdminloginCtrl'
+      .when '/login/teacher',
+        templateUrl: 'views/login/teacher.html'
+        controller: 'TeacherloginCtrl'
+      .when '/login/student',
+        templateUrl: 'views/login/student.html'
+        controller: 'StudentloginCtrl'
       .otherwise
         redirectTo: '/'

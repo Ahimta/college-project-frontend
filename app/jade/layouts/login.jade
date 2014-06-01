@@ -1,7 +1,7 @@
 header
-  include _navbar
+  include ../views/_navbar
 
-div.page-header
+div.page-header.text-center
   h1
     block title
 
@@ -9,14 +9,18 @@ div.container
   form(name='myForm' role='form' ng-submit='login()')
     div.form-group
       label(for='username') اسم المستخدم
-      input#username.control-group(type='text', placehoder='اسم المستخدم'
+      input#username.form-control(type='text', placehoder='اسم المستخدم'
         required autofocus ng-model='user.username')
 
     div.form-group
       label(for='password') كلمة المرور
-      input#password.control-group(type='password', placehoder='كلمة المرور'
+      input#password.form-control(type='password', placehoder='كلمة المرور'
         required ng-model='user.password')
 
     div.form-group
-      input.control-group.btn.btn-sucess.btn-lg.btn-block(type='submit'
+      input.btn.btn-success.btn-lg.btn-block(type='submit'
         value='تسجيل دخول' ng-disabled='myForm.$pristine')
+
+hr
+
+include ../views/_footer

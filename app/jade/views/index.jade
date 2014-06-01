@@ -22,7 +22,6 @@ div.container
 
         div.list-group
           a.list-group-item(ng-repeat='gate in links' ng-href='{{gate.path}}'
-            ng-class='{active: isActive(gate.path)}'
             ng-bind='gate.name')
 
 hr
