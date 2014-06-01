@@ -1,26 +1,29 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .controller 'IndexCtrl', ($scope, Sectionable, Utils) ->
+  .controller 'IndexCtrl', ($scope, Sectionable, Utils, Navbarable) ->
 
     Utils.setPageTitle 'الصفحة الرئيسية'
 
     Sectionable $scope
 
-    $scope.gates = [
+    links = [
       {
         description: 'إدارة التوظيف'
         name: 'بوابة المسؤولين'
-        action: ->
+        path: '#/login/admin'
       }
       {
         description: 'إدارة الطلاب و المواد'
         name: 'بوابة المرشدين'
-        action: ->
+        path: '#/login/teacher'
       }
       {
         description: 'بيانات الطالب'
         name: 'بوابة الطلاب'
-        action: ->
+        path: '#/login/student'
       }
     ]
+
+    Navbarable $scope, links
+

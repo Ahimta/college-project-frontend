@@ -5,18 +5,23 @@ header
 hr
 
 div.container
-  article.text-center(ng-repeat='gate in gates')
-    header: h2(ng-bind='gate.name')
-    p(ng-bind='gate.description')
-    footer
-      - myHtml = "<form ng-submit='gate.action()'><div class='form-group'><input type='text' class='form-control' placeholder='اسم المستخدم' ng-model='user.username' required/></div><div class='form-group'><input type='password' class='form-control' placeholder='كلمة المرور' ng-model='user.password' required/></div><div class='form-group'><input type='submit' value='تسجيل دخول' class='btn btn-primary form-control'/></div></form>"
-      script
-        $('article > footer > button').popover({html:true, container: 'body'})
-      button.btn.btn-success(type='button'
-        data-container="body" data-toggle="popover"
-        data-placement="bottom" data-content=myHtml).
-        تسجيل دخول
-    hr
+  div.row
+    div.col-md-4
+
+    div.col-md-4
+      article.text-center(ng-repeat='gate in links')
+        header: h2(ng-bind='gate.name')
+        p(ng-bind='gate.description')
+        hr
+
+    div.col-md-4
+      div.panel.panel-default
+        header.panel-heading الأقسام
+
+        div.list-group
+          a.list-group-item(ng-repeat='gate in links' ng-href='{{gate.path}}'
+            ng-class='{active: isActive(gate.path)}'
+            ng-bind='gate.name')
 
 hr
 
