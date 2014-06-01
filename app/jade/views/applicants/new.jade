@@ -3,41 +3,7 @@ header
   div.page-header: h1.text-center تقديم طلب
 
 div.container
-  form(name='myForm' ng-submit='create()')
-
-    div.form-group
-      label(for='fn') الاسم الأول
-      input#fn.form-control(type='text' placeholder="الاسم الأول"
-        ng-model='applicant.first_name' required autofocus)
-
-    div.form-group
-      label(for='ln') الاسم الأخير
-      input#ln.form-control(type='text' placeholder="الاسم الأخير"
-        ng-model='applicant.last_name' required)
-
-    div.form-group
-      label(for='phone') رقم الهاتف
-      input#phone.form-control(type='text' placeholder="رقم الهاتف"
-        ng-model='applicant.phone' required)
-
-    div.form-group
-      label(for='address') العنوان
-      input#address.form-control(type='text' placeholder="العنوان"
-        ng-model='applicant.address' required)
-
-    div.form-group
-      label(for='specialization') التخصص
-      input#specialization.form-control(type='text' placeholder="التخصص"
-        ng-model='applicant.specialization' required)
-
-    div.form-group
-      label(for='degree') الدرجة العلمية
-      input#degree.form-control(type='text' placeholder="الدرجة العلمية"
-        ng-model='applicant.degree' required)
-
-    div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
-        value='تقديم الطلب'
-        ng-disabled='myForm.$pristine')
+  include _form
 
 hr
 
