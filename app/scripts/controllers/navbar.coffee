@@ -5,8 +5,8 @@ angular.module('collegeProjectFrontendApp')
 
     links = [
       {
-        title: 'لوحة التحكم'
-        path: '#/dashboard'
+        title: 'المتقدمين'
+        path: '#/applicants'
       }
       {
         title: 'الصفحة الرئيسية'

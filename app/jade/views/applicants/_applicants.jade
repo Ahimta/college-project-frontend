@@ -1,15 +1,21 @@
-div.row(ng-show='applicants')
-  div.table-responsive
-    table.table.table-hover.table-condensed.table-striped.text-center
-      thead
-        tr
-          th.text-center الاسم
-          th.text-center العنوان
-          th.text-center التخصص
-      tbody
-        tr(ng-repeat='applicant in applicants'
-            ng-class='getClass(applicant.accepted)')
-          td: a(ng-href='#/applicants/{{applicant.id}}')
-            {{ applicant.first_name }} {{ applicant.last_name }}
-          td(ng-bind='applicant.address')
-          td(ng-bind='applicant.specialization')
+div(ng-show='applicants')
+  div.row
+    div.form-group
+      input.form-control(type='text' ng-model='query'
+        placeholder='بحث' autofocus)
+
+  div.row
+    div.table-responsive
+      table.table.table-hover.table-condensed.table-striped.text-center
+        thead
+          tr
+            th.text-center الاسم
+            th.text-center العنوان
+            th.text-center التخصص
+        tbody
+          tr(ng-repeat='applicant in applicants | filter:query'
+              ng-class='getClass(applicant.accepted)')
+            td: a(ng-href='#/applicants/{{applicant.id}}')
+              {{ applicant.first_name }} {{ applicant.last_name }}
+            td(ng-bind='applicant.address')
+            td(ng-bind='applicant.specialization')

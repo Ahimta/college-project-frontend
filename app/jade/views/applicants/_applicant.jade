@@ -53,7 +53,7 @@ div(ng-show='applicant')
             span.pull-left
               button.btn.btn-sm.btn-primary(type='button' ng-click='isEditing = true') تعديل
               | &nbsp;
-              button.btn.btn-sm.btn-danger(type='button') حذف
+              button.btn.btn-sm.btn-danger(type='button' ng-click='destroy(applicant.id)') حذف
 
     div(ng-show='isEditing')
       include _form
