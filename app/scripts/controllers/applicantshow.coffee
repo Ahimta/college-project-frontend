@@ -2,11 +2,6 @@
 
 angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantshowCtrl', ($scope, $routeParams, $location, $http, BACKEND, Utils) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
 
     applicantId = $routeParams.id
     url = "#{BACKEND}/applicants/#{applicantId}"
