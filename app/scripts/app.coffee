@@ -42,5 +42,8 @@ angular
       .when '/login/student',
         templateUrl: 'views/login/student.html'
         controller: 'StudentloginCtrl'
+      .when '/admins',
+        templateUrl: 'views/admins/index.html'
+        controller: 'AdminsCtrl'
       .otherwise
         redirectTo: '/'
