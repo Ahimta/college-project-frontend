@@ -1,7 +1,7 @@
 extends ../../layouts/dashboard
-include ../_progressbar
+include ../../mixins/progressbar
 
 block content
   +progress-bar('applicants')
 
-  include _applicants
+  include ../../partials/applicants/applicants

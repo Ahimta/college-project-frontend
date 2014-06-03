@@ -1,5 +1,5 @@
 extends ../../layouts/dashboard
-include ../_progressbar
+include ../../mixins/progressbar
 
 
 block header
@@ -8,4 +8,4 @@ block header
 block content
   +progress-bar('applicant')
 
-  include _applicant
+  include ../../partials/applicants/applicant
