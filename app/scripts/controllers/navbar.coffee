@@ -8,7 +8,9 @@ angular.module('collegeProjectFrontendApp')
     $scope.logout = ->
       $http.delete(url)
         .then (response) ->
+          $scope.myAccount = undefined
           $location.path '/'
+
         .catch (response) ->
           console.log response
 
