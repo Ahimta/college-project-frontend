@@ -7,6 +7,9 @@ angular
     'ngSanitize'
     'ngRoute'
   ])
+  .config ($httpProvider) ->
+    $httpProvider.defaults.withCredentials = true
+
   .config ($routeProvider) ->
     $routeProvider
       .when '/applicants',
