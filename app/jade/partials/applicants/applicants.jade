@@ -15,7 +15,7 @@ div(ng-show='applicants')
         tbody
           tr(ng-repeat='applicant in applicants | filter:query'
               ng-class='getClass(applicant.accepted)')
-            td: a(ng-href='#/applicants/{{applicant.id}}')
-              {{ applicant.first_name }} {{ applicant.last_name }}
+            td: a(ng-href='#/applicants/{{applicant.id}}'
+              ng-bind='applicant.full_name')
             td(ng-bind='applicant.address')
             td(ng-bind='applicant.specialization')

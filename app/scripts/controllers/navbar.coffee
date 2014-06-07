@@ -1,7 +1,16 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .controller 'NavbarCtrl', ($scope, Navbarable) ->
+  .controller 'NavbarCtrl', ($scope, $http, $location, BACKEND, Navbarable) ->
+
+    url = "#{BACKEND}/admin/accounts/logout"
+
+    $scope.logout = ->
+      $http.delete(url)
+        .then (response) ->
+          $location.path '/'
+        .catch (response) ->
+          console.log response
 
     links = [
       {

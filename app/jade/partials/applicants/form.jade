@@ -1,14 +1,9 @@
 form(name='myForm' ng-submit='create()')
 
   div.form-group
-    label(for='fn') الاسم الأول
-    input#fn.form-control(type='text' placeholder="الاسم الأول"
-      ng-model='applicant.first_name' required autofocus)
-
-  div.form-group
-    label(for='ln') الاسم الأخير
-    input#ln.form-control(type='text' placeholder="الاسم الأخير"
-      ng-model='applicant.last_name' required)
+    label(for='fl') الاسم الكامل
+    input#fl.form-control(type='text' placeholder="الاسم الكامل"
+      ng-model='applicant.full_name' required autofocus)
 
   div.form-group
     label(for='phone') رقم الهاتف
