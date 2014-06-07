@@ -3,7 +3,7 @@ include ../../mixins/progressbar
 
 
 block header
-  | المتقدمين -&nbsp;{{applicant.first_name}}&nbsp;{{applicant.last_name}}
+  | المتقدمين -&nbsp;{{applicant.full_name}}
 
 block content
   +progress-bar('applicant')

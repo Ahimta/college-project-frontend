@@ -4,12 +4,12 @@ angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantshowCtrl', ($scope, $routeParams, $location, $http, BACKEND, Utils) ->
 
     applicantId = $routeParams.id
-    url = "#{BACKEND}/applicants/#{applicantId}"
+    url = "#{BACKEND}/applicant/job_requests/#{applicantId}"
 
     successCallback = (response) ->
-      applicant = response.data.applicant
+      applicant = response.data.applicant_job_request || response.data.applicant_job_requests
       $scope.applicant = applicant
-      Utils.setPageTitle "المتقدمين - #{applicant.first_name} #{applicant.last_name}"
+      Utils.setPageTitle "المتقدمين - #{applicant.full_name}"
 
     invalidate = ->
       $http.get(url).then successCallback
@@ -18,7 +18,7 @@ angular.module('collegeProjectFrontendApp')
       $http.put("#{url}/#{decision}").then invalidate
 
     update = (id) ->
-      $http.put(url, applicant: $scope.applicant)
+      $http.put(url, applicant_job_request: $scope.applicant)
         .then(successCallback)
         .then (_) ->
           $scope.isEditing = false

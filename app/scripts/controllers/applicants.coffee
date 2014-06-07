@@ -9,7 +9,7 @@ angular.module('collegeProjectFrontendApp')
     invalidate = ->
       $http.get(url)
         .then (response) ->
-          $scope.applicants = response.data.applicants
+          $scope.applicants = response.data.applicant_job_requests
         .catch (response) ->
           switch response.status
             when 401 then $location.path('/login/admin')
@@ -32,7 +32,5 @@ angular.module('collegeProjectFrontendApp')
         when 'pending'   then 'warning'
         when 'rejected'  then 'danger'
         when 'accepted'  then 'success'
-
-
 
     invalidate()
