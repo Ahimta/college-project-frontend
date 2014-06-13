@@ -6,23 +6,19 @@ hr
 
 div.container
   div.row
-    div.col-md-4
+    div.col-lg-4.visible-lg
       a.thumbnail(href='http://www.su.edu.sa' target='_blank')
         img(src='http://s.alriyadh.com/2012/11/11/img/308852973160.jpg')
 
-    div.col-md-4
-      article.text-center(ng-repeat='gate in links')
-        header: h2(ng-bind='gate.name')
-        p(ng-bind='gate.description')
+    div.col-lg-4
+      article.text-center(ng-repeat='gate in sections')
+        header: h2(ng-bind='gate.title')
+        p(ng-bind='gate.body')
         hr
 
-    div.col-md-4
-      div.panel.panel-default
-        header.panel-heading الأقسام
-
-        div.list-group
-          a.list-group-item(ng-repeat='gate in links' ng-href='{{gate.path}}'
-            ng-bind='gate.name')
+    div.col-lg-4.visible-lg
+      a.thumbnail(href='http://www.su.edu.sa' target='_blank')
+        img(src='http://www.alweeam.com.sa/wp-content/uploads/2013/03/جامعة-شقراء1.jpg')
 
 hr
 

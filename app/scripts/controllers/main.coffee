@@ -1,8 +1,9 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .controller 'MainCtrl', ($scope, $http, BACKEND) ->
+  .controller 'MainCtrl', ($scope, $rootScope, $http, BACKEND) ->
 
-    $http.get("#{BACKEND}/admin/accounts/my_account")
+    $http.get("#{BACKEND}/accountable/my_account")
       .then (response) ->
-        $scope.myAccount = response.data.admin_account
+        $rootScope.myAccountRole = response.data.role
+        $rootScope.myAccount = response.data

@@ -1,28 +1,53 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .controller 'NavbarCtrl', ($scope, $http, $location, BACKEND, Navbarable) ->
+  .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, BACKEND, Navbarable) ->
 
-    url = "#{BACKEND}/admin/accounts/logout"
+    url = "#{BACKEND}/accountable/logout"
 
     $scope.logout = ->
       $http.delete(url)
         .then (response) ->
-          $scope.myAccount = undefined
-          $location.path '/'
+          $rootScope.myAccount = undefined
+          $rootScope.myAccountRole = undefined
+          $location.path '/abcd'
 
         .catch (response) ->
           console.log response
 
-    links = [
-      {
-        title: 'المتقدمين'
-        path: '#/applicants'
-      }
-      {
-        title: 'الصفحة الرئيسية'
-        path: '#/'
-      }
-    ]
+    $rootScope.navbarLinks = switch $rootScope.myAccountRole
+      when 'recruiter'
+        [
+          {
+            title: 'المتقدمين'
+            path: '#/applicants'
+          }
+          {
+            title: 'الصفحة الرئيسية'
+            path: '#/'
+          }
+        ]
+      when 'admin'
+        [
+          {
+            title: 'وحدة الإرشاد'
+            path: '#/guides'
+          }
+          {
+            title: 'وحدة التوظيف'
+            path: '#/recruiters'
+          }
+          {
+            title: 'الصفحة الرئيسية'
+            path: '#/'
+          }
+        ]
+      else
+        [
+          {
+            title: 'الصفحة الرئيسية'
+            path: '#/'
+          }
+        ]
 
-    Navbarable $scope, links
+    Navbarable $scope

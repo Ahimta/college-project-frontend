@@ -7,19 +7,19 @@ angular.module('collegeProjectFrontendApp')
 
       scope.sections = [
         {
-          title: 'المتقدمين'
+          title: 'وحدة التوظيف'
           body: 'المتقدمين للوظائف اﻷكاديمية.'
           link: '#/applicants'
           done: true
         }
         {
-          title: 'المواد'
+          title: 'وحدة الإرشاد'
           body: 'مواد الطلاب و الأساتذة.'
           link: '#/courses'
           done: false
         }
         {
-          title: 'اﻷساتذة'
+          title: 'الأساتذة'
           body: 'بيانات الأساتذة.'
           link: '#/teachers'
           done: false

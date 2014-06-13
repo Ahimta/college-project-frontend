@@ -2,11 +2,19 @@ header
   include ../partials/navbar
 
 div.page-header.text-center
-  h1
-    block title
+  h1 تسجيل دخول
 
 div.container
   form(name='myForm' role='form' ng-submit='login()')
+    div.form-group
+      label(for='role') تسجيل دخول كـ
+      select#role.form-control(ng-model='role' required)
+        option(value='recruiter' selected) وحدة التوظيف
+        option(value='admin') مسؤول
+        option(value='teacher' disabled) أستاذ
+        option(value='student' disabled) طالب
+        option(value='guide' disabled) وحدة الإرشاد
+
     div.form-group
       label(for='username') اسم المستخدم
       input#username.form-control(type='text', placeholder='اسم المستخدم'
