@@ -17,14 +17,11 @@ angular.module('collegeProjectFrontendApp')
     decide = (decision, id) ->
       $http.put("#{url}/#{decision}").then invalidate
 
-    update = (id) ->
+    $scope.update = ->
       $http.put(url, applicant_job_request: $scope.applicant)
         .then(successCallback)
         .then (_) ->
           $scope.isEditing = false
-
-    $scope.create = ->
-      update(applicantId)
 
     $scope.destroy = (id) ->
       $http.delete(url).then (_) ->

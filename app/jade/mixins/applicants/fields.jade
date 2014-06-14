@@ -1,0 +1,25 @@
+mixin applicant-fields(recordName)
+  div.form-group
+    label(for='fl') الاسم الكامل
+    input#fl.form-control(type='text' placeholder="الاسم الكامل"
+      ng-model=(recordName + '.full_name') required autofocus)
+
+  div.form-group
+    label(for='phone') رقم الهاتف
+    input#phone.form-control(type='text' placeholder="رقم الهاتف"
+      ng-model=(recordName + '.phone') required)
+
+  div.form-group
+    label(for='address') العنوان
+    input#address.form-control(type='text' placeholder="العنوان"
+      ng-model=(recordName + '.address') required)
+
+  div.form-group
+    label(for='specialization') التخصص
+    input#specialization.form-control(type='text' placeholder="التخصص"
+      ng-model=(recordName + '.specialization') required)
+
+  div.form-group
+    label(for='degree') الدرجة العلمية
+    input#degree.form-control(type='text' placeholder="الدرجة العلمية"
+      ng-model=(recordName + '.degree') required)

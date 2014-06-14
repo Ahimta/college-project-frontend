@@ -10,7 +10,9 @@ angular.module('collegeProjectFrontendApp')
         .then (response) ->
           $rootScope.myAccount = undefined
           $rootScope.myAccountRole = undefined
-          $location.path '/abcd'
+          $location.path '/'
+
+          response
 
         .catch (response) ->
           console.log response

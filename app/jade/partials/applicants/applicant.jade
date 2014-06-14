@@ -56,4 +56,12 @@ div(ng-show='applicant')
               button.btn.btn-sm.btn-danger(type='button' ng-click='destroy(applicant.id)') حذف
 
     div(ng-show='isEditing')
-      include form
+      include ../../mixins/applicants/fields
+
+      form(name='myForm' ng-submit='update()')
+
+        +applicant-fields('applicant')
+
+        div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+            value='تعديل الطلب'
+            ng-disabled='myForm.$pristine')
