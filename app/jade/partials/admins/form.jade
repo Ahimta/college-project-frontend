@@ -1,0 +1,20 @@
+form(name='myForm' ng-submit='create()')
+
+  div.form-group
+    label(for='fl') الاسم الكامل
+    input#fl.form-control(type='text' placeholder="الاسم الكامل"
+      ng-model='record.full_name' required autofocus)
+
+  div.form-group
+    label(for='username') اسم المستخدم
+    input#username.form-control(type='text' placeholder="اسم المستخدم"
+      ng-model='record.username' required)
+
+  div.form-group
+    label(for='password') كلمة المرور
+    input#password.form-control(type='password' placeholder="كلمة المرور"
+      ng-model='record.password' required)
+
+  div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+      value='تقديم الطلب'
+      ng-disabled='myForm.$invalid')

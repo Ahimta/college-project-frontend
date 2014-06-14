@@ -33,5 +33,8 @@ angular
       .when '/login',
         templateUrl: 'views/login.html'
         controller: 'LoginCtrl'
+      .when '/admins/new',
+        templateUrl: 'views/admins/new.html'
+        controller: 'AdminnewCtrl'
       .otherwise
         redirectTo: '/'
