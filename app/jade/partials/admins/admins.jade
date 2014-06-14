@@ -1,3 +1,15 @@
-include ../../mixins/accountable/accountables
+include ../../mixins/accountable/accountablestable
+include ../../mixins/progressbar
 
-+accountables('admins')
+
+div.row
+  +progress-bar('admins')
+
+div(ng-show='admins')
+  div.row
+    div.form-group
+      input.form-control(type='text' ng-model='query'
+        placeholder='بحث' autofocus)
+
+  div.row
+    +accountables-table('admins', 'query')
