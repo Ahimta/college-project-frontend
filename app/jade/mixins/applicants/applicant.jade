@@ -1,0 +1,68 @@
+mixin applicant(recordName, isEditing)
+  div(ng-show=recordName)
+    div.row(style='margin-bottom: 15px' dir='ltr')
+      ul.nav.nav-tabs.nav-justified
+        li(ng-class=('{active: ' + isEditing + '}') ng-click=(isEditing + ' = true'))
+          a(href='javascript:void(0);') تعديل
+        li(ng-class=('{active: !' + isEditing + '}') ng-click=(isEditing + ' = false'))
+          a(href='javascript:void(0);') عرض
+
+    div.row
+      article(ng-hide=isEditing)
+        div.panel.panel-primary
+          header.panel-heading
+            h3.panel-title(ng-bind=(recordName + '.full_name'))
+
+          div.panel-body
+            p
+              span.glyphicon.glyphicon-home
+              | &nbsp;
+              span(ng-bind=(recordName + '.address'))
+
+            p
+              span.glyphicon.glyphicon-earphone
+              | &nbsp;
+              span(ng-bind=(recordName + '.phone'))
+
+            hr
+
+            p
+              span.glyphicon.glyphicon-book
+              | &nbsp;
+              span(ng-bind=(recordName + '.specialization'))
+            p
+              span.glyphicon.glyphicon-bookmark
+              | &nbsp;
+              span(ng-bind=(recordName + '.degree'))
+
+          footer.panel-footer
+            div
+              span
+                button.btn.btn-sm.btn-success(type='button'
+                  ng-click=('accept(' + recordName + '.id)') ng-show=(recordName + ".accepted != 'accepted'")) قبول
+                button.btn.btn-sm.btn-success(type='button' disabled
+                  ng-show=(recordName + ".accepted == 'accepted'")) تم القبول
+
+              | &nbsp;
+
+              span
+                button.btn.btn-sm.btn-danger(type='button'
+                  ng-click=('reject(' + recordName + '.id)') ng-show=(recordName + ".accepted != 'rejected'")) رفض
+                button.btn.btn-sm.btn-danger(type='button' disabled
+                  ng-show=(recordName + ".accepted == 'rejected'")) تم الرفض
+
+              span.pull-left
+                button.btn.btn-sm.btn-primary(type='button' ng-click=(isEditing + ' = true')) تعديل
+                | &nbsp;
+                button.btn.btn-sm.btn-danger(type='button' ng-click=('destroy(' + recordName + '.id)')) حذف
+
+      div(ng-show=isEditing)
+        include fields
+
+        form(name='myForm' ng-submit='update()')
+
+          +applicant-fields(recordName)
+
+          div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+              value='تعديل الطلب'
+              ng-disabled='myForm.$pristine')

@@ -8,7 +8,4 @@ angular.module('collegeProjectFrontendApp')
         $rootScope.myAccountRole = response.data.role
         $rootScope.myAccount = response.data
 
-        $timeout ->
-          $rootScope.$digest
-
         response

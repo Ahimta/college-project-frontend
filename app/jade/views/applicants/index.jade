@@ -1,8 +1,10 @@
 extends ../../layouts/dashboard
+
+include ../../mixins/applicants/applicants
 include ../../mixins/progressbar
 
 block content
   div.row
     +progress-bar('applicants')
 
-  include ../../partials/applicants/applicants
+  +applicants('applicants')

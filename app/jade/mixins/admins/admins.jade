@@ -1,0 +1,23 @@
+mixin admins(admins)
+  include ../progressbar
+
+  div.row
+    +progress-bar(admins)
+
+  div(ng-show=admins)
+    div.row
+      div.form-group
+        input.form-control(type='text' ng-model='query'
+          placeholder='بحث' autofocus)
+
+    div.row
+      div.table-responsive
+        table.table.table-hover.table-condensed.text-center
+          thead
+            tr
+              th.text-center الاسم
+              th.text-center اسم المستخدم
+          tbody
+            tr(ng-repeat=('accountable in ' + admins + ' | filter:query'))
+              td(ng-bind='accountable.full_name')
+              td(ng-bind='accountable.username')

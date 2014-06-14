@@ -24,7 +24,7 @@ angular.module('collegeProjectFrontendApp')
         .then (response) ->
           $location.path switch $scope.role
             when 'recruiter' then '/applicants'
-            when 'admin' then '/'
+            when 'admin' then '/recruiters'
 
           $scope.loginFailed = false
 

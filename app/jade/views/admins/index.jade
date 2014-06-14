@@ -1,11 +1,13 @@
 extends ../../layouts/dashboard
 
+include ../../mixins/admins/admins
+
 block header
   | وحدة المسؤولين
 
 block content
   div.row
-    include ../../partials/admins/admins
+    +admins('admins')
 
   div.row
     div.row

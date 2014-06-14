@@ -1,8 +1,18 @@
 extends ../../layouts/dashboard
 
+include ../../mixins/accountable/usernametakenalert
+include ../../mixins/accountable/fields
+
 block header
   | وحدة المسؤولين - إضافة مسؤول
 
 block content
   div.row
-    include ../../partials/admins/form
+    +username-taken-alert('usernameConflict')
+
+    form(name='myForm' ng-submit='create()')
+      +accountable-fields('record')
+
+      div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+          value='إضافة مسؤول'
+          ng-disabled='myForm.$invalid')
