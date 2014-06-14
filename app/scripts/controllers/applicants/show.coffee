@@ -1,5 +1,12 @@
 'use strict'
 
+###*
+ # @ngdoc function
+ # @name collegeProjectFrontendApp.controller:ApplicantshowCtrl
+ # @description
+ # # ApplicantshowCtrl
+ # Controller of the collegeProjectFrontendApp
+###
 angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantshowCtrl', ($scope, $routeParams, $location, $http, BACKEND, Utils) ->
 

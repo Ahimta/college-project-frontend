@@ -1,12 +1,14 @@
 'use strict'
 
+###*
+ # @ngdoc function
+ # @name collegeProjectFrontendApp.controller:AdminsCtrl
+ # @description
+ # # AdminsCtrl
+ # Controller of the collegeProjectFrontendApp
+###
 angular.module('collegeProjectFrontendApp')
   .controller 'AdminsCtrl', ($scope, $http, $log, BACKEND, Utils) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
 
     Utils.setPageTitle 'وحدة المسؤولين'
 

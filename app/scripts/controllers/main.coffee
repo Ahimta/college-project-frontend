@@ -1,5 +1,12 @@
 'use strict'
 
+###*
+ # @ngdoc function
+ # @name collegeProjectFrontendApp.controller:MainCtrl
+ # @description
+ # # MainCtrl
+ # Controller of the collegeProjectFrontendApp
+###
 angular.module('collegeProjectFrontendApp')
   .controller 'MainCtrl', ($scope, $rootScope, $http, $timeout, BACKEND) ->
 

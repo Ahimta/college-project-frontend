@@ -9,11 +9,6 @@
 ###
 angular.module('collegeProjectFrontendApp')
   .controller 'AdminnewCtrl', ($scope, $http, $location, $log, BACKEND, Utils) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
 
     Utils.setPageTitle 'وحدة المسؤولين - إضافة مسؤول'
 
@@ -24,6 +19,7 @@ angular.module('collegeProjectFrontendApp')
         .then (response) ->
           $location.path '/admins'
           $scope.usernameConflict = false
+
           response
 
         .catch (error) ->

@@ -1,5 +1,12 @@
 'use strict'
 
+###*
+ # @ngdoc function
+ # @name collegeProjectFrontendApp.controller:NavbarCtrl
+ # @description
+ # # NavbarCtrl
+ # Controller of the collegeProjectFrontendApp
+###
 angular.module('collegeProjectFrontendApp')
   .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, BACKEND, Navbarable) ->
 

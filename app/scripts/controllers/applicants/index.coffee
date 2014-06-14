@@ -1,5 +1,12 @@
 'use strict'
 
+###*
+ # @ngdoc function
+ # @name collegeProjectFrontendApp.controller:ApplicantsCtrl
+ # @description
+ # # ApplicantsCtrl
+ # Controller of the collegeProjectFrontendApp
+###
 angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantsCtrl', ($scope, $http, $location, BACKEND, Utils) ->
 
@@ -10,6 +17,8 @@ angular.module('collegeProjectFrontendApp')
       $http.get(url)
         .then (response) ->
           $scope.applicants = response.data.applicant_job_requests
+          response
+
         .catch (response) ->
           switch response.status
             when 401 then $location.path('/login/admin')
@@ -17,6 +26,7 @@ angular.module('collegeProjectFrontendApp')
 
     decide = (decision, id) ->
       $http.put("#{url}/#{id}/#{decision}").then invalidate
+
 
     $scope.destroy = (id) ->
       $http.delete("#{url}/#{id}").then invalidate
