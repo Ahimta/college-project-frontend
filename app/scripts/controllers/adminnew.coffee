@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'AdminnewCtrl', ($scope, $http, $location, BACKEND, Utils) ->
+  .controller 'AdminnewCtrl', ($scope, $http, $location, $log, BACKEND, Utils) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
@@ -23,7 +23,9 @@ angular.module('collegeProjectFrontendApp')
       $http.post(resource, admin_account: $scope.record)
         .then (response) ->
           $location.path '/admins'
+          $scope.usernameConflict = false
           response
 
         .catch (error) ->
+          $scope.usernameConflict = true
           $log.debug error

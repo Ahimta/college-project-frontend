@@ -22,12 +22,13 @@ div.container
           option(value='student' disabled) طالب
           option(value='guide' disabled) وحدة الإرشاد
 
-      div.form-group
+      - ngClass = "{'has-error': loginFailed}"
+      div.form-group(ng-class=ngClass)
         label(for='username') اسم المستخدم
         input#username.form-control(type='text', placeholder='اسم المستخدم'
           required autofocus ng-model='user.username')
 
-      div.form-group
+      div.form-group(ng-class=ngClass)
         label(for='password') كلمة المرور
         input#password.form-control(type='password', placeholder='كلمة المرور'
           required ng-model='user.password')

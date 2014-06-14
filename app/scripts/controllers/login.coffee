@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'LoginCtrl', ($scope, $rootScope, $http, $location, Utils, BACKEND) ->
+  .controller 'LoginCtrl', ($scope, $rootScope, $http, $location, $log, Utils, BACKEND) ->
     $scope.awesomeThings = [
       'HTML5 Boilerplate'
       'AngularJS'
