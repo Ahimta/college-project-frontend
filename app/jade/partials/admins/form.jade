@@ -1,24 +1,9 @@
-div.alert.alert-warning(ng-show='usernameConflict')
-  button.close.pull-left(ng-click='usernameConflict = false')
-    &times;
-  span يوجد مستخدم بنفس اسم المستخدم الرجاء تغيير اسم المستخدم
+include ../../mixins/accountable/fields
+
+include ../accountable/usernametakenalert
 
 form(name='myForm' ng-submit='create()')
-
-  div.form-group
-    label(for='fl') الاسم الكامل
-    input#fl.form-control(type='text' placeholder="الاسم الكامل"
-      ng-model='record.full_name' required autofocus)
-
-  div.form-group(ng-class="{'has-warning': usernameConflict}")
-    label(for='username') اسم المستخدم
-    input#username.form-control(type='text' placeholder="اسم المستخدم"
-      ng-model='record.username' required)
-
-  div.form-group
-    label(for='password') كلمة المرور
-    input#password.form-control(type='password' placeholder="كلمة المرور"
-      ng-model='record.password' required)
+  +accountable-fields('record')
 
   div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
       value='إضافة مسؤول'
