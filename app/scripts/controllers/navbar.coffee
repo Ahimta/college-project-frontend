@@ -38,6 +38,10 @@ angular.module('collegeProjectFrontendApp')
             path: '#/recruiters'
           }
           {
+            title: 'وحدة المسؤولين'
+            path: '#/admins'
+          }
+          {
             title: 'الصفحة الرئيسية'
             path: '#/'
           }
