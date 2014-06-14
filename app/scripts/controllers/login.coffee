@@ -26,10 +26,13 @@ angular.module('collegeProjectFrontendApp')
             when 'recruiter' then '/applicants'
             when 'admin' then '/'
 
+          $scope.loginFailed = false
+
           $rootScope.myAccount = response.data
           $rootScope.myAccountRole = response.data.role
 
           response
-        .catch (response) ->
-          switch response.status
-            when 401 then $scope.incorrect = true
+
+        .catch (error) ->
+          switch error.status
+            when 401 then $scope.loginFailed = true
