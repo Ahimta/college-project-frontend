@@ -2,9 +2,9 @@ div(ng-show='applicant')
   div.row(style='margin-bottom: 15px' dir='ltr')
     ul.nav.nav-tabs.nav-justified
       li(ng-class='{active: isEditing}' ng-click='isEditing = true')
-        a(href='javascript:void(0)') تعديل
+        a(href='javascript:void(0);') تعديل
       li(ng-class='{active: !isEditing}' ng-click='isEditing = false')
-        a(href='javascript:void(0)') عرض
+        a(href='javascript:void(0);') عرض
 
   div.row
     article(ng-hide='isEditing')
