@@ -1,0 +1,22 @@
+include ../../mixins/progressbar
+
++progress-bar('admins')
+
+div(ng-show='admins')
+  div.row
+    div.form-group
+      input.form-control(type='text' ng-model='query'
+        placeholder='بحث عن: الاسم, اسم المستخدم' autofocus)
+
+  div.row
+    div.table-responsive
+      table.table.table-hover.table-condensed.table-striped.text-center
+        thead
+          tr
+            th.text-center الاسم
+            th.text-center اسم المستخدم
+        tbody
+          tr(ng-repeat='admin in admins | filter:query')
+            td: a(ng-href='#/admins/{{admin.id}}'
+              ng-bind='admin.full_name')
+            td(ng-bind='admin.username')
