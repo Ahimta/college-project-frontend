@@ -1,11 +1,11 @@
-mixin accountable-fields(recordName)
+mixin accountable-fields(recordName, usernameConflict)
 
   div.form-group
     label(for='fl') الاسم الكامل
     input#fl.form-control(type='text' placeholder='الاسم الكامل'
       ng-model=(recordName + '.full_name') required autofocus)
 
-  div.form-group(ng-class="{'has-warning': usernameConflict}")
+  div.form-group(ng-class=("{'has-warning': " + usernameConflict + '}'))
     label(for='username') اسم المستخدم
     input#username.form-control(type='text' placeholder='اسم المستخدم'
       ng-model=(recordName + '.username') required)

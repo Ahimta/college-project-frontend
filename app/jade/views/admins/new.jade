@@ -11,7 +11,7 @@ block content
     +username-taken-alert('usernameConflict')
 
     form(name='myForm' ng-submit='create()')
-      +accountable-fields('record')
+      +accountable-fields('record', 'usernameConflict')
 
       div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
           value='إضافة مسؤول'
