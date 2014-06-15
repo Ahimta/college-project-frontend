@@ -1,0 +1,18 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/usernametakenalert
+include ../../mixins/accountable/fields
+
+block header
+  | وحدة التوضيف - إضافة مستخدم
+
+block content
+  div.row
+    +username-taken-alert('usernameConflict')
+
+    form(name='myForm' ng-submit='create()')
+      +accountable-fields('recruiter_account')
+
+      div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+          value='إضافة مستخدم'
+          ng-disabled='myForm.$invalid')
