@@ -1,0 +1,24 @@
+mixin recruiters(recruiters)
+  include ../progressbar
+
+  div.row
+    +progress-bar(recruiters)
+
+  div(ng-show=recruiters)
+    div.row
+      div.form-group
+        input.form-control(type='text' ng-model='query'
+          placeholder='بحث' autofocus)
+
+    div.row
+      div.table-responsive
+        table.table.table-hover.table-condensed.text-center
+          thead
+            tr
+              th.text-center الاسم
+              th.text-center اسم المستخدم
+          tbody
+            tr(ng-repeat=('accountable in ' + recruiters + ' | filter:query'))
+              td: a(ng-href='#/recruiters/{{recruiter.id}}'
+                ng-bind='accountable.full_name')
+              td(ng-bind='accountable.username')

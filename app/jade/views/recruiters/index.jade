@@ -1,0 +1,14 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/recruiters/recruiters
+
+block header
+  | وحدة المسؤولين
+
+block content
+  div.row
+    +recruiters('recruiters')
+
+  div.row
+    div.row
+      a.btn.btn-success.btn-lg.btn-block(href='#/recruiters/new') إضافة مستخدم
