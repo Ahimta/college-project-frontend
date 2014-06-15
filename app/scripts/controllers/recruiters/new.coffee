@@ -10,7 +10,7 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'RecruitersNewCtrl', ($scope, $http, $location, $log, BACKEND, Utils) ->
 
-    Utils.setPageTitle 'وحدة المسؤولين - إضافة مسؤول'
+    Utils.setPageTitle 'وحدة التوظيف - إضافة مستخدم'
 
     resource = "#{BACKEND}/recruiter/accounts"
 

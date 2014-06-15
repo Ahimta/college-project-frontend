@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'MainCtrl', ($scope, $rootScope, $http, $cookieStore, BACKEND) ->
+  .controller 'MainCtrl', ($scope, $rootScope, $http, $log, $cookieStore, BACKEND) ->
 
     $http.get("#{BACKEND}/accountable/my_account")
       .then (response) ->
@@ -23,3 +23,9 @@ angular.module('collegeProjectFrontendApp')
         $rootScope.myAccount = account
 
         response
+
+      .catch (response) ->
+        $log.debug response
+
+        $cookieStore.remove 'my_account'
+        $cookieStore.remove 'my_role'
