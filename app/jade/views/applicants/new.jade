@@ -5,13 +5,14 @@ header
 div.container
   include ../../mixins/applicants/fields
 
-  form(name='myForm' ng-submit='create()')
+  - formName = 'myForm'
+  form(name=formName ng-submit='create()')
 
-    +applicant-fields('applicant')
+    +applicant-fields('applicant', formName)
 
     div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
         value='تقديم الطلب'
-        ng-disabled='myForm.$pristine')
+        ng-disabled=(formName + '.$invalid'))
 
 hr
 

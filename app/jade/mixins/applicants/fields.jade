@@ -1,25 +1,33 @@
-mixin applicant-fields(recordName)
-  div.form-group
-    label(for='fn') الاسم الكامل
-    input#fn.form-control(type='text' placeholder="الاسم الكامل" name='fn'
-      ng-model=(recordName + '.full_name') required autofocus)
+mixin applicant-fields(recordName, formName)
+  - f = function(s) { return (recordName + '.' + s); }
+  - g = function(s) { return ("{'has-error':" + formName + '.' + s + '.$invalid}'); }
 
-  div.form-group
-    label(for='phone') رقم الهاتف
-    input#phone.form-control(type='text' placeholder="رقم الهاتف" name='phone'
-      ng-model=(recordName + '.phone') required)
+  - fn = 'full_name'
+  div.form-group(ng-class=g(fn))
+    label(for=fn) الاسم الكامل
+    input.form-control(id=fn type='text' placeholder="الاسم الكامل" name=fn
+      ng-model=f(fn) required autofocus)
 
-  div.form-group
-    label(for='address') العنوان
-    input#address.form-control(type='text' placeholder="العنوان" name='address'
-      ng-model=(recordName + '.address') required)
+  - phone = 'phone'
+  div.form-group(ng-class=g(phone))
+    label(for=phone) رقم الهاتف
+    input.form-control(id=phone type='text' placeholder="رقم الهاتف" name=phone
+      ng-model=f(phone) required)
 
-  div.form-group
-    label(for='specialization') التخصص
-    input#specialization.form-control(type='text' placeholder="التخصص"
-      ng-model=(recordName + '.specialization') required name='specialization')
+  - address = 'address'
+  div.form-group(ng-class=g(address))
+    label(for=address) العنوان
+    input.form-control(id=address type='text' placeholder="العنوان" name=address
+      ng-model=f(address) required)
 
-  div.form-group
-    label(for='degree') الدرجة العلمية
-    input#degree.form-control(type='text' placeholder="الدرجة العلمية" name='degree'
-      ng-model=(recordName + '.degree') required)
+  - specialization = 'specialization'
+  div.form-group(ng-class=g(specialization))
+    label(for=specialization) التخصص
+    input.form-control(id=specialization type='text' placeholder="التخصص"
+      ng-model=f(specialization) required name=specialization)
+
+  - degree = 'degree'
+  div.form-group(ng-class=g(degree))
+    label(for=degree) الدرجة العلمية
+    input.form-control(id=degree type='text' placeholder="الدرجة العلمية" name=degree
+      ng-model=f(degree) required)
