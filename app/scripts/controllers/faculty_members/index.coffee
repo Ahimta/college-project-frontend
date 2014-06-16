@@ -8,9 +8,6 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'FacultyMembersIndexCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+  .controller 'FacultyMembersIndexCtrl', ($scope, Utils) ->
+
+    Utils.setPageTitle 'وحدة الإرشاد'

@@ -34,7 +34,7 @@ angular.module('collegeProjectFrontendApp')
     adminLinks = [
       {
         title: 'وحدة الإرشاد'
-        path: '#/guides'
+        path: '#/faculty_members'
       }
       {
         title: 'وحدة التوظيف'
