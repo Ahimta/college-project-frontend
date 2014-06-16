@@ -1,4 +1,4 @@
 'use strict'
 
 angular.module('collegeProjectFrontendApp')
-  .constant 'BACKEND', 'http://localhost:3000/api/v1'
+  .constant 'BACKEND', 'https://college-project.herokuapp.com/api/v1'
