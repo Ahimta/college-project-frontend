@@ -5,6 +5,6 @@ include ../../mixins/progressbar
 
 block content
   div.row
-    +progress-bar('applicants')
+    +progress-bar('applicants.length > -1')
 
   +applicants('applicants')

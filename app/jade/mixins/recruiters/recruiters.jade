@@ -2,7 +2,7 @@ mixin recruiters(recruiters)
   include ../progressbar
 
   div.row
-    +progress-bar(recruiters)
+    +progress-bar(recruiters + '.length > -1')
 
   div(ng-show=recruiters)
     div.row

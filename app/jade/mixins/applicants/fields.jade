@@ -1,6 +1,6 @@
 mixin applicant-fields(recordName, formName)
-  - f = function(s) { return (recordName + '.' + s); }
   - g = function(s) { return ("{'has-error':" + formName + '.' + s + '.$invalid}'); }
+  - f = function(s) { return (recordName + '.' + s); }
 
   - fn = 'full_name'
   div.form-group(ng-class=g(fn))
@@ -23,11 +23,21 @@ mixin applicant-fields(recordName, formName)
   - specialization = 'specialization'
   div.form-group(ng-class=g(specialization))
     label(for=specialization) التخصص
-    input.form-control(id=specialization type='text' placeholder="التخصص"
+    select.form-control(id=specialization type='text' placeholder="التخصص"
       ng-model=f(specialization) required name=specialization)
+      option لغة انجليزية
+      option علوم شرعية
+      option حاسب آلي
+      option إدارة أعمال
+      option كيمياء
+      option فيزياء
 
   - degree = 'degree'
   div.form-group(ng-class=g(degree))
     label(for=degree) الدرجة العلمية
-    input.form-control(id=degree type='text' placeholder="الدرجة العلمية" name=degree
+    select.form-control(id=degree type='text' placeholder="الدرجة العلمية" name=degree
       ng-model=f(degree) required)
+      option استاذ
+      option استاذ مساعد
+      option دكتور
+      option محاضر

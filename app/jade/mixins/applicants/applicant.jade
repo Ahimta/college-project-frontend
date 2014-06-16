@@ -59,10 +59,11 @@ mixin applicant(recordName, isEditing)
       div(ng-show=isEditing)
         include fields
 
-        form(name='myForm' ng-submit='update()')
+        - formName = 'myForm'
+        form(name=formName ng-submit='update()')
 
-          +applicant-fields(recordName)
+          +applicant-fields(recordName, formName)
 
           div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
               value='تعديل الطلب'
-              ng-disabled='myForm.$pristine')
+              ng-disabled='myForm.$invalid')
