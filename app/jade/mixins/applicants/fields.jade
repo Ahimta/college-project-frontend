@@ -46,4 +46,4 @@ mixin applicant-fields(recordName, formName)
   each label, file in {'bachelor_certificate': 'شهادة البكالوريوس', 'master_certificate': 'شهادة الماجستير', 'doctorate_certificate': 'شهادة الدكتوراة', 'cv': 'السيرة الذاتية'}
     div.form-group
       label(for=file)= label
-      input(id=file name=file type='file' placeholder=file ng-model=f(file))
+      input(id=file name=file type='file' placeholder=file ng-model=f(file) disabled)
