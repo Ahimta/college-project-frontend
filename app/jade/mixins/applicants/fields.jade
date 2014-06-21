@@ -27,6 +27,7 @@ mixin applicant-fields(recordName, formName)
       ng-model=f(specialization) required name=specialization)
       option لغة انجليزية
       option علوم شرعية
+      option لغة عربية
       option حاسب آلي
       option إدارة أعمال
       option كيمياء
@@ -37,7 +38,12 @@ mixin applicant-fields(recordName, formName)
     label(for=degree) الدرجة العلمية
     select.form-control(id=degree type='text' placeholder="الدرجة العلمية" name=degree
       ng-model=f(degree) required)
-      option استاذ
-      option استاذ مساعد
+      option أستاذ
+      option أستاذ مساعد
       option دكتور
       option محاضر
+
+  each label, file in {'bachelor_certificate': 'شهادة البكالوريوس', 'master_certificate': 'شهادة الماجستير', 'doctorate_certificate': 'شهادة الدكتوراة', 'cv': 'السيرة الذاتية'}
+    div.form-group
+      label(for=file)= label
+      input(id=file name=file type='file' placeholder=file ng-model=f(file))

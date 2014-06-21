@@ -60,7 +60,7 @@ mixin applicant(recordName, isEditing)
         include fields
 
         - formName = 'myForm'
-        form(name=formName ng-submit='update()')
+        form(name=formName enctype='multipart/form-data' ng-submit='update()')
 
           +applicant-fields(recordName, formName)
 
