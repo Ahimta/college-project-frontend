@@ -12,7 +12,7 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle 'وحدة المسؤولين'
 
-    url = "#{BACKEND}/admin/accounts"
+    url = "#{BACKEND}/admin_accounts"
 
     $http.get(url)
       .then (response) ->

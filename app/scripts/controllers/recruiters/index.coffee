@@ -12,7 +12,7 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle 'وحدة التوظيف'
 
-    url = "#{BACKEND}/recruiter/accounts"
+    url = "#{BACKEND}/recruiter_accounts"
     _isEditing = {}
 
     invalidate = ->

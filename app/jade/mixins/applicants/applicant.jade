@@ -11,7 +11,7 @@ mixin applicant(recordName, isEditing)
       article(ng-hide=isEditing)
         div.panel.panel-primary
           header.panel-heading
-            h3.panel-title(ng-bind=(recordName + '.full_name'))
+            h3.panel-title(ng-bind=(recordName + '.fullname'))
 
           div.panel-body
             p
@@ -39,17 +39,17 @@ mixin applicant(recordName, isEditing)
             div
               span
                 button.btn.btn-sm.btn-success(type='button'
-                  ng-click=('accept(' + recordName + '.id)') ng-show=(recordName + ".accepted != 'accepted'")) قبول
+                  ng-click=('accept(' + recordName + '.id)') ng-show=(recordName + ".status != 'accepted'")) قبول
                 button.btn.btn-sm.btn-success(type='button' disabled
-                  ng-show=(recordName + ".accepted == 'accepted'")) تم القبول
+                  ng-show=(recordName + ".status == 'accepted'")) تم القبول
 
               | &nbsp;
 
               span
                 button.btn.btn-sm.btn-danger(type='button'
-                  ng-click=('reject(' + recordName + '.id)') ng-show=(recordName + ".accepted != 'rejected'")) رفض
+                  ng-click=('reject(' + recordName + '.id)') ng-show=(recordName + ".status != 'rejected'")) رفض
                 button.btn.btn-sm.btn-danger(type='button' disabled
-                  ng-show=(recordName + ".accepted == 'rejected'")) تم الرفض
+                  ng-show=(recordName + ".status == 'rejected'")) تم الرفض
 
               span.pull-left
                 button.btn.btn-sm.btn-primary(type='button' ng-click=(isEditing + ' = true')) تعديل

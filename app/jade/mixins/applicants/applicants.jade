@@ -15,8 +15,8 @@ mixin applicants(applicants)
               th.text-center التخصص
           tbody
             tr(ng-repeat=('applicant in ' + applicants + ' | filter:query')
-                ng-class='getClass(applicant.accepted)')
+                ng-class='getClass(applicant.status)')
               td: a(ng-href='#/applicants/{{applicant.id}}'
-                ng-bind='applicant.full_name')
+                ng-bind='applicant.fullname')
               td(ng-bind='applicant.address')
               td(ng-bind='applicant.specialization')

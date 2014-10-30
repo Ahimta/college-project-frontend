@@ -12,7 +12,7 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle 'وحدة المسؤولين - إضافة مسؤول'
 
-    resource = "#{BACKEND}/admin/accounts"
+    resource = "#{BACKEND}/admin_accounts"
 
     $scope.create = ->
       $http.post(resource, admin_account: $scope.record)

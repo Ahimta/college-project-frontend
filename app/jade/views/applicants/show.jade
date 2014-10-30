@@ -5,9 +5,9 @@ include ../../mixins/progressbar
 
 
 block header
-  | المتقدمين -&nbsp;{{applicant.full_name}}
+  | المتقدمين -&nbsp;{{job_request.fullname}}
 
 block content
-  +progress-bar('applicant')
+  +progress-bar('job_request')
 
-  +applicant('applicant', 'isEditing')
+  +applicant('job_request', 'isEditing')

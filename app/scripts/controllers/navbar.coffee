@@ -11,7 +11,7 @@ angular.module('collegeProjectFrontendApp')
   .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, $cookieStore, BACKEND,
     Navbarable) ->
 
-    url = "#{BACKEND}/accountable/logout"
+    url = "#{BACKEND}/sessions"
 
     visitorLinks = [
       {

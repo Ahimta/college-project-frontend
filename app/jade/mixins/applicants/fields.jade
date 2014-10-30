@@ -2,7 +2,7 @@ mixin applicant-fields(recordName, formName)
   - g = function(s) { return ("{'has-error':" + formName + '.' + s + '.$invalid}'); }
   - f = function(s) { return (recordName + '.' + s); }
 
-  - fn = 'full_name'
+  - fn = 'fullname'
   div.form-group(ng-class=g(fn))
     label(for=fn) الاسم الكامل
     input.form-control(id=fn type='text' placeholder="الاسم الكامل" name=fn
@@ -13,6 +13,12 @@ mixin applicant-fields(recordName, formName)
     label(for=phone) رقم الهاتف
     input.form-control(id=phone type='text' placeholder="رقم الهاتف" name=phone
       ng-model=f(phone) required)
+
+  - email = 'email'
+  div.form-group(ng-class=g(email))
+    label(for=email) البريد الإلكتروني
+    input.form-control(id=email type='email' placeholder="رقم الهاتف" name=email
+      ng-model=f(email) required)
 
   - address = 'address'
   div.form-group(ng-class=g(address))

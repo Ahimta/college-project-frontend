@@ -13,20 +13,20 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle 'بوابة المسؤولين - تسجيل دخول'
 
-    url = "#{BACKEND}/accountable/login"
+    url = "#{BACKEND}/sessions"
 
     $scope.login = ->
-      $http.post(url, login: $scope.user, role: $scope.role)
+      $http.post(url, username: $scope.user.username, password: $scope.user.password, role: $scope.role)
         .then (response) ->
           data = response.data
           account = data.account
-          role = data.role
+          role    = data.account_role
 
           $cookieStore.put 'my_account', account
           $cookieStore.put 'my_role', role
 
-          $rootScope.myAccount = account
           $rootScope.myAccountRole = role
+          $rootScope.myAccount     = account
 
           $scope.loginFailed = false
 

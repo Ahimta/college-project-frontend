@@ -12,7 +12,7 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle 'وحدة التوظيف - إضافة مستخدم'
 
-    resource = "#{BACKEND}/recruiter/accounts"
+    resource = "#{BACKEND}/recruiter_accounts"
 
     $scope.create = ->
       $http.post(resource, recruiter_account: $scope.recruiter_account)

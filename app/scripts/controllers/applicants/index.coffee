@@ -11,12 +11,12 @@ angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantsCtrl', ($scope, $http, $location, BACKEND, Utils) ->
 
     Utils.setPageTitle 'المتقدمين'
-    url = "#{BACKEND}/applicant/job_requests"
+    url = "#{BACKEND}/job_requests"
 
     invalidate = ->
       $http.get(url)
         .then (response) ->
-          $scope.applicants = response.data.applicant_job_requests
+          $scope.applicants = response.data.job_requests
           response
 
         .catch (response) ->

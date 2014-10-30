@@ -8,7 +8,7 @@ div.container
   - formName = 'myForm'
   form(name=formName enctype='multipart/form-data' ng-submit='create()')
 
-    +applicant-fields('applicant', formName)
+    +applicant-fields('job_request', formName)
 
     div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
         value='تقديم الطلب'
