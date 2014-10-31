@@ -11,7 +11,7 @@ angular.module('collegeProjectFrontendApp')
   .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, $cookieStore, BACKEND,
     Navbarable) ->
 
-    url = "#{BACKEND}/sessions"
+    url = "#{BACKEND}/sessions/current"
 
     visitorLinks = [
       {

@@ -44,13 +44,10 @@ mixin applicant-fields(recordName, formName)
     label(for=degree) الدرجة العلمية
     select.form-control(id=degree type='text' placeholder="الدرجة العلمية" name=degree
       ng-model=f(degree) required)
-      option أستاذ
       option أستاذ مساعد
-      option دكتور
       option محاضر
-
-  include ./files
-  br
+      option دكتور
+      option أستاذ
 
   //- each label, file in {'bachelor_certificate': 'شهادة البكالوريوس', 'master_certificate': 'شهادة الماجستير', 'doctorate_certificate': 'شهادة الدكتوراة', 'cv': 'السيرة الذاتية'}
   //-   div.form-group

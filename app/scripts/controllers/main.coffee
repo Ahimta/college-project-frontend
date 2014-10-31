@@ -10,11 +10,10 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'MainCtrl', ($scope, $rootScope, $http, $log, $cookieStore, BACKEND) ->
 
-    $http.get("#{BACKEND}/accountable/my_account")
-      .then (response) ->
-        data = response.data
-        account = response.data
-        role = data.role
+    $http.get("#{BACKEND}/sessions/current")
+      .then (res) ->
+        account = res.data.account
+        role    = res.data.account_role
 
         $cookieStore.put 'my_account', account
         $cookieStore.put 'my_role', role
@@ -22,10 +21,10 @@ angular.module('collegeProjectFrontendApp')
         $rootScope.myAccountRole = role
         $rootScope.myAccount = account
 
-        response
+        res
 
-      .catch (response) ->
-        $log.debug response
+      .catch (res) ->
+        $log.debug res
 
         $cookieStore.remove 'my_account'
         $cookieStore.remove 'my_role'

@@ -13,9 +13,9 @@ table.table
       th.text-center إدارة
   tbody
     tr(ng-repeat="item in uploader.queue")
-      td: strong {{ item.file.name }}
-      td(ng-show="uploader.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
-      td(ng-show="uploader.isHTML5")
+      td.text-center: strong {{ item.file.name }}
+      td.text-center(ng-show="uploader.isHTML5" nowrap) {{ item.file.size/1024/1024|number:2 }} MB
+      td.text-center(ng-show="uploader.isHTML5")
         div.progress(style="margin-bottom: 0;")
           div.progress-bar(role="progressbar" ng-style="{ 'width': item.progress + '%' }")
         
@@ -25,16 +25,16 @@ table.table
         span(ng-show="item.isCancel"): i.glyphicon.glyphicon-ban-circle
         span(ng-show="item.isError"): i.glyphicon.glyphicon-remove
       
-      td(nowrap)
+      td.text-center(nowrap)
         //- button.btn.btn-success.btn-xs(type="button" ng-click="item.upload()"
         //-   ng-disabled="item.isReady || item.isUploading || item.isSuccess || true")
         //-   span.glyphicon.glyphicon-upload Upload
         //- &nbsp;
         button.btn.btn-warning.btn-xs(type="button" ng-click="item.cancel()" ng-disabled="!item.isUploading")
-          span.glyphicon.glyphicon-ban-circle Cancel
+          span.glyphicon.glyphicon-ban-circle إلغاء
         &nbsp;        
         button.btn.btn-danger.btn-xs(type="button" ng-click="item.remove()")
-          span.glyphicon.glyphicon-trash Remove
+          span.glyphicon.glyphicon-trash حذف
         
 div
   div
