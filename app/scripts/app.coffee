@@ -6,6 +6,7 @@ angular
     'ngResource'
     'ngSanitize'
     'ngRoute'
+    'angularFileUpload'
   ])
   .config ($httpProvider) ->
     $httpProvider.defaults.withCredentials = true

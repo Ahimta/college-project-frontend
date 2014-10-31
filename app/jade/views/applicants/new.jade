@@ -6,7 +6,7 @@ div.container
   include ../../mixins/applicants/fields
 
   - formName = 'myForm'
-  form(name=formName enctype='multipart/form-data' ng-submit='create()')
+  form(name=formName ng-submit='create()')
 
     +applicant-fields('job_request', formName)
 
