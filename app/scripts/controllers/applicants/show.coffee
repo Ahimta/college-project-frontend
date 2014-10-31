@@ -13,22 +13,24 @@ angular.module('collegeProjectFrontendApp')
     applicantId = $routeParams.id
     url = "#{BACKEND}/job_requests/#{applicantId}"
 
-    successCallback = (response) ->
-      job_request = response.data.job_request
+    successCallback = (res) ->
+      job_request = res.data.job_request
       $scope.job_request = job_request
       Utils.setPageTitle "المتقدمين - #{job_request.fullname}"
+      res
 
     invalidate = ->
       $http.get(url).then successCallback
 
     decide = (decision, id) ->
-      $http.put("#{url}/#{decision}").then invalidate
+      $http.put("#{url}/#{decision}").then successCallback
 
     $scope.update = ->
       $http.put(url, job_request: $scope.job_request)
         .then(successCallback)
-        .then (_) ->
+        .then (res) ->
           $scope.isEditing = false
+          res
 
     $scope.destroy = (id) ->
       $http.delete(url).then (_) ->
