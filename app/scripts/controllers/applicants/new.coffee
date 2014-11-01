@@ -28,5 +28,8 @@ angular.module('collegeProjectFrontendApp')
             item.url = "#{BACKEND}/job_requests/#{res.data.job_request.id}/files"
           res
         .then (res) ->
-          uploader.uploadAll()
+          if uploader.queue and uploader.queue.length == 0
+            $location.path '/'
+          else
+            uploader.uploadAll()
           res
