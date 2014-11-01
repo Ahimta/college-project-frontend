@@ -18,10 +18,12 @@ angular.module('collegeProjectFrontendApp')
       withCredentials: true
       method: 'PUT'
 
+    uploader.onCompleteAll = ->
+      $location.path '/'
+
     $scope.create = ->
       $http.post(resource, job_request: $scope.job_request)
         .then (res) ->
-          $location.path '/'
           uploader.onBeforeUploadItem = (item) ->
             item.url = "#{BACKEND}/job_requests/#{res.data.job_request.id}/files"
           res
