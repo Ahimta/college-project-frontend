@@ -40,7 +40,7 @@ mixin applicant(recordName, isEditing)
             ul
               li(ng-repeat='file in ' + recordName + '.files')
                 a(ng-bind='file'
-                  ng-href=('http://localhost:3000/api/v0/job_requests/{{' + recordName + '.id}}/files/' + '{{file}}'))
+                  ng-href=('/api/v0/job_requests/{{' + recordName + '.id}}/files/' + '{{file}}'))
 
           footer.panel-footer
             div
