@@ -20,7 +20,7 @@ mixin recruiters(recruiters)
               th.text-center تعديل
           tbody
             tr(ng-repeat=('accountable in ' + recruiters + ' | filter:query'))
-              td(ng-bind='accountable.full_name')
+              td(ng-bind='accountable.fullname')
               td(ng-bind='accountable.username')
               td
                 div.btn-group(ng-show='!isEditing(accountable.id)')
