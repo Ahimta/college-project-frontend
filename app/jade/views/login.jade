@@ -15,7 +15,7 @@ div.container
     form(name='myForm' role='form' ng-submit='login()')
       div.form-group
         label(for='role') تسجيل دخول كـ
-        select#role.form-control(ng-model='role' required)
+        select#role.form-control(ng-model='role' required autofocus)
           option(value='recruiter' selected) وحدة التوظيف
           option(value='admin') مسؤول
           option(value='teacher' disabled) أستاذ
@@ -26,7 +26,7 @@ div.container
       div.form-group(ng-class=ngClass)
         label(for='username') اسم المستخدم
         input#username.form-control(type='text', placeholder='اسم المستخدم'
-          required autofocus ng-model='user.username')
+          required ng-model='user.username')
 
       div.form-group(ng-class=ngClass)
         label(for='password') كلمة المرور

@@ -24,6 +24,7 @@ angular.module('collegeProjectFrontendApp')
     $scope.create = ->
       $http.post(resource, job_request: $scope.job_request)
         .then (res) ->
+          $scope.isUploading = true
           uploader.onBeforeUploadItem = (item) ->
             item.url = "#{BACKEND}/job_requests/#{res.data.job_request.id}/files"
           res

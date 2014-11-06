@@ -2,54 +2,111 @@ mixin applicant-fields(recordName, formName)
   - g = function(s) { return ("{'has-error':" + formName + '.' + s + '.$invalid}'); }
   - f = function(s) { return (recordName + '.' + s); }
 
-  - fn = 'fullname'
-  div.form-group(ng-class=g(fn))
-    label(for=fn) الاسم الكامل
-    input.form-control(id=fn type='text' placeholder="الاسم الكامل" name=fn
-      ng-model=f(fn) required autofocus)
+  fieldset
+    legend: h2 البيانات الشخصية
+    div.row
+      - id_num = 'id_num'
+      div.col-md-6: div.form-group(ng-class=g(id_num))
+        label(for=id_num) رقم الهوية الوطنية
+        input.form-control(id=id_num type='text' placeholder="رقم الهوية الوطنية" name=id_num
+          ng-model=f(id_num) required autofocus)
 
-  - phone = 'phone'
-  div.form-group(ng-class=g(phone))
-    label(for=phone) رقم الهاتف
-    input.form-control(id=phone type='text' placeholder="رقم الهاتف" name=phone
-      ng-model=f(phone) required)
+      - fn = 'fullname'
+      div.col-md-6: div.form-group(ng-class=g(fn))
+        label(for=fn) الاسم الكامل
+        input.form-control(id=fn type='text' placeholder="الاسم الكامل" name=fn
+          ng-model=f(fn) required autofocus)
 
-  - email = 'email'
-  div.form-group(ng-class=g(email))
-    label(for=email) البريد الإلكتروني
-    input.form-control(id=email type='email' placeholder="رقم الهاتف" name=email
-      ng-model=f(email) required)
+    div.row
+      - email = 'email'
+      div.col-md-6: div.form-group(ng-class=g(email))
+        label(for=email) البريد الإلكتروني
+        input.form-control(id=email type='email' placeholder="رقم الهاتف" name=email
+          ng-model=f(email) required)
 
-  - address = 'address'
-  div.form-group(ng-class=g(address))
-    label(for=address) العنوان
-    input.form-control(id=address type='text' placeholder="العنوان" name=address
-      ng-model=f(address) required)
+      - phone = 'phone'
+      div.col-md-6: div.form-group(ng-class=g(phone))
+        label(for=phone) رقم الهاتف
+        input.form-control(id=phone type='text' placeholder="رقم الهاتف" name=phone
+          ng-model=f(phone) required)
 
-  - specialization = 'specialization'
-  div.form-group(ng-class=g(specialization))
-    label(for=specialization) التخصص
-    select.form-control(id=specialization type='text' placeholder="التخصص"
-      ng-model=f(specialization) required name=specialization)
-      option لغة انجليزية
-      option علوم شرعية
-      option لغة عربية
-      option حاسب آلي
-      option إدارة أعمال
-      option كيمياء
-      option فيزياء
+    div.row
+      - address = 'address'
+      div.col-md-6: div.form-group(ng-class=g(address))
+        label(for=address) العنوان
+        input.form-control(id=address type='text' placeholder="العنوان" name=address
+          ng-model=f(address) required)
 
-  - degree = 'degree'
-  div.form-group(ng-class=g(degree))
-    label(for=degree) الدرجة العلمية
-    select.form-control(id=degree type='text' placeholder="الدرجة العلمية" name=degree
-      ng-model=f(degree) required)
-      option أستاذ مساعد
-      option محاضر
-      option دكتور
-      option أستاذ
+      - current_location = 'current_location'
+      div.col-md-6: div.form-group(ng-class=g(current_location))
+        label(for=current_location) مكان الإقامة الحالي
+        input.form-control(id=current_location type='text' ng-model=f(current_location) required
+          placeholder='مكان الإقامة الحالي' name=current_location)
 
-  //- each label, file in {'bachelor_certificate': 'شهادة البكالوريوس', 'master_certificate': 'شهادة الماجستير', 'doctorate_certificate': 'شهادة الدكتوراة', 'cv': 'السيرة الذاتية'}
-  //-   div.form-group
-  //-     label(for=file)= label
-  //-     input(id=file name=file type='file' placeholder=file)
+  br
+
+  fieldset
+    legend: h2 البيانات الأكاديمية
+    div.row
+      - specialization = 'specialization'
+      div.col-md-6: div.form-group(ng-class=g(specialization))
+        label(for=specialization) التخصص
+        select.form-control(id=specialization type='text' placeholder="التخصص"
+          ng-model=f(specialization) required name=specialization)
+          optgroup(label='هندسة')
+            option هندسة ميكانيكية
+            option هندسة كهربائية
+            option هندسة معمارية
+            option هندسة مدنية
+          optgroup(label='علوم')
+            option حاسب آلي
+            option كيمياء
+            option فيزياء
+          optgroup(label='طب')
+            option تمريض
+            option صيدلة
+            option طب
+          optgroup(label='أخرى')
+            option لغة انجليزية
+            option علوم شرعية
+            option إدارة أعمال
+            option لغة عربية
+
+      - degree = 'degree'
+      div.col-md-6: div.form-group(ng-class=g(degree))
+        label(for=degree) المؤهل العلمي
+        select.form-control(id=degree type='text' placeholder="المؤهل العلمي" name=degree
+          ng-model=f(degree) required)
+          option بكالريوس
+          option ماجستير
+          option دكتوراه
+
+    div.row
+      - university = 'university'
+      div.col-md-6: div.form-group(ng-class=g(university))
+        label(for=university) الجامعة المتخرج منها
+        input.form-control(id=university type='text' ng-model=f(university) required
+          placeholder='الجامعة المتخرج منها' name=university)
+
+      - job = 'job'
+      div.col-md-6: div.form-group(ng-class=g(job))
+        label(for=job) الوظيفة المتقدم لها
+        select.form-control(id=job type='text' placeholder="الوظيفة المتقدم لها" name=job
+          ng-model=f(job) required)
+          option استاذ
+          option استاذ مشارك
+          option محاضر
+          option معيد
+
+    div.row
+      - highschool_location = 'highschool_location'
+      div.col-md-6: div.form-group(ng-class=g(highschool_location))
+        label(for=highschool_location) مقرها
+        input.form-control(id=highschool_location type='text' ng-model=f(highschool_location) required
+          placeholder='مقرها' name=highschool_location)
+
+      - highschool_name = 'highschool_name'
+      div.col-md-6: div.form-group(ng-class=g(highschool_name))
+        label(for=highschool_name) اسم الثانوية العامة
+        input.form-control(id=highschool_name type='text' ng-model=f(highschool_name) required
+          placeholder='اسم الثانوية العامة' name=highschool_name)

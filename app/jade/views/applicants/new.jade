@@ -10,12 +10,13 @@ div.container
 
     +applicant-fields('job_request', formName)
 
+    br
     include ../../mixins/applicants/files
     br
 
     div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
         value='تقديم الطلب'
-        ng-disabled=(formName + '.$invalid'))
+        ng-disabled=(formName + '.$invalid || isUploading'))
 
 hr
 

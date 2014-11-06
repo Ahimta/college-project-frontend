@@ -10,30 +10,63 @@ mixin applicant(recordName, isEditing)
     div.row
       article(ng-hide=isEditing)
         div.panel.panel-primary
-          header.panel-heading
+          header.panel-heading(title='الاسم')
             h3.panel-title(ng-bind=(recordName + '.fullname'))
 
           div.panel-body
-            p
+            p(title='رقم الهوية الوطنية')
+              span.glyphicon.glyphicon-credit-card
+              | &nbsp;
+              span(ng-bind=(recordName + '.id_num'))
+            p(title='رقم الهاتف')
+              span.glyphicon.glyphicon-phone
+              | &nbsp;
+              span(ng-bind=(recordName + '.phone'))
+            p(title='البريد الإلكتروني')
+              span.glyphicon.glyphicon-envelope
+              | &nbsp;
+              span(ng-bind=(recordName + '.email'))
+            p(title='مقر الإقامة الحالي')
+              span.glyphicon.glyphicon-home
+              | &nbsp;
+              span(ng-bind=(recordName + '.current_location'))
+            p(title='العنوان')
               span.glyphicon.glyphicon-home
               | &nbsp;
               span(ng-bind=(recordName + '.address'))
 
-            p
-              span.glyphicon.glyphicon-earphone
+            hr
+
+            p(title='التخصص')
+              span.glyphicon.glyphicon-book
               | &nbsp;
-              span(ng-bind=(recordName + '.phone'))
+              span(ng-bind=(recordName + '.specialization'))
+            p(title='المؤهل العلمي')
+              span.glyphicon.glyphicon-bookmark
+              | &nbsp;
+              span(ng-bind=(recordName + '.degree'))
+            p(title='الوظيفة المتقدم لها')
+              span.glyphicon.glyphicon-briefcase
+              | &nbsp;
+              span(ng-bind=(recordName + '.job'))
 
             hr
 
             p
-              span.glyphicon.glyphicon-book
+              | درس في ثانوية
               | &nbsp;
-              span(ng-bind=(recordName + '.specialization'))
+              b(ng-bind=(recordName + '.highschool_name'))
+              | &nbsp;
+              | الواقعة في 
+              | &nbsp;
+              b(ng-bind=(recordName + '.highschool_location'))
+              | .
             p
-              span.glyphicon.glyphicon-bookmark
+              | و تخرج من جامعة
               | &nbsp;
-              span(ng-bind=(recordName + '.degree'))
+              b(ng-bind=(recordName + '.university'))
+              | .
+
 
             hr
 
