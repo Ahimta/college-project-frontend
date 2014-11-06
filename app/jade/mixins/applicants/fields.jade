@@ -21,7 +21,7 @@ mixin applicant-fields(recordName, formName)
       - email = 'email'
       div.col-md-6: div.form-group(ng-class=g(email))
         label(for=email) البريد الإلكتروني
-        input.form-control(id=email type='email' placeholder="رقم الهاتف" name=email
+        input.form-control(id=email type='email' placeholder="البريد الإلكتروني" name=email
           ng-model=f(email) required)
 
       - phone = 'phone'
@@ -60,6 +60,7 @@ mixin applicant-fields(recordName, formName)
             option هندسة مدنية
           optgroup(label='علوم')
             option حاسب آلي
+            option رياضيات
             option كيمياء
             option فيزياء
           optgroup(label='طب')
