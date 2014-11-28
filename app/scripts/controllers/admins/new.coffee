@@ -16,11 +16,11 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.create = ->
       $http.post(resource, admin_account: $scope.record)
-        .then (response) ->
+        .then (res) ->
           $location.path '/admins'
           $scope.usernameConflict = false
 
-          response
+          res
 
         .catch (error) ->
           $log.debug error

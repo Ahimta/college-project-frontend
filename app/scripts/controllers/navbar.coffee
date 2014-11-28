@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, $cookieStore, BACKEND,
+  .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, localStorageService, BACKEND,
     Navbarable) ->
 
     url = "#{BACKEND}/sessions/current"
@@ -53,8 +53,9 @@ angular.module('collegeProjectFrontendApp')
     $scope.logout = ->
       $http.delete(url)
         .then (response) ->
-          $cookieStore.remove 'my_account'
-          $cookieStore.remove 'my_role'
+          localStorageService.remove 'accessToken'
+          localStorageService.remove 'my_account'
+          localStorageService.remove 'my_role'
 
           $rootScope.myAccount = undefined
           $rootScope.myAccountRole = undefined
@@ -67,7 +68,7 @@ angular.module('collegeProjectFrontendApp')
         .catch (response) ->
           console.log response
 
-    $rootScope.navbarLinks = switch $cookieStore.get 'my_role'
+    $rootScope.navbarLinks = switch localStorageService.get 'my_role'
       when 'recruiter' then recruiterLinks
       when 'admin' then adminLinks
       else visitorLinks

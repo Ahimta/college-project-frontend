@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'LoginCtrl', ($scope, $rootScope, $http, $location, $log, $cookieStore, Utils,
+  .controller 'LoginCtrl', ($scope, $rootScope, $http, $location, $log, localStorageService, Utils,
     BACKEND) ->
 
     Utils.setPageTitle 'بوابة المسؤولين - تسجيل دخول'
@@ -17,13 +17,15 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.login = ->
       $http.post(url, username: $scope.user.username, password: $scope.user.password, role: $scope.role)
-        .then (response) ->
-          data = response.data
-          account = data.account
-          role    = data.account_role
+        .then (res) ->
+          data        = res.data
+          accessToken = data.access_token
+          account     = data.account
+          role        = data.account_role
 
-          $cookieStore.put 'my_account', account
-          $cookieStore.put 'my_role', role
+          localStorageService.set 'accessToken', accessToken
+          localStorageService.set 'my_account', account
+          localStorageService.set 'my_role', role
 
           $rootScope.myAccountRole = role
           $rootScope.myAccount     = account
@@ -34,7 +36,7 @@ angular.module('collegeProjectFrontendApp')
             when 'recruiter' then '/applicants'
             when 'admin' then '/recruiters'
 
-          response
+          res
 
         .catch (error) ->
           switch error.status

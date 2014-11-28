@@ -7,9 +7,13 @@ angular
     'ngSanitize'
     'ngRoute'
     'angularFileUpload'
+    'LocalStorageModule'
   ])
   .config ($httpProvider) ->
-    $httpProvider.defaults.withCredentials = true
+    $httpProvider.interceptors.push (localStorageService) ->
+      request: (config) ->
+        config.headers['X-Access-Token'] = localStorageService.get('accessToken')
+        config
 
   .config ($routeProvider) ->
     $routeProvider
