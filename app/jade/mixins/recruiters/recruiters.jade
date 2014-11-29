@@ -1,34 +1,3 @@
 mixin recruiters(recruiters)
-  include ../progressbar
-
-  div.row
-    +progress-bar(recruiters + '.length > -1')
-
-  div(ng-show=recruiters)
-    div.row
-      div.form-group
-        input.form-control(type='text' ng-model='query'
-          placeholder='بحث' autofocus)
-
-    div.row
-      div.table-responsive
-        table.table.table-hover.table-condensed.text-center
-          thead
-            tr
-              th.text-center الاسم
-              th.text-center اسم المستخدم
-              th.text-center تعديل
-          tbody
-            tr(ng-repeat=('accountable in ' + recruiters + ' | filter:query'))
-              td(ng-bind='accountable.fullname')
-              td(ng-bind='accountable.username')
-              td
-                div.btn-group(ng-show='!isEditing(accountable.id)')
-                  button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(accountable.id)') حذف
-                  button.btn.btn-xs.btn-primary(type='button' disabled) تعديل
-                div.btn-group(ng-show='isEditing(accountable.id)')
-                  button.btn.btn-xs.btn-default(type='button'
-                    ng-click='reset(accountable.id)') إلغاء
-                  button.btn.btn-xs.btn-primary(type='button'
-                    ng-click='update(accountable.id, accountable)') حفظ
+  include ../accountable/accountables
+  +accountables(recruiters)

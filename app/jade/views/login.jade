@@ -17,10 +17,10 @@ div.container
         label(for='role') تسجيل دخول كـ
         select#role.form-control(ng-model='role' required autofocus)
           option(value='recruiter' selected) وحدة التوظيف
+          option(value='supervisor') وحدة الإرشاد
           option(value='admin') مسؤول
           option(value='teacher' disabled) أستاذ
           option(value='student' disabled) طالب
-          option(value='guide' disabled) وحدة الإرشاد
 
       - ngClass = "{'has-error': loginFailed}"
       div.form-group(ng-class=ngClass)

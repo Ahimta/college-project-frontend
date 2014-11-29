@@ -50,5 +50,11 @@ angular
       .when '/faculty_members',
         templateUrl: 'views/faculty_members/index.html'
         controller: 'FacultyMembersIndexCtrl'
+      .when '/supervisors',
+        templateUrl: 'views/supervisors/index.html'
+        controller: 'SupervisorsIndexCtrl'
+      .when '/supervisors/new',
+        templateUrl: 'views/supervisors/new.html'
+        controller: 'SupervisorsNewCtrl'
       .otherwise
         redirectTo: '/'

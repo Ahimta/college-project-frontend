@@ -1,13 +1,13 @@
 extends ../../layouts/dashboard
 
-include ../../mixins/recruiters/recruiters
+include ../../mixins/accountable/accountables
 
 block header
   | وحدة التوظيف
 
 block content
   div.row
-    +recruiters('recruiters')
+    +accountables('recruiters')
 
   div.row
     div.row

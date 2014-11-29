@@ -20,6 +20,17 @@ angular.module('collegeProjectFrontendApp')
       }
     ]
 
+    supervisorLinks = [
+      {
+        title: 'الطلاب'
+        path: '#/students'
+      }
+      {
+        title: 'الصفحة الرئيسية'
+        path: '#/'
+      }
+    ]
+
     recruiterLinks = [
       {
         title: 'المتقدمين'
@@ -34,7 +45,7 @@ angular.module('collegeProjectFrontendApp')
     adminLinks = [
       {
         title: 'وحدة الإرشاد'
-        path: '#/faculty_members'
+        path: '#/supervisors'
       }
       {
         title: 'وحدة التوظيف'
@@ -69,6 +80,7 @@ angular.module('collegeProjectFrontendApp')
           console.log response
 
     $rootScope.navbarLinks = switch localStorageService.get 'my_role'
+      when 'supervisor' then supervisorLinks
       when 'recruiter' then recruiterLinks
       when 'admin' then adminLinks
       else visitorLinks

@@ -33,6 +33,7 @@ angular.module('collegeProjectFrontendApp')
           $scope.loginFailed = false
 
           $location.path switch $scope.role
+            when 'supervisor' then '/students'
             when 'recruiter' then '/applicants'
             when 'admin' then '/recruiters'
 
