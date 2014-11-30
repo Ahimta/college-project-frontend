@@ -8,22 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'RecruitersNewCtrl', ($scope, $http, $location, $log, BACKEND, Utils) ->
+  .controller 'RecruitersNewCtrl', ($scope, accountableNew, Utils) ->
 
     Utils.setPageTitle 'وحدة التوظيف - إضافة مستخدم'
-
-    resource = "#{BACKEND}/recruiter_accounts"
-
-    $scope.create = ->
-      $http.post(resource, recruiter_account: $scope.recruiter_account)
-        .then (response) ->
-          $location.path '/recruiters'
-          $scope.usernameConflict = false
-
-          response
-
-        .catch (error) ->
-          $log.debug error
-
-          switch error.status
-            when 409 then $scope.usernameConflict = true
+    accountableNew($scope, 'recruiter_accounts', 'recruiter_account', '/recruiters')

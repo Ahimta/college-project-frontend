@@ -8,22 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'SupervisorsNewCtrl', ($scope, $http, $location, $log, BACKEND, Utils) ->
+  .controller 'SupervisorsNewCtrl', ($scope, accountableNew, Utils) ->
 
     Utils.setPageTitle 'وحدة الإرشاد - إضافة مستخدم'
-
-    resource = "#{BACKEND}/supervisor_accounts"
-
-    $scope.create = ->
-      $http.post(resource, supervisor_account: $scope.supervisor_account)
-        .then (response) ->
-          $location.path '/supervisors'
-          $scope.usernameConflict = false
-
-          response
-
-        .catch (error) ->
-          $log.debug error
-
-          switch error.status
-            when 409 then $scope.usernameConflict = true
+    accountableNew($scope, 'supervisor_accounts', 'supervisor_account', '/supervisors')

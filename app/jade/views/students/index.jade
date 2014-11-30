@@ -1,0 +1,14 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/accountables
+
+block header
+  | الطلاب
+
+block content
+  div.row
+    +accountables('students')
+
+  div.row
+    div.row
+      a.btn.btn-success.btn-lg.btn-block(href='#/students/new') إضافة طالب
