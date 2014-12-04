@@ -1,0 +1,14 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/accountables
+
+block header
+  | الاساتذة
+
+block content
+  div.row
+    +accountables('teachers')
+
+  div.row
+    div.row
+      a.btn.btn-success.btn-lg.btn-block(href='#/teachers/new') إضافة استاذ

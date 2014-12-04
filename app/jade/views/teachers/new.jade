@@ -1,0 +1,18 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/usernametakenalert
+include ../../mixins/accountable/fields
+
+block header
+  | إضافة استاذ
+
+block content
+  div.row
+    +username-taken-alert('usernameConflict')
+
+    form(name='myForm' ng-submit='create()')
+      +accountable-fields('teacher_account', 'usernameConflict')
+
+      div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+          value='إضافة استاذ'
+          ng-disabled='myForm.$invalid')

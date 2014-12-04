@@ -1,0 +1,23 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/accountables
+
+block header
+  | المرشدين الأكادميين
+
+block content
+  div.row
+    div.col-md-8
+      h1 Hi there
+      table.table.table-hovered
+        thead
+          tr
+            th.text-center الاسم
+        tbody
+          tr(ng-repeat='student in students')
+            td.text-center(ng-bind='student.fullname')
+      
+    div.col-md-4
+      ul.list-group
+        li.list-group-item(ng-repeat='guide in guides' ng-bind='guide.username'
+            ng-class='{active: isCurrentGuide(guide.id)}' ng-click='studentsForGuide(guide.id)')

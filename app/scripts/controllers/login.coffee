@@ -34,8 +34,10 @@ angular.module('collegeProjectFrontendApp')
 
           $location.path switch $scope.role
             when 'supervisor' then '/students'
-            when 'recruiter' then '/applicants'
-            when 'admin' then '/recruiters'
+            when 'recruiter'  then '/applicants'
+            when 'teacher'    then '/'
+            when 'student'    then '/'
+            when 'admin'      then '/recruiters'
 
           res
 
