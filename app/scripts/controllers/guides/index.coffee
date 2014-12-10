@@ -10,15 +10,26 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'GuidesIndexCtrl', ($scope, $location, $routeParams, $http, $log, Utils, BACKEND) ->
 
+    Utils.setPageTitle('المرشدين الأكادميين')
     studentsResource = "#{BACKEND}/student_accounts/without_guide"
+    teachersResource = "#{BACKEND}/teacher_accounts"
     guidesResource   = "#{BACKEND}/guides"
 
+    currentGuideId = $scope.currentGuideId = $routeParams.guide_id
+
     invalidate = ->
-      if $routeParams.guide_id
-        guideId = $routeParams.guide_id
-        $http.get("#{guidesResource}/#{guideId}/students")
+      if currentGuideId
+        $http.get("#{guidesResource}/#{currentGuideId}/students")
           .then (res) ->
             $scope.students = res.data.student_accounts
+            res
+
+        $http.get("#{guidesResource}/#{currentGuideId}")
+          .then (res) ->
+            guide = res.data.guide
+
+            $scope.currentGuide = res.data.guide
+            Utils.setPageTitle("المرشدين الأكادميين - #{guide.fullname}")
             res
 
       $http.get(guidesResource)
@@ -34,18 +45,36 @@ angular.module('collegeProjectFrontendApp')
           $scope.studentsWithoutGuide = res.data.student_accounts
           res
 
-    addOrRemoveStudent = (add) -> (guideId, studentId) ->
-      action = if add then 'add_student' else 'remove_student'
-      $http.put("#{guidesResource}/#{guideId}/#{action}/#{studentId}")
-        .then(invalidate)
+      $http.get("#{teachersResource}/not_guides")
+        .then (res) ->
+          $scope.teachersNotGuides = res.data.teacher_accounts
+          res
 
-    $scope.removeStudentToGuide = addOrRemoveStudent(false)
-    $scope.addStudentToGuide    = addOrRemoveStudent(true)
+    addOrRemoveStudent = (add) -> (studentId) ->
+      action = if add then 'add_student' else 'remove_student'
+      $http.put("#{guidesResource}/#{currentGuideId}/#{action}/#{studentId}")
+        .then(invalidate, $log.debug)
+
+    addOrRemoveGuide = (isAdd) -> (teacherId) ->
+      action = if isAdd then 'add_to_guides' else 'remove_from_guides'
+      $http.put("#{teachersResource}/#{teacherId}/#{action}")
+        .then (res) ->
+          if isAdd then invalidate()
+          else $location.search('guide_id', null)
+          res
+        .then null, $log.debug
+
+
+    $scope.removeFromGuide = addOrRemoveStudent(false)
+    $scope.addToGuide      = addOrRemoveStudent(true)
 
     $scope.studentsForGuide = (guideId) ->
-      $location.search(guide_id: guideId)
+      $location.search('guide_id', guideId)
 
     $scope.isCurrentGuide = (guideId) ->
-      guideId == $routeParams.guide_id
+      guideId == currentGuideId
+
+    $scope.removeGuide = addOrRemoveGuide(false)
+    $scope.addGuide    = addOrRemoveGuide(true)
 
     invalidate()

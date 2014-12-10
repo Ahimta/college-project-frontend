@@ -7,17 +7,55 @@ block header
 
 block content
   div.row
-    div.col-md-8
-      h1 Hi there
-      table.table.table-hovered
-        thead
-          tr
-            th.text-center الاسم
-        tbody
-          tr(ng-repeat='student in students')
-            td.text-center(ng-bind='student.fullname')
-      
-    div.col-md-4
+    
+    div.col-md-4.col-md-push-8
+      +progress-bar('guides.length > -1')
       ul.list-group
-        li.list-group-item(ng-repeat='guide in guides' ng-bind='guide.username'
-            ng-class='{active: isCurrentGuide(guide.id)}' ng-click='studentsForGuide(guide.id)')
+        li.list-group-item(ng-repeat='guide in guides'
+          ng-class='{active: isCurrentGuide(guide.id)}' ng-click='studentsForGuide(guide.id)')
+          span.glyphicon.glyphicon-minus.pull-left(ng-click='removeGuide(guide.id)')
+          span(ng-bind='guide.username')
+
+      hr
+
+      form(name='addGuideForm' ng-submit='addGuide(teacherId)')
+        label(for='teacherId')
+        div.form-group: select#teacherId.form-control(name='teacherId' required
+          ng-options='teacher.id as teacher.username for teacher in teachersNotGuides'
+          ng-model='teacherId')
+        div.form-group
+          input.form-control.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف الأستاذ'
+            ng-disabled='addGuideForm.$invalid')
+
+    div.col-md-8.col-md-pull-4(ng-hide='currentGuideId')
+      p.lead.text-center اختر مرشد أكاديمي
+    div.col-md-8.col-md-pull-4(ng-show='currentGuideId')
+      div.page-header: h2.text-center الطلاب
+      +progress-bar('students.length > -1')
+      p.lead.text-center(ng-show='students && students.length == 0') لا يوجد طلاب
+      div(ng-show='students')
+        table.table.table-hovered(ng-show='students.length > 0')
+          thead
+            tr
+              th.text-center الاسم
+              th.text-center اسم المستخدم
+              th.text-center إدارة
+          tbody
+            tr(ng-repeat='student in students')
+              td.text-center(ng-bind='student.fullname')
+              td.text-center(ng-bind='student.username')
+              td.text-center
+                div.btn-group
+                  button.btn.btn-xs.btn-danger(type='button' ng-click='removeFromGuide(student.id)')
+                    | حذف
+
+      hr
+
+      form(name='addStudentForm' ng-submit='addToGuide(studentId)')
+        div.form-group
+          label(for='studentId')
+          div.form-group: select#studentId.form-control(required name='studentId' ng-model='studentId'
+            ng-options='student.id as student.username for student in studentsWithoutGuide')
+          div.form-group
+            input.form-control.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
+              ng-disabled='addStudentForm.$invalid')

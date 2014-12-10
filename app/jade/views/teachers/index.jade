@@ -1,13 +1,13 @@
 extends ../../layouts/dashboard
 
-include ../../mixins/accountable/accountables
+include ../../mixins/teachers/teachers
 
 block header
   | الاساتذة
 
 block content
   div.row
-    +accountables('teachers')
+    +teachers('teachers')
 
   div.row
     div.row
