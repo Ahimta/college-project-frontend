@@ -51,8 +51,8 @@ angular.module('collegeProjectFrontendApp')
           res
 
     addOrRemoveStudent = (add) -> (studentId) ->
-      action = if add then 'add_student' else 'remove_student'
-      $http.put("#{guidesResource}/#{currentGuideId}/#{action}/#{studentId}")
+      action = if add then 'add' else 'remove'
+      $http.put("#{guidesResource}/#{currentGuideId}/students/#{studentId}/#{action}")
         .then(invalidate, $log.debug)
 
     addOrRemoveGuide = (isAdd) -> (teacherId) ->
