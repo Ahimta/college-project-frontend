@@ -1,4 +1,6 @@
 mixin applicants(applicants)
+  div.text-center(ng-hide=applicants)
+    h2 لا يوجد طلبات حالياً
   div(ng-show=applicants)
     div.row
       div.form-group

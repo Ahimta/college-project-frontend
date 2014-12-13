@@ -1,9 +1,9 @@
 mixin accountable-fields(recordName, usernameConflict)
 
   div.form-group
-    label(for='fl') الاسم الكامل
-    input#fl.form-control(type='text' placeholder='الاسم الكامل'
-      ng-model=(recordName + '.full_name') required autofocus)
+    label(for='fullname') الاسم الكامل
+    input#fullname.form-control(type='text' placeholder='الاسم الكامل'
+      ng-model=(recordName + '.fullname') required autofocus)
 
   div.form-group(ng-class=("{'has-warning': " + usernameConflict + '}'))
     label(for='username') اسم المستخدم
@@ -14,3 +14,13 @@ mixin accountable-fields(recordName, usernameConflict)
     label(for='password') كلمة المرور
     input#password.form-control(type='password' placeholder='كلمة المرور'
       ng-model=(recordName + '.password') required)
+
+  div.form-group
+    label(for='email') البريد الإلكتروني
+    input#email.form-control(type='email' placeholder='البريد الإلكتروني'
+      ng-model=(recordName + '.email'))
+
+  div.form-group
+    label(for='phone') رقم الهاتف
+    input#phone.form-control(type='phone' placeholder='رقم الهاتف'
+      ng-model=(recordName + '.phone'))

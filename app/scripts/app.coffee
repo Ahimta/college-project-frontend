@@ -68,5 +68,8 @@ angular
       .when '/guides',
         templateUrl: 'views/guides/index.html'
         controller: 'GuidesIndexCtrl'
+      .when '/students/:id',
+        templateUrl: 'views/students/show.html'
+        controller: 'StudentsShowCtrl'
       .otherwise
         redirectTo: '/'

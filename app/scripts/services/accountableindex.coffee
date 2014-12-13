@@ -12,7 +12,6 @@ angular.module('collegeProjectFrontendApp')
 
     (scope, resource, collectionName) ->
       url = "#{BACKEND}/#{resource}"
-      _isEditing = {}
 
       invalidate = ->
         $http.get(url)
@@ -22,22 +21,6 @@ angular.module('collegeProjectFrontendApp')
 
           .catch (error) ->
             $log.debug error
-
-      scope.update = (id, student_account) ->
-        reqBody           = {}
-        reqBody[resource] = student_account
-
-        $http.put("#{url}/#{id}", reqBody)
-          .then(invalidate)
-
-      scope.edit = (id) ->
-        _isEditing[id] = true
-
-      scope.reset = (id) ->
-        _isEditing[id] = false
-
-      scope.isEditing = (id) ->
-        _isEditing[id]
 
       scope.destroy = (id) ->
         $http.delete("#{url}/#{id}")

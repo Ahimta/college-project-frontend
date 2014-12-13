@@ -12,6 +12,16 @@ block content
 
     form(name='myForm' ng-submit='create()')
       +accountable-fields('student_account', 'usernameConflict')
+      div.form-group
+        label(for='collegialNumber') الرقم الجامعي
+        input#collegialNumber.form-control(type='text' name='collegialNumber'
+          placeholder='الرقم الجامعي' required
+          ng-model='student_account.collegial_number')
+      div.form-group
+        label(for='specialization') التخصص
+        input#specialization.form-control(type='text' name='specialization'
+          placeholder='التخصص' required
+          ng-model='student_account.specialization')
 
       div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
           value='إضافة مستخدم'

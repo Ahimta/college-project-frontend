@@ -1,0 +1,39 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/applicants/applicant
+include ../../mixins/progressbar
+
+
+block header
+  | الطالب -&nbsp;{{student.fullname}}
+
+block content
+  +progress-bar('student')
+  div.panel.panel-primary(ng-show='student')
+    div.panel-heading(ng-bind='student.fullname')
+    div.panel-body
+    table.table
+      tbody
+        tr
+          th.text-right اسم المستخدم
+          td.text-right(ng-bind='student.username')
+        tr
+          th.text-right الرقم الجامعي
+          td.text-right(ng-bind='student.collegial_number')
+        tr
+          th.text-right التخصص
+          td.text-right(ng-bind='student.specialization')
+        tr
+          th.text-right الاسم
+          td.text-right(ng-bind='student.fullname')
+
+    hr
+
+    table.table
+      thead
+        th.text-center الرمز
+        th.text-center الاسم
+      tbody
+        tr(ng-repeat='course in student.courses')
+          td.text-center(ng-bind='course.code')
+          td.text-center(ng-bind='course.name')
