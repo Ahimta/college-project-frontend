@@ -65,10 +65,10 @@ angular
       .when '/teachers/new',
         templateUrl: 'views/teachers/new.html'
         controller: 'TeachersNewCtrl'
-      .when '/guides',
+      .when '/guides/:guide_id?',
         templateUrl: 'views/guides/index.html'
         controller: 'GuidesIndexCtrl'
-      .when '/students/:id',
+      .when '/students/:id/:mode?',
         templateUrl: 'views/students/show.html'
         controller: 'StudentsShowCtrl'
       .otherwise

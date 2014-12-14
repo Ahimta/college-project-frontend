@@ -1,13 +1,36 @@
 extends ../../layouts/dashboard
 
-include ../../mixins/accountable/accountables
+include ../../mixins/progressbar
 
 block header
   | الطلاب
 
 block content
   div.row
-    +accountables('students')
+    +progress-bar('students.length > -1')
+
+  div(ng-show='students')
+    div.row
+      div.table-responsive
+        table.table.table-hover.table-condensed.text-center
+          thead
+            tr
+              th.text-center الاسم
+              th.text-center الرقم الجامعي
+              th.text-center إدارة
+          tbody
+            tr(ng-repeat='accountable in students')
+              td
+                a(ng-href='#/students/{{accountable.id}}'
+                  ng-bind='accountable.fullname')
+              td
+                a(ng-href='#/students/{{accountable.id}}'
+                  ng-bind='accountable.collegial_number')
+              td
+                div.btn-group
+                  button.btn.btn-xs.btn-danger(type='button'
+                    ng-click='destroy(accountable.id)') حذف
+                  a.btn.btn-xs.btn-primary(ng-href='#/students/{{accountable.id}}/edit') تعديل
 
   div.row
     div.row

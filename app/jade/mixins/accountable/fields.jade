@@ -1,26 +1,29 @@
-mixin accountable-fields(recordName, usernameConflict)
+mixin accountable-fields(recordName, usernameConflict, passwordRequired)
 
-  div.form-group
-    label(for='fullname') الاسم الكامل
-    input#fullname.form-control(type='text' placeholder='الاسم الكامل'
-      ng-model=(recordName + '.fullname') required autofocus)
+  fieldset
+    legend: h2 البيانات الشخصية
+    
+    div.form-group
+      label(for='fullname') الاسم الكامل
+      input#fullname.form-control(type='text' placeholder='الاسم الكامل'
+        ng-model=(recordName + '.fullname') required autofocus)
 
-  div.form-group(ng-class=("{'has-warning': " + usernameConflict + '}'))
-    label(for='username') اسم المستخدم
-    input#username.form-control(type='text' placeholder='اسم المستخدم'
-      ng-model=(recordName + '.username') required)
+    div.form-group(ng-class=("{'has-warning': " + usernameConflict + '}'))
+      label(for='username') اسم المستخدم
+      input#username.form-control(type='text' placeholder='اسم المستخدم'
+        ng-model=(recordName + '.username') required)
 
-  div.form-group
-    label(for='password') كلمة المرور
-    input#password.form-control(type='password' placeholder='كلمة المرور'
-      ng-model=(recordName + '.password') required)
+    div.form-group
+      label(for='password') كلمة المرور
+      input#password.form-control(type='password' placeholder='كلمة المرور'
+        ng-model=(recordName + '.password') required=passwordRequired)
 
-  div.form-group
-    label(for='email') البريد الإلكتروني
-    input#email.form-control(type='email' placeholder='البريد الإلكتروني'
-      ng-model=(recordName + '.email'))
+    div.form-group
+      label(for='email') البريد الإلكتروني
+      input#email.form-control(type='email' placeholder='البريد الإلكتروني'
+        ng-model=(recordName + '.email'))
 
-  div.form-group
-    label(for='phone') رقم الهاتف
-    input#phone.form-control(type='phone' placeholder='رقم الهاتف'
-      ng-model=(recordName + '.phone'))
+    div.form-group
+      label(for='phone') رقم الهاتف
+      input#phone.form-control(type='tel' placeholder='رقم الهاتف'
+        ng-model=(recordName + '.phone'))

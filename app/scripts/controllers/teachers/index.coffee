@@ -10,7 +10,7 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'TeachersIndexCtrl', ($scope, $http, $log, Utils, BACKEND, AccountableIndex) ->
 
-    Utils.setPageTitle 'الاساتذة'
+    Utils.setPageTitle 'الأساتذة'
     AccountableIndex($scope, 'teacher_accounts', 'teachers')
 
     resource = "#{BACKEND}/teacher_accounts"

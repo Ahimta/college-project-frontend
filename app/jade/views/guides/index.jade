@@ -19,12 +19,11 @@ block content
       hr
 
       form(name='addGuideForm' ng-submit='addGuide(teacherId)')
-        label(for='teacherId')
-        div.form-group: select#teacherId.form-control(name='teacherId' required
+        div.form-group: select.form-control(name='teacherId' required
           ng-options='teacher.id as teacher.username for teacher in teachersNotGuides'
           ng-model='teacherId')
         div.form-group
-          input.form-control.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف الأستاذ'
+          input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف الأستاذ'
             ng-disabled='addGuideForm.$invalid')
 
     div.col-md-8.col-md-pull-4(ng-hide='currentGuideId')
@@ -53,9 +52,8 @@ block content
 
       form(name='addStudentForm' ng-submit='addToGuide(studentId)')
         div.form-group
-          label(for='studentId')
-          div.form-group: select#studentId.form-control(required name='studentId' ng-model='studentId'
+          div.form-group: select.form-control(required name='studentId' ng-model='studentId'
             ng-options='student.id as student.username for student in studentsWithoutGuide')
           div.form-group
-            input.form-control.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
+            input.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
               ng-disabled='addStudentForm.$invalid')

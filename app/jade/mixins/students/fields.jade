@@ -1,0 +1,16 @@
+mixin student-fields(recordName, usernameConflict, passwordRequired)
+  include ../accountable/fields
+  +accountable-fields(recordName, usernameConflict, passwordRequired)
+
+  fieldset
+    legend: h2 البيانات الأكاديمية
+    div.form-group
+      label(for='collegialNumber') الرقم الجامعي
+      input#collegialNumber.form-control(type='number' name='collegialNumber'
+        placeholder='الرقم الجامعي' required
+        ng-model=(recordName + '.collegial_number'))
+    div.form-group
+      label(for='specialization') التخصص
+      input#specialization.form-control(type='text' name='specialization'
+        placeholder='التخصص' required
+        ng-model=(recordName + '.specialization'))

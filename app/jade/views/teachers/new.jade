@@ -4,15 +4,18 @@ include ../../mixins/accountable/usernametakenalert
 include ../../mixins/accountable/fields
 
 block header
-  | إضافة استاذ
+  | إضافة أستاذ
 
 block content
   div.row
     +username-taken-alert('usernameConflict')
 
     form(name='myForm' ng-submit='create()')
-      +accountable-fields('teacher_account', 'usernameConflict')
-
+      +accountable-fields('teacher_account', 'usernameConflict', true)
+      div.checkbox
+        label(dir='rtl' lang='ar')
+          input(type='checkbox' name='is_guide' ng-model='teacher_account.is_guide')
+          span مشرف أكاديمي
       div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
-          value='إضافة استاذ'
+          value='إضافة أستاذ'
           ng-disabled='myForm.$invalid')

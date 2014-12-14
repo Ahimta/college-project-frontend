@@ -1,7 +1,7 @@
 extends ../../layouts/dashboard
 
 include ../../mixins/accountable/usernametakenalert
-include ../../mixins/accountable/fields
+include ../../mixins/students/fields
 
 block header
   | إضافة طالب
@@ -11,17 +11,7 @@ block content
     +username-taken-alert('usernameConflict')
 
     form(name='myForm' ng-submit='create()')
-      +accountable-fields('student_account', 'usernameConflict')
-      div.form-group
-        label(for='collegialNumber') الرقم الجامعي
-        input#collegialNumber.form-control(type='text' name='collegialNumber'
-          placeholder='الرقم الجامعي' required
-          ng-model='student_account.collegial_number')
-      div.form-group
-        label(for='specialization') التخصص
-        input#specialization.form-control(type='text' name='specialization'
-          placeholder='التخصص' required
-          ng-model='student_account.specialization')
+      +student-fields('student_account', 'usernameConflict', true)
 
       div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
           value='إضافة مستخدم'
