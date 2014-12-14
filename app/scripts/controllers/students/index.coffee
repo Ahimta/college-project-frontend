@@ -8,8 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'StudentsIndexCtrl', ($scope, $http, $log, $location, localStorageService, Utils, BACKEND,
-    AccountableIndex) ->
+  .controller 'StudentsIndexCtrl', ($scope, $http, $log, $location, localStorageService, Utils, BACKEND, AccountableIndex) ->
 
     Utils.setPageTitle 'الطلاب'
 

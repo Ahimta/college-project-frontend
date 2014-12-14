@@ -8,8 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'LoginCtrl', ($scope, $rootScope, $http, $location, $log, localStorageService, Utils,
-    BACKEND) ->
+  .controller 'LoginCtrl', ($scope, $rootScope, $http, $location, $log, localStorageService, Utils, BACKEND) ->
 
     Utils.setPageTitle 'بوابة المسؤولين - تسجيل دخول'
 

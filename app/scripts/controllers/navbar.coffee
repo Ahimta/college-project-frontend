@@ -8,8 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, localStorageService, BACKEND,
-    Navbarable) ->
+  .controller 'NavbarCtrl', ($scope, $rootScope, $http, $location, localStorageService, BACKEND, Navbarable) ->
 
     currentAccount = localStorageService.get('my_account')
     currentRole    = localStorageService.get('my_role')

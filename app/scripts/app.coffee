@@ -10,10 +10,13 @@ angular
     'LocalStorageModule'
   ])
   .config ($httpProvider) ->
-    $httpProvider.interceptors.push (localStorageService) ->
-      request: (config) ->
-        config.headers['X-Access-Token'] = localStorageService.get('accessToken')
-        config
+    $httpProvider.interceptors.push [
+      'localStorageService'
+      (localStorageService) ->
+        request: (config) ->
+          config.headers['X-Access-Token'] = localStorageService.get('accessToken')
+          config
+    ]
 
   .config ($routeProvider) ->
     $routeProvider
