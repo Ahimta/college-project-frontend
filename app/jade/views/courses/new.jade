@@ -1,0 +1,14 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/courses/fields
+block header
+  | إضافة مادة
+
+block content
+
+  div.row
+    form(name='myForm' ng-submit='create(course)')
+      +course-fields('course', 'codeConflict')
+      div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+          value='إضافة مادة'
+          ng-disabled='myForm.$invalid')

@@ -25,6 +25,10 @@ angular.module('collegeProjectFrontendApp')
 
       supervisor: [
         {
+          title: 'المواد'
+          path: '#/courses'
+        }
+        {
           title: 'الطلاب'
           path: '#/students'
         }

@@ -27,5 +27,4 @@ angular.module('collegeProjectFrontendApp')
 
           .catch (res) ->
             $log.debug res
-            switch res.status
-              when 409 then scope.usernameConflict = true
+            scope.usernameConflict = res.status == 409

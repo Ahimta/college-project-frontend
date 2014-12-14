@@ -14,3 +14,6 @@ describe 'Controller: StudentsNewCtrl', ->
     StudentsNewCtrl = $controller 'StudentsNewCtrl', {
       $scope: scope
     }
+
+  it 'should attach a list of awesomeThings to the scope', ->
+    expect(scope.awesomeThings).toBe undefined

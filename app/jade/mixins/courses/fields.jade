@@ -1,0 +1,13 @@
+mixin course-fields(recordName, codeConflict)
+  div.alert.alert-warning(ng-show=codeConflict)
+    button.close.pull-left(ng-click=(codeConflict + '= false'))
+      &times;
+    span يوجد مادة بنفس الرمز
+  div.form-group
+    label(for='courseCode') الرمز
+    input#courseCode.form-control(type='text' name='courseCode' placeholder='الرمز' required
+      ng-model=(recordName + '.code'))
+  div.form-group
+    label(for='courseName') الاسم
+    input#courseName.form-control(type='text' name='courseName' placeholder='الاسم' required
+      ng-model=(recordName + '.name'))

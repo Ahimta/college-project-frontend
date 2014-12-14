@@ -74,5 +74,11 @@ angular
       .when '/students/:id/:mode?',
         templateUrl: 'views/students/show.html'
         controller: 'StudentsShowCtrl'
+      .when '/courses',
+        templateUrl: 'views/courses/index.html'
+        controller: 'CoursesIndexCtrl'
+      .when '/courses/new',
+        templateUrl: 'views/courses/new.html'
+        controller: 'CoursesNewCtrl'
       .otherwise
         redirectTo: '/'

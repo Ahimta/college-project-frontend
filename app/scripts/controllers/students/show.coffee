@@ -9,11 +9,6 @@
 ###
 angular.module('collegeProjectFrontendApp')
   .controller 'StudentsShowCtrl', ($scope, $http, $location, $routeParams, $log, Utils, BACKEND) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
 
     studentId = $routeParams.id
     resource  = "#{BACKEND}/student_accounts/#{studentId}"

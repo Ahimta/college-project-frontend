@@ -1,0 +1,35 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/accountables
+include ../../mixins/progressbar
+
+block header
+  | المواد
+
+block content
+
+  div.row
+    +progress-bar('courses.length > -1')
+
+  div(ng-show='courses')
+    div.row
+      div.table-responsive
+        table.table.table-hover.table-condensed.text-center
+          thead
+            tr
+              th.text-center الاسم
+              th.text-center الرمز
+              th.text-center إدارة
+          tbody
+            tr(ng-repeat='course in courses')
+              td(ng-bind='course.name')
+              td(ng-bind='course.code')
+              td
+                div.btn-group
+                  button.btn.btn-xs.btn-danger(type='button'
+                    ng-click='destroy(course.id)') حذف
+                  button.btn.btn-xs.btn-primary(type='button' disabled) تعديل
+
+  div.row
+    div.row
+      a.btn.btn-success.btn-lg.btn-block(href='#/courses/new') إضافة مادة
