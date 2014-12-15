@@ -8,7 +8,10 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'StudentsShowCtrl', ($scope, $http, $location, $routeParams, $log, Utils, BACKEND) ->
+  .controller 'StudentsShowCtrl', ($scope, $http, $location, $routeParams, $log, localStorageService, Utils, BACKEND) ->
+
+    currentAccount = localStorageService.get('my_account')
+    currentRole    = localStorageService.get('my_role')
 
     studentId = $routeParams.id
     resource  = "#{BACKEND}/student_accounts/#{studentId}"
@@ -16,7 +19,7 @@ angular.module('collegeProjectFrontendApp')
     addOrRemoveCourse = (isAdd) -> (courseId) ->
       action = if isAdd then 'add' else 'remove'
       $http.put("#{resource}/courses/#{courseId}/#{action}")
-        .then _.compose($scope.show, invalidate), $log.debug
+        .then $scope.show, $log.debug
 
     invalidate = ->
       $http.get("#{resource}/courses/current")
@@ -46,6 +49,9 @@ angular.module('collegeProjectFrontendApp')
           $log.debug('/students/:id', res)
           $location.path('/')
           res
+
+    $scope.isGuide = ->
+      currentRole == 'teacher' and currentAccount.is_guide
 
     $scope.isEditing = ->
       $routeParams.mode == 'edit'

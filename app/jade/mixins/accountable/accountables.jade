@@ -16,9 +16,7 @@ mixin accountables(accountables)
           tbody
             tr(ng-repeat=('accountable in ' + accountables))
               td(ng-bind='accountable.fullname')
-              td
-                a(ng-href='#/students/{{accountable.id}}'
-                  ng-bind='accountable.username')
+              td(ng-bind='accountable.username')
               td
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'

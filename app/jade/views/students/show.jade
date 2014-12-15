@@ -50,7 +50,7 @@ block content
             td.text-right(ng-bind='student.fullname')
       hr
       button.btn.btn-danger.btn-lg.btn-block(type='button'
-        ng-click='destroyStudent()') حذف
+        ng-click='destroyStudent()' ng-disabled='isGuide()') حذف
       hr
       div.page-header.text-center: h2 المواد
       table.table.table-hovered
@@ -66,7 +66,7 @@ block content
               a(ng-href='#/courses/{{course.id}}' ng-bind='course.name')
             td.text-center
               button.btn.btn-xs.btn-danger(type='type'
-                ng-click='removeCourse(course.id)') حذف
+                ng-click='removeCourse(course.id)' ng-disabled='isGuide()') حذف
       hr
       form(name='courseForm' ng-submit='addCourse(courseId)')
         div.form-group
@@ -74,4 +74,4 @@ block content
             ng-options='newCourse.id as newCourse.code for newCourse in newCourses')
         div.form-group
           input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
-            ng-disabled='courseForm.$invalid')
+            ng-disabled='courseForm.$invalid || isGuide()')
