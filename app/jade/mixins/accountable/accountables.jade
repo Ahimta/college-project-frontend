@@ -1,4 +1,4 @@
-mixin accountables(accountables)
+mixin accountables(accountables, isUndeletable)
   include ../progressbar
 
   div.row
@@ -20,5 +20,5 @@ mixin accountables(accountables)
               td
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(accountable.id)') حذف
+                    ng-click='destroy(accountable.id)' disabled=isUndeletable) حذف
                   button.btn.btn-xs.btn-primary(type='button' disabled) تعديل

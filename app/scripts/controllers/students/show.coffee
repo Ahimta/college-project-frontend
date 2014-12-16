@@ -8,50 +8,42 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'StudentsShowCtrl', ($scope, $http, $location, $routeParams, $log, localStorageService, Utils, BACKEND) ->
-
-    currentAccount = localStorageService.get('my_account')
-    currentRole    = localStorageService.get('my_role')
+  .controller 'StudentsShowCtrl', ($scope, $http, $location, $routeParams, $log, BACKEND, Utils, accountManager) ->
 
     studentId = $routeParams.id
-    resource  = "#{BACKEND}/student_accounts/#{studentId}"
+    resource  = if accountManager.isGuide()
+      "#{BACKEND}/guides/#{accountManager.currentAccount().id}/students/#{studentId}"
+    else "#{BACKEND}/student_accounts/#{studentId}"
 
     addOrRemoveCourse = (isAdd) -> (courseId) ->
       action = if isAdd then 'add' else 'remove'
       $http.put("#{resource}/courses/#{courseId}/#{action}")
-        .then $scope.show, $log.debug
+        .then invalidate, $log.debug
 
     invalidate = ->
-      $http.get("#{resource}/courses/current")
+      $http.get("#{resource}/courses")
         .then (res) ->
-          $scope.currentCourses = res.data.courses
-          res
-        .then null, $log.debug
-
-      $http.get("#{resource}/courses/not_current")
-        .then (res) ->
-          $scope.newCourses = res.data.courses
-          res
-        .then null, $log.debug
-
-      $http.get("#{resource}/guide")
-        .then (res) ->
-          $scope.guide = res.data.guide
-          res
-        .then null, $log.debug
-
-      $http.get(resource)
-        .then (res) ->
-          $scope.student = res.data.student_account
+          $scope.currentCourses = res.data.courses.current
+          $scope.newCourses     = res.data.courses.not_current
+          $scope.student        = res.data.student_account
           Utils.setPageTitle("الطالب - #{$scope.student.fullname}")
           res
         .then null, (res) ->
-          $log.debug('/students/:id', res)
+          $log.debug('/students/:id/courses', res)
           $location.path('/')
           res
 
-    $scope.isGuide = ->
-      currentRole == 'teacher' and currentAccount.is_guide
+      if accountManager.isGuide()
+        $scope.guide = accountManager.currentAccount()
+      else
+        $http.get("#{resource}/guide")
+          .then (res) ->
+            $scope.guide = res.data.guide
+            res
+          .then null, $log.debug
+
+    $scope.isTeacher = accountManager.isTeacher
+    $scope.isGuide   = accountManager.isGuide
 
     $scope.isEditing = ->
       $routeParams.mode == 'edit'

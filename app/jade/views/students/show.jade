@@ -14,10 +14,10 @@ block content
   section.row(ng-show='student')
     section.row
       ul.nav.nav-tabs.nav-justified(dir='ltr')
-        li(ng-class='{active: isEditing()}'  ng-click='edit()')
-          a(href='javascript:void(0);') تعديل
-        li(ng-class='{active: !isEditing()}' ng-click='show()')
-          a(href='javascript:void(0);') عرض
+        li(ng-class='{active: isEditing()}' ng-hide='isTeacher()')
+          a(ng-href='#/students/{{student.id}}/edit') تعديل
+        li(ng-class='{active: !isEditing()}')
+          a(ng-href='#/students/{{student.id}}') عرض
 
     br
 
@@ -27,12 +27,12 @@ block content
         +student-fields('student', 'usernameConflict', false)
         div.form-group
           input.btn.btn-success.btn-lg.btn-block(type='submit' value='تحديث'
-            ng-disabled='updateForm.$invalid || updateForm.$pristine')
+            ng-disabled='updateForm.$invalid || updateForm.$pristine || isTeacher()')
 
     section.row(ng-hide='isEditing()')
       table.table.table-hovered
         tbody
-          tr
+          tr(ng-hide='isGuide()')
             th.text-right المشرف الأكاديمي
             td.text-right
               a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.fullname')
@@ -48,9 +48,10 @@ block content
           tr
             th.text-right الاسم
             td.text-right(ng-bind='student.fullname')
-      hr
+      hr(ng-hide='isTeacher()')
       button.btn.btn-danger.btn-lg.btn-block(type='button'
-        ng-click='destroyStudent()' ng-disabled='isGuide()') حذف
+        ng-click='destroyStudent()' ng-disabled='isTeacher()'
+        ng-hide='isTeacher()') حذف
       hr
       div.page-header.text-center: h2 المواد
       table.table.table-hovered
@@ -61,17 +62,21 @@ block content
         tbody
           tr(ng-repeat='course in currentCourses')
             td.text-center
-              a(ng-href='#/courses/{{course.id}}' ng-bind='course.code')
+              a(ng-href='#/courses/{{course.id}}' ng-bind='course.code'
+                ng-hide='isTeacher()')
+              span(ng-bind='course.code' ng-show='isTeacher()')
             td.text-center
-              a(ng-href='#/courses/{{course.id}}' ng-bind='course.name')
+              a(ng-href='#/courses/{{course.id}}' ng-bind='course.name'
+                ng-hide='isTeacher()')
+              span(ng-bind='course.name' ng-show='isTeacher()')
             td.text-center
               button.btn.btn-xs.btn-danger(type='type'
-                ng-click='removeCourse(course.id)' ng-disabled='isGuide()') حذف
+                ng-click='removeCourse(course.id)' ng-disabled='isTeacher()') حذف
       hr
-      form(name='courseForm' ng-submit='addCourse(courseId)')
+      form(name='courseForm' ng-submit='addCourse(courseId)' ng-hide='isTeacher()')
         div.form-group
           select.form-control(name='teacherId' required ng-model='courseId'
             ng-options='newCourse.id as newCourse.code for newCourse in newCourses')
         div.form-group
           input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
-            ng-disabled='courseForm.$invalid || isGuide()')
+            ng-disabled='courseForm.$invalid || isTeacher()')

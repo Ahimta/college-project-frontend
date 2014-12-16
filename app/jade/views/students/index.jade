@@ -29,9 +29,11 @@ block content
               td
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(accountable.id)') حذف
-                  a.btn.btn-xs.btn-primary(ng-href='#/students/{{accountable.id}}/edit') تعديل
+                    ng-click='destroy(accountable.id)' ng-disabled='isTeacher()') حذف
+                  a.btn.btn-xs.btn-primary(ng-href='#/students/{{accountable.id}}/edit'
+                    ng-disabled='isTeacher()') تعديل
 
-  div.row
+  div.row(ng-hide='isTeacher()')
     div.row
-      a.btn.btn-success.btn-lg.btn-block(href='#/students/new') إضافة طالب
+      a.btn.btn-success.btn-lg.btn-block(href='#/students/new'
+        ng-disabled='isTeacher()') إضافة طالب
