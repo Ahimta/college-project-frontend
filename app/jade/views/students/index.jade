@@ -9,6 +9,7 @@ block content
   div.row
     +progress-bar('students.length > -1')
 
+  h2.text-center(ng-show='students && students.length == 0') لا يوجد طلاب حالياً
   div(ng-show='students')
     div.row
       div.table-responsive
