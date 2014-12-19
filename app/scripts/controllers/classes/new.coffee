@@ -16,12 +16,10 @@ angular.module('collegeProjectFrontendApp')
       $http.get("#{BACKEND}/teacher_accounts")
         .then (res) ->
           $scope.teachers = res.data.teacher_accounts
-          res
 
       $http.get("#{BACKEND}/courses")
         .then (res) ->
           $scope.courses = res.data.courses
-          res
     ]).then null, (__) ->
       $location.path('/')
 
@@ -29,3 +27,5 @@ angular.module('collegeProjectFrontendApp')
       $http.post("#{BACKEND}/classes", class: klass)
         .then (__) ->
           $location.path('/classes')
+        .then null, (res) ->
+          $scope.isNameConflict = res.status == 409

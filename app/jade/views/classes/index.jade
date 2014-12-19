@@ -19,15 +19,17 @@ block content
         table.table.table-hover.table-condensed.text-center
           thead
             tr
-              th.text-center المحاضر
+              th.text-center اسم الشعبة
               th.text-center اسم المادة
               th.text-center رمز المادة
+              th.text-center المحاضر
               th.text-center إدارة
           tbody
             tr(ng-repeat='class in classes')
-              td(ng-bind='class.teacher.fullname')
+              td(ng-bind='class.name')
               td(ng-bind='class.course.name')
               td(ng-bind='class.course.code')
+              td(ng-bind='class.teacher.fullname')
               td
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'

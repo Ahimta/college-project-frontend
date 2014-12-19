@@ -1,4 +1,8 @@
-mixin class-fields(recordName, teachers, courses)
+mixin class-fields(recordName, teachers, courses, isNameConflict)
+  div.form-group(ng-class=("{'has-warning': " + isNameConflict + '}'))
+    label(for='className') اسم الشعبة
+    input#className.form-control(type='text' name='className' placeholder='اسم الشعبة' required
+      autofocus ng-model=(recordName + '.name'))
   div.form-group
     label(for='classTeacher') المحاضر
     select#classTeacher.form-control(name='classTeacher' placeholder='المحاضر' required

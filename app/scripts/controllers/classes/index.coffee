@@ -8,13 +8,14 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'ClassesIndexCtrl', ($scope, $http, $location, BACKEND) ->
+  .controller 'ClassesIndexCtrl', ($scope, $http, $location, Utils, BACKEND) ->
+
+    Utils.setPageTitle('الشعب')
 
     invalidate = ->
       $http.get("#{BACKEND}/classes?expand=true")
         .then (res) ->
           $scope.classes = res.data.classes
-          res
         .then null, (__) ->
           $location.path('/')
 

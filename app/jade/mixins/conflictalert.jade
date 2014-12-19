@@ -1,0 +1,5 @@
+mixin conflict-alert(isConflict, message)
+  div.alert.alert-warning(ng-show=isConflict)
+    button.close.pull-left(ng-click=(isConflict + ' = false'))
+      &times;
+    span= message
