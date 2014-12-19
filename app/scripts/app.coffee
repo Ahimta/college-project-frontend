@@ -80,5 +80,14 @@ angular
       .when '/courses/new',
         templateUrl: 'views/courses/new.html'
         controller: 'CoursesNewCtrl'
+      .when '/classes',
+        templateUrl: 'views/classes/index.html'
+        controller: 'ClassesIndexCtrl'
+      .when '/classes/new',
+        templateUrl: 'views/classes/new.html'
+        controller: 'ClassesNewCtrl'
+      .when '/classes/:id/:action?',
+        templateUrl: 'views/classes/show.html'
+        controller: 'ClassesShowCtrl'
       .otherwise
         redirectTo: '/'

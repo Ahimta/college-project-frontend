@@ -1,0 +1,11 @@
+mixin class-fields(recordName, teachers, courses)
+  div.form-group
+    label(for='classTeacher') المحاضر
+    select#classTeacher.form-control(name='classTeacher' placeholder='المحاضر' required
+      ng-model=(recordName + '.teacher_id')
+      ng-options='teacher.id as teacher.fullname for teacher in ' + teachers)
+  div.form-group
+    label(for='classCourse') المادة
+    select#classCourse.form-control(name='classCourse' placeholder='المادة' required
+      ng-model=(recordName + '.course_id')
+      ng-options='course.id as course.code for course in ' + courses)

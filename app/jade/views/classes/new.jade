@@ -1,0 +1,14 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/classes/fields
+block header
+  | إضافة مادة
+
+block content
+
+  div.row
+    form(name='myForm' ng-submit='create(class)')
+      +class-fields('class', 'teachers', 'courses')
+      div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
+          value='إضافة شعبة'
+          ng-disabled='myForm.$invalid')
