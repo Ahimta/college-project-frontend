@@ -17,19 +17,19 @@ angular.module('collegeProjectFrontendApp')
 
     addOrRemoveCourse = (isAdd) -> (courseId) ->
       action = if isAdd then 'add' else 'remove'
-      $http.put("#{resource}/courses/#{courseId}/#{action}")
+      $http.put("#{resource}/classes/#{courseId}/#{action}")
         .then invalidate, $log.debug
 
     invalidate = ->
-      $http.get("#{resource}/courses")
+      $http.get("#{resource}/classes")
         .then (res) ->
-          $scope.currentCourses = res.data.courses.current
-          $scope.newCourses     = res.data.courses.not_current
+          $scope.currentCourses = res.data.classes.current
+          $scope.newCourses     = res.data.classes.not_current
           $scope.student        = res.data.student_account
           Utils.setPageTitle("الطالب - #{$scope.student.fullname}")
           res
         .then null, (res) ->
-          $log.debug('/students/:id/courses', res)
+          $log.debug('/students/:id/classes', res)
           $location.path('/')
           res
 
