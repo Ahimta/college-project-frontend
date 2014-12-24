@@ -20,6 +20,8 @@ angular.module('collegeProjectFrontendApp')
     currentRole: currentRole
     accessToken: ->
       localStorageService.get('accessToken') || ''
+    isSupervisor: ->
+      currentRole() == 'supervisor'
     isTeacher: ->
       currentRole() == 'teacher'
     isGuide: ->

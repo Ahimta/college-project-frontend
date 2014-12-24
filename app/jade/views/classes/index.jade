@@ -22,20 +22,21 @@ block content
               th.text-center اسم الشعبة
               th.text-center اسم المادة
               th.text-center رمز المادة
-              th.text-center المحاضر
-              th.text-center إدارة
+              th.text-center(ng-hide='isTeacher()') المحاضر
+              th.text-center(ng-show='isSupervisor() || isTeacher()') إدارة
           tbody
             tr(ng-repeat='class in classes')
               td(ng-bind='class.name')
               td(ng-bind='class.course.name')
               td(ng-bind='class.course.code')
-              td(ng-bind='class.teacher.fullname')
-              td
+              td(ng-bind='class.teacher.fullname' ng-hide='isTeacher()')
+              td(ng-show='isSupervisor() || isTeacher()')
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(class.id)') حذف
+                    ng-click='destroy(class.id)'
+                    ng-disabled='!isSupervisor()') حذف
                   button.btn.btn-xs.btn-primary(type='button' disabled) تعديل
 
-  div.row
+  div.row(ng-show='isSupervisor()')
     div.row
       a.btn.btn-success.btn-lg.btn-block(href='#/classes/new') إضافة شعبة
