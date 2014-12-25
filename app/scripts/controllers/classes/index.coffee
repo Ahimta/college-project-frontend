@@ -24,7 +24,7 @@ angular.module('collegeProjectFrontendApp')
     invalidate = ->
       $http.get("#{resource}?expand=true")
         .then (res) ->
-          $scope.classes = res.data.classes.current
+          $scope.classes = res.data.classes.current || res.data.classes
         .then null, (__) ->
           $location.path('/')
 

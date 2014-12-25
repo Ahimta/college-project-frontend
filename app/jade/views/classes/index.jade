@@ -16,20 +16,32 @@ block content
   div(ng-show='classes')
     div.row
       div.table-responsive
-        table.table.table-hover.table-condensed.text-center
+        table.table.table-hover.table-condensed
           thead
             tr
               th.text-center اسم الشعبة
               th.text-center اسم المادة
               th.text-center رمز المادة
               th.text-center(ng-hide='isTeacher()') المحاضر
+              th.text-center النشاط
+              th.text-center الساعات
+              th.text-center اليوم
               th.text-center(ng-show='isSupervisor() || isTeacher()') إدارة
-          tbody
+          tbody.text-center
             tr(ng-repeat='class in classes')
               td(ng-bind='class.name')
-              td(ng-bind='class.course.name')
-              td(ng-bind='class.course.code')
+              td
+                a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.name'
+                  ng-show='isSupervisor()')
+                span(ng-hide='isSupervisor()' ng-bind='class.course.name')
+              td
+                a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
+                  ng-show='isSupervisor()')
+                span(ng-hide='isSupervisor()' ng-bind='class.course.code')
               td(ng-bind='class.teacher.fullname' ng-hide='isTeacher()')
+              td(ng-bind='class.type')
+              td(ng-bind='class.hours')
+              td(ng-bind='class.day')
               td(ng-show='isSupervisor() || isTeacher()')
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'

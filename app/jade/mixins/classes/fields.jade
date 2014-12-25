@@ -13,3 +13,22 @@ mixin class-fields(recordName, teachers, courses, isNameConflict)
     select#classCourse.form-control(name='classCourse' placeholder='المادة' required
       ng-model=(recordName + '.course_id')
       ng-options='course.id as course.code for course in ' + courses)
+  div.form-group
+    label(for='classDay') اليوم
+    select#classDay.form-control(name='classDay' placeholder='اليوم' required
+      ng-model=(recordName + '.day'))
+      option(selected) الأحد
+      option الإثنين
+      option الثلاثاء
+      option الأربعاء
+      option الخميس
+  div.form-group
+    label(for='classType') النشاط
+    select#classType.form-control(name='classType' placeholder='النشاط' required
+      ng-model=(recordName + '.type'))
+      option(selected) محاضرة
+      option عملي
+  div.form-group
+    label(for='classHours') عدد الساعات
+    input#classHours.form-control(type='number' value='2' min='1' max='30' required
+      ng-model=(recordName + '.hours'))

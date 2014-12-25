@@ -56,18 +56,16 @@ block content
       div.page-header.text-center: h2 المواد
       table.table.table-hover
         thead
-          th.text-center اسم المادة
           th.text-center رمز المادة
           th.text-center اسم الشعبة
           th.text-center المحاضر
+          th.text-center الحضور
+          th.text-center الاختبار الأول
+          th.text-center الاختبار الثاني
           th.text-center إدارة
         tbody
           tr(ng-repeat='class in currentCourses')
-            td.text-center
-              a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.name'
-                ng-hide='isTeacher()')
-              span(ng-bind='class.course.name' ng-show='isTeacher()')
-            td.text-center
+            td.text-center(title='{{class.course.name}}')
               a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
                 ng-hide='isTeacher()')
               span(ng-bind='class.course.code' ng-show='isTeacher()')
@@ -79,6 +77,9 @@ block content
               a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname'
                 ng-hide='isTeacher()')
               span(ng-bind='class.teacher.fullname' ng-show='isTeacher()')
+            td.text-center {{class.attendance}}%
+            td.text-center(ng-bind='class.grades.midterm')
+            td.text-center(ng-bind='class.grades.final')
             td.text-center
               button.btn.btn-xs.btn-danger(type='type'
                 ng-click='removeCourse(class.id)' ng-disabled='isTeacher()') حذف
