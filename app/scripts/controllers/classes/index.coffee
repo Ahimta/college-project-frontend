@@ -35,5 +35,6 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.isSupervisor = accountManager.isSupervisor
     $scope.isTeacher    = accountManager.isTeacher
+    $scope.isStudent    = accountManager.isStudent
 
     invalidate()

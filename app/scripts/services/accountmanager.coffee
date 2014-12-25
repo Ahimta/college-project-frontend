@@ -24,5 +24,7 @@ angular.module('collegeProjectFrontendApp')
       currentRole() == 'supervisor'
     isTeacher: ->
       currentRole() == 'teacher'
+    isStudent: ->
+      currentRole() == 'student'
     isGuide: ->
       currentAccount().is_guide and currentRole() == 'teacher'

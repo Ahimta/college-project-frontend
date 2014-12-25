@@ -17,11 +17,11 @@ block content
             tr
               th.text-center الاسم
               th.text-center التخصص
-              th.text-center تعديل
+              th.text-center إدارة
           tbody
             tr(ng-repeat='teacher in teachers')
               td(ng-bind='teacher.fullname')
-              td(ng-bind='teacher.username')
+              td(ng-bind='teacher.specialization')
               td
                 div.btn-group(ng-show='!isEditing(teacher.id)')
                   button.btn.btn-xs.btn-danger(type='button'

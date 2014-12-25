@@ -1,0 +1,61 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/classes/fields
+include ../../mixins/progressbar
+
+
+block header
+  | الشعب -&nbsp;{{class.name}}
+
+block content
+  +progress-bar('class')
+  section.row(ng-show='class')
+    table.table.hover.table-condensed
+      thead
+      tbody
+        tr
+          th.text-right اسم الشعبة
+          td.text-right(ng-bind='class.name')
+        tr(title='{{course.name}}')
+          th.text-right رمز المادة
+          td.text-right
+            a(ng-href='#/courses/{{course.id}}' ng-bind='course.code')
+        tr
+          th.text-right المحاضر
+          td.text-right
+            a(ng-href='#/teachers/{{teacher.id}}' ng-bind='teacher.fullname')
+        tr
+          th.text-right الساعات
+          td.text-right(ng-bind='class.hours')
+        tr
+          th.text-right النشاط
+          td.text-right(ng-bind='class.type')
+        tr
+          th.text-right اليوم
+          td.text-right(ng-bind='class.day')
+
+  hr
+
+  section
+    h2.text-center الطلاب
+    hr
+    section.row(ng-show='students && students.length == 0')
+      h2.text-center لا يوجد طلاب
+    section.row(ng-show='students')
+      table.table.table-hover.table-condensed
+        thead
+          tr
+            td.text-center الاسم
+            td.text-center الرقم الجامعي
+            td.text-center الحضور
+            td.text-center الاختبار الأول
+            td.text-center الاختبار الثاني
+        tbody
+          tr(ng-repeat='student in students')
+            td.text-center
+              a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
+            td.text-center
+              a(ng-href='#/students/{{student.id}}' ng-bind='student.collegial_number')
+            td.text-center {{student.attendance}}%
+            td.text-center(ng-bind='student.grades.midterm')
+            td.text-center(ng-bind='student.grades.final')
