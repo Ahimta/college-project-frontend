@@ -1,6 +1,7 @@
 extends ../../layouts/dashboard
 
 include ../../mixins/classes/fields
+include ../../mixins/conflictalert
 include ../../mixins/progressbar
 
 
@@ -9,53 +10,83 @@ block header
 
 block content
   +progress-bar('class')
-  section.row(ng-show='class')
-    table.table.hover.table-condensed
-      thead
-      tbody
-        tr
-          th.text-right اسم الشعبة
-          td.text-right(ng-bind='class.name')
-        tr(title='{{course.name}}')
-          th.text-right رمز المادة
-          td.text-right
-            a(ng-href='#/courses/{{course.id}}' ng-bind='course.code')
-        tr
-          th.text-right المحاضر
-          td.text-right
-            a(ng-href='#/teachers/{{teacher.id}}' ng-bind='teacher.fullname')
-        tr
-          th.text-right الساعات
-          td.text-right(ng-bind='class.hours')
-        tr
-          th.text-right النشاط
-          td.text-right(ng-bind='class.type')
-        tr
-          th.text-right اليوم
-          td.text-right(ng-bind='class.day')
+  section(ng-show='class')
+    section
+      ul.nav.nav-tabs.nav-justified(dir='ltr')
+        li(ng-class='{active: isEditing()}')
+          a(ng-href='#/classes/{{class.id}}/edit') تعديل
+        li(ng-class='{active: !isEditing()}')
+          a(ng-href='#/classes/{{class.id}}') عرض
+    br
+    section(ng-show='isEditing()')
+      form(name='editClassForm' ng-submit='update(class)')
+        - isNameConflict = 'isNameConflict'
+        +conflict-alert(isNameConflict, 'يوجد شعبة بنفس الاسم')
+        +class-fields('class', 'allTeachers', 'allCourses', isNameConflict)
+        div.form-group
+          input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
+            ng-disabled='editClassForm.$invalid')
+    section(ng-hide='isEditing()')
+      section(ng-show='class')
+        table.table.hover.table-condensed
+          thead
+          tbody
+            tr
+              th.text-right اسم الشعبة
+              td.text-right(ng-bind='class.name')
+            tr(title='{{course.name}}')
+              th.text-right رمز المادة
+              td.text-right
+                a(ng-href='#/courses/{{course.id}}' ng-bind='course.code')
+            tr
+              th.text-right المحاضر
+              td.text-right
+                a(ng-href='#/teachers/{{teacher.id}}' ng-bind='teacher.fullname')
+            tr
+              th.text-right الساعات
+              td.text-right(ng-bind='class.hours')
+            tr
+              th.text-right النشاط
+              td.text-right(ng-bind='class.type')
+            tr
+              th.text-right اليوم
+              td.text-right(ng-bind='class.day')
 
-  hr
+      hr
 
-  section
-    h2.text-center الطلاب
-    hr
-    section.row(ng-show='students && students.length == 0')
-      h2.text-center لا يوجد طلاب
-    section.row(ng-show='students')
-      table.table.table-hover.table-condensed
-        thead
-          tr
-            td.text-center الاسم
-            td.text-center الرقم الجامعي
-            td.text-center الحضور
-            td.text-center الاختبار الأول
-            td.text-center الاختبار الثاني
-        tbody
-          tr(ng-repeat='student in students')
-            td.text-center
-              a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
-            td.text-center
-              a(ng-href='#/students/{{student.id}}' ng-bind='student.collegial_number')
-            td.text-center {{student.attendance}}%
-            td.text-center(ng-bind='student.grades.midterm')
-            td.text-center(ng-bind='student.grades.final')
+      section
+        h2.text-center الطلاب
+        hr
+        section(ng-show='students && students.length == 0')
+          h2.text-center لا يوجد طلاب
+        section(ng-show='students')
+          table.table.table-hover.table-condensed
+            thead
+              tr
+                td.text-center الاسم
+                td.text-center الرقم الجامعي
+                td.text-center الحضور
+                td.text-center الاختبار الأول
+                td.text-center الاختبار الثاني
+                td.text-center إدارة
+            tbody
+              tr(ng-repeat='student in students')
+                td.text-center
+                  a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
+                td.text-center
+                  a(ng-href='#/students/{{student.id}}' ng-bind='student.collegial_number')
+                td.text-center {{student.attendance}}%
+                td.text-center(ng-bind='student.grades.midterm')
+                td.text-center(ng-bind='student.grades.final')
+                td.text-center
+                  div.btn-group
+                    button.btn.btn-xs.btn-danger(ng-click='removeStudent(student.id)') حذف
+      hr
+      section
+        form(name='addStudentForm' ng-submit='addStudent(studentId)')
+          div.form-group
+            select#studentId.form-control(ng-model='studentId' name='studentId' required
+              ng-options='student.id as student.fullname for student in notStudents')
+          div.form-group
+            input.btn.btn-success.btn-lg.btn-block(type='submit' value='إضافة طالب'
+              ng-disabled='addStudentForm.$invalid')

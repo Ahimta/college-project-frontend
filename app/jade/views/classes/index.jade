@@ -38,7 +38,8 @@ block content
                 a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
                   ng-show='isSupervisor()')
                 span(ng-hide='isSupervisor()' ng-bind='class.course.code')
-              td(ng-bind='class.teacher.fullname' ng-hide='isTeacher()')
+              td(ng-hide='isTeacher()')
+                a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname')
               td(ng-bind='class.type')
               td(ng-bind='class.hours')
               td(ng-bind='class.day')
@@ -50,7 +51,7 @@ block content
                   button.btn.btn-xs.btn-danger(type='button'
                     ng-click='destroy(class.id)'
                     ng-disabled='!isSupervisor()') حذف
-                  button.btn.btn-xs.btn-primary(type='button' disabled) تعديل
+                  a.btn.btn-xs.btn-primary(ng-href='#/classes/{{class.id}}/edit') تعديل
 
   div.row(ng-show='isSupervisor()')
     div.row

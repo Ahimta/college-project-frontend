@@ -20,7 +20,8 @@ block content
               th.text-center إدارة
           tbody
             tr(ng-repeat='teacher in teachers')
-              td(ng-bind='teacher.fullname')
+              td
+                a(ng-href='#/teachers/{{teacher.id}}' ng-bind='teacher.fullname')
               td(ng-bind='teacher.specialization')
               td
                 div.btn-group(ng-show='!isEditing(teacher.id)')
