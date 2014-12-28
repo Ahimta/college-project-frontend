@@ -1,0 +1,68 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/courses/fields
+include ../../mixins/conflictalert
+include ../../mixins/progressbar
+
+
+block header
+  | المادة -&nbsp;{{course.name}}
+
+block content
+  +progress-bar('course')
+  section(ng-show='course')
+    section
+      ul.nav.nav-tabs.nav-justified(dir='ltr')
+        li(ng-class='{active: isEditing()}')
+          a(ng-href='#/courses/{{course.id}}/edit') تعديل
+        li(ng-class='{active: !isEditing()}')
+          a(ng-href='#/courses/{{course.id}}') عرض
+    br
+    section(ng-show='isEditing()')
+      form(name='editCourseForm' ng-submit='update(course)')
+        +conflict-alert('isCodeConflict', 'يوجد مادة بنفس الرمز')
+        +course-fields('course', 'isCodeConflict')
+        div.form-group
+          input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
+            ng-disabled='editCourseForm.$invalid || editCourseForm.$pristine')
+    section(ng-hide='isEditing()')
+      section
+        table.table.table-hover
+          thead
+          tbody
+            tr
+              th.text-right الاسم
+              td.text-right(ng-bind='course.name')
+            tr
+              th.text-right الرمز
+              td.text-right(ng-bind='course.code')
+      hr
+      section
+        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy(course.id)') حذف
+      hr
+      section
+        article
+          header: h2.text-center الشعب
+          hr
+          table.table.table-hover.table-condensed
+            thead
+              tr
+                th.text-center الاسم
+                th.text-center المحاضر
+                th.text-center النشاط
+                th.text-center الساعات
+                th.text-center اليوم
+                th.text-center إدارة
+            tbody
+              tr(ng-repeat='class in classes')
+                td.text-center
+                  a(ng-href='#/classes/{{class.id}}' ng-bind='class.name')
+                td.text-center
+                  a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname')
+                td.text-center(ng-bind='class.type')
+                td.text-center(ng-bind='class.hours')
+                td.text-center(ng-bind='class.day')
+                td.text-center
+                  div.btn-group
+                    button.btn.btn-xs.btn-danger(ng-click='destroyClass(class.id)') حذف
+                    a.btn.btn-xs.btn-primary(ng-href='#/classes/{{class.id}}/edit') تعديل

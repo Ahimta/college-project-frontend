@@ -17,7 +17,9 @@ block content
           a(ng-href='#/classes/{{class.id}}/edit') تعديل
         li(ng-class='{active: !isEditing()}')
           a(ng-href='#/classes/{{class.id}}') عرض
+
     br
+
     section(ng-show='isEditing()')
       form(name='editClassForm' ng-submit='update(class)')
         - isNameConflict = 'isNameConflict'
@@ -25,7 +27,8 @@ block content
         +class-fields('class', 'allTeachers', 'allCourses', isNameConflict)
         div.form-group
           input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
-            ng-disabled='editClassForm.$invalid')
+            ng-disabled='editClassForm.$invalid || editClassForm.$pristine')
+
     section(ng-hide='isEditing()')
       section(ng-show='class')
         table.table.hover.table-condensed

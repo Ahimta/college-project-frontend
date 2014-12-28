@@ -16,6 +16,7 @@ angular.module('collegeProjectFrontendApp')
           $scope.teacher  = res.data.teacher
           $scope.course   = res.data.course
           $scope.class    = res.data.class
+          Utils.setPageTitle("الشعبة - {{$scope.class.name}}")
 
         $http.get("#{BACKEND}/classes/#{$routeParams.id}/students").then (res) ->
           $scope.notStudents = res.data.students.not_current
@@ -50,5 +51,7 @@ angular.module('collegeProjectFrontendApp')
       $http.put("#{BACKEND}/classes/#{classId}", class: klass)
         .then (__) ->
           $location.path("/classes/#{classId}")
+        .then null, (res) ->
+          $scope.isNameConflict = res.status == 409
 
     invalidate()

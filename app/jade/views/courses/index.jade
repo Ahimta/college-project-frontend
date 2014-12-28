@@ -7,11 +7,10 @@ block header
 
 block content
 
-  div.row
-    +progress-bar('courses.length > -1')
+  +progress-bar('courses.length > -1')
 
-  div(ng-show='courses')
-    div.row
+  section(ng-show='courses')
+    section
       div.table-responsive
         table.table.table-hover.table-condensed.text-center
           thead
@@ -21,14 +20,15 @@ block content
               th.text-center إدارة
           tbody
             tr(ng-repeat='course in courses')
-              td(ng-bind='course.name')
-              td(ng-bind='course.code')
-              td
+              td.text-center
+                a(ng-href='#/courses/{{course.id}}' ng-bind='course.name')
+              td.text-center
+                a(ng-href='#/courses/{{course.id}}' ng-bind='course.code')
+              td.text-center
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'
                     ng-click='destroy(course.id)') حذف
-                  button.btn.btn-xs.btn-primary(type='button' disabled) تعديل
+                  a.btn.btn-xs.btn-primary(ng-href='#/courses/{{course.id}}/edit') تعديل
 
-  div.row
-    div.row
-      a.btn.btn-success.btn-lg.btn-block(href='#/courses/new') إضافة مادة
+  section
+    a.btn.btn-success.btn-lg.btn-block(href='#/courses/new') إضافة مادة
