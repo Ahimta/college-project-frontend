@@ -6,8 +6,11 @@ angular
     'ngResource'
     'ngSanitize'
     'ngRoute'
+    'ngAnimate'
     'angularFileUpload'
     'LocalStorageModule'
+    'restangular'
+    'angular-loading-bar'
   ])
   .config ($httpProvider) ->
     $httpProvider.interceptors.push [
