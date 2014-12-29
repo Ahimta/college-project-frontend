@@ -1,0 +1,7 @@
+mixin teacher-fields(teacher, isUsernameConflict, isPasswordRequired)
+  include ../accountable/fields
+  +accountable-fields(teacher, isUsernameConflict, isPasswordRequired)
+  div.checkbox
+    label(dir='rtl' lang='ar')
+      input(type='checkbox' name='is_guide' ng-model=(teacher + '.is_guide'))
+      span مشرف أكاديمي

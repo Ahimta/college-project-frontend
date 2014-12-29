@@ -19,8 +19,8 @@ block content
           a(ng-href='#/courses/{{course.id}}') عرض
     br
     section(ng-show='isEditing()')
+      +conflict-alert('isCodeConflict', 'يوجد مادة بنفس الرمز')
       form(name='editCourseForm' ng-submit='update(course)')
-        +conflict-alert('isCodeConflict', 'يوجد مادة بنفس الرمز')
         +course-fields('course', 'isCodeConflict')
         div.form-group
           input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'

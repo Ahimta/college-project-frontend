@@ -32,6 +32,7 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.destroyClass = (classId) ->
       $http.delete("#{BACKEND}/classes/#{classId}")
-        .then invalidate, $location.path.bind('/')
+        .then invalidate, (__) ->
+          $location.path('/')
 
     invalidate()

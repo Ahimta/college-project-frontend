@@ -95,5 +95,8 @@ angular
       .when '/courses/:id/:action?',
         templateUrl: 'views/courses/show.html'
         controller: 'CoursesShowCtrl'
+      .when '/teachers/:id/:action?',
+        templateUrl: 'views/teachers/show.html'
+        controller: 'TeachersShowCtrl'
       .otherwise
         redirectTo: '/'

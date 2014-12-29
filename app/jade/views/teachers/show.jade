@@ -1,0 +1,72 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/teachers/fields
+include ../../mixins/conflictalert
+
+
+block header
+  | الأستاذ -&nbsp;{{teacher.fullname}}
+
+block content
+  section(ng-show='teacher')
+    section
+      ul.nav.nav-tabs.nav-justified(dir='ltr')
+        li(ng-class='{active: isEditing()}')
+          a(ng-href='#/teachers/{{teacher.id}}/edit') تعديل
+        li(ng-class='{active: !isEditing()}')
+          a(ng-href='#/teachers/{{teacher.id}}') عرض
+    br
+    section(ng-show='isEditing()')
+      +conflict-alert('isUsernameConflict', 'يوجد استاذ بنفس اسم المستخدم')
+      form(name='editTeacherForm' ng-submit='update(teacher)')
+        +teacher-fields('teacher', 'isUsernameConflict', false)
+        div.form-group
+          input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
+            ng-disabled='editTeacherForm.$invalid || editTeacherForm.$pristine')
+    section(ng-hide='isEditing()')
+      section
+        table.table.table-hover
+          thead
+          tbody
+            tr
+              th.text-right الاسم الكامل
+              td.text-right(ng-bind='teacher.fullname')
+            tr
+              th.text-right اسم المستخدم
+              td.text-right(ng-bind='teacher.username')
+            tr
+              th.text-right التخصص
+              td.text-right(ng-bind='teacher.specialization')
+      hr
+      section
+        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy(teacher.id)') حذف
+      hr
+      section
+        article
+          header: h2.text-center الشعب
+          hr
+          table.table.table-hover.table-condensed
+            thead
+              tr
+                th.text-center الاسم
+                th.text-center النشاط
+                th.text-center الساعات
+                th.text-center اليوم
+                th.text-center إدارة
+            tbody
+              tr(ng-repeat='class in classes')
+                td.text-center
+                  a(ng-href='#/classes/{{class.id}}' ng-bind='class.name')
+                td.text-center(ng-bind='class.type')
+                td.text-center(ng-bind='class.hours')
+                td.text-center(ng-bind='class.day')
+                td.text-center
+                  button.btn.btn-xs.btn-danger(ng-click='removeClass(class.id)') حذف
+      hr
+      form(name='courseForm' ng-submit='addClass(classId)')
+        div.form-group
+          select.form-control(name='classId' required ng-model='classId'
+            ng-options='newClass.id as newClass.name for newClass in newClasses')
+        div.form-group
+          input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
+            ng-disabled='courseForm.$invalid || isTeacher()')

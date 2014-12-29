@@ -9,7 +9,6 @@ block header
 block content
   div.row
     +username-taken-alert('usernameConflict')
-
     form(name='myForm' ng-submit='create()')
       +accountable-fields('teacher_account', 'usernameConflict', true)
       div.checkbox
