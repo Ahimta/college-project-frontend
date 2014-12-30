@@ -22,16 +22,11 @@ angular.module('collegeProjectFrontendApp')
         "#{BACKEND}/teacher_accounts/#{teacherId}/classes"
 
     invalidate = ->
-      $http.get("#{resource}?expand=true")
-        .then (res) ->
-          $scope.classes = res.data.classes.current || res.data.classes
-        .then null, (__) ->
-          $location.path('/')
+      $http.get("#{resource}?expand=true").then (res) ->
+        $scope.classes = res.data.classes.current || res.data.classes
 
     $scope.destroy = (classId) ->
-      $http.delete("#{BACKEND}/classes/#{classId}")
-        .then invalidate, (__) ->
-          $location.path('/')
+      $http.delete("#{BACKEND}/classes/#{classId}").then invalidate
 
     $scope.isSupervisor = accountManager.isSupervisor
     $scope.isTeacher    = accountManager.isTeacher

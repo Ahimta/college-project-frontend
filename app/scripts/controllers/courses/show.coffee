@@ -8,16 +8,13 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'CoursesShowCtrl', ($scope, $q, $routeParams, $location, $http, Utils, BACKEND) ->
+  .controller 'CoursesShowCtrl', ($scope, $routeParams, $location, $http, Utils, BACKEND) ->
 
     invalidate = ->
-      $http.get("#{BACKEND}/courses/#{$routeParams.id}/classes")
-        .then (res) ->
-          $scope.classes = res.data.classes
-          $scope.course  = res.data.course
-          Utils.setPageTitle("المادة - #{$scope.course.name}")
-        .then null, (__) ->
-          $location.path('/')
+      $http.get("#{BACKEND}/courses/#{$routeParams.id}/classes").then (res) ->
+        $scope.classes = res.data.classes
+        $scope.course  = res.data.course
+        Utils.setPageTitle("المادة - #{$scope.course.name}")
 
     $scope.isEditing = ->
       $routeParams.action == 'edit'
@@ -31,8 +28,6 @@ angular.module('collegeProjectFrontendApp')
           $scope.isCodeConflict = res.status == 409
 
     $scope.destroyClass = (classId) ->
-      $http.delete("#{BACKEND}/classes/#{classId}")
-        .then invalidate, (__) ->
-          $location.path('/')
+      $http.delete("#{BACKEND}/classes/#{classId}").then invalidate
 
     invalidate()

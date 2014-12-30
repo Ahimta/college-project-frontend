@@ -12,12 +12,6 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle 'وحدة المسؤولين'
 
-    url = "#{BACKEND}/admin_accounts"
-
-    $http.get(url)
-      .then (response) ->
-        $scope.admins = response.data.admin_accounts
-        response
-
-      .catch (error) ->
-        $log.debug error
+    $http.get("#{BACKEND}/admin_accounts")
+      .then (res) ->
+        $scope.admins = res.data.admin_accounts

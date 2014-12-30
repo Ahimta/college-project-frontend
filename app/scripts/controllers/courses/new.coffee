@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'CoursesNewCtrl', ($scope, $location, $routeParams, $http, $log, Utils, BACKEND) ->
+  .controller 'CoursesNewCtrl', ($scope, $location, $http, Utils, BACKEND) ->
 
     Utils.setPageTitle('إضافة مادة')
 
@@ -18,7 +18,5 @@ angular.module('collegeProjectFrontendApp')
       $http.post(resource, course: course)
         .then (res) ->
           $location.path('/courses')
-          res
         .then null, (res) ->
           $scope.codeConflict = res.status == 409
-          res

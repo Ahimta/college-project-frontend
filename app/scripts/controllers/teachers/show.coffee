@@ -13,13 +13,10 @@ angular.module('collegeProjectFrontendApp')
     resource = "#{BACKEND}/teacher_accounts/#{$routeParams.id}"
 
     invalidate = ->
-      $http.get("#{resource}/classes")
-        .then (res) ->
-          $scope.newClasses = res.data.classes.not_current
-          $scope.classes    = res.data.classes.current
-          $scope.teacher    = res.data.teacher_account
-        .then null, (__) ->
-          $location.path('/')
+      $http.get("#{resource}/classes").then (res) ->
+        $scope.newClasses = res.data.classes.not_current
+        $scope.classes    = res.data.classes.current
+        $scope.teacher    = res.data.teacher_account
 
     addOrRemoveClass = (isAdd) -> (courseId) ->
       action = if isAdd then 'add' else 'remove'

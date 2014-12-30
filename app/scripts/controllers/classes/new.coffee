@@ -13,15 +13,12 @@ angular.module('collegeProjectFrontendApp')
     Utils.setPageTitle('إضافة شعبة')
 
     $q.all([
-      $http.get("#{BACKEND}/teacher_accounts")
-        .then (res) ->
-          $scope.teachers = res.data.teacher_accounts
+      $http.get("#{BACKEND}/teacher_accounts").then (res) ->
+        $scope.teachers = res.data.teacher_accounts
 
-      $http.get("#{BACKEND}/courses")
-        .then (res) ->
-          $scope.courses = res.data.courses
-    ]).then null, (__) ->
-      $location.path('/')
+      $http.get("#{BACKEND}/courses").then (res) ->
+        $scope.courses = res.data.courses
+    ])
 
     $scope.create = (klass) ->
       $http.post("#{BACKEND}/classes", class: klass)

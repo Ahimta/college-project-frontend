@@ -15,10 +15,20 @@ angular
   .config ($httpProvider) ->
     $httpProvider.interceptors.push [
       'localStorageService'
-      (localStorageService) ->
+      '$location'
+      (localStorageService, $location) ->
         request: (config) ->
           config.headers['X-Access-Token'] = localStorageService.get('accessToken')
           config
+
+        responseError: (res) ->
+          switch res.status
+            when 404 then $location.path('/')
+            when 401
+              isPublic = ($location.path() in ['/', '/applicants/new'])
+              isLogin  = (res.config.method == 'POST' and res.config.url.match(/sessions/))
+              $location.path('/') unless isPublic or isLogin
+          res
     ]
 
   .config ($routeProvider) ->

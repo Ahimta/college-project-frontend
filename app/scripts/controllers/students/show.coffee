@@ -17,30 +17,20 @@ angular.module('collegeProjectFrontendApp')
 
     addOrRemoveCourse = (isAdd) -> (courseId) ->
       action = if isAdd then 'add' else 'remove'
-      $http.put("#{resource}/classes/#{courseId}/#{action}")
-        .then invalidate, $log.debug
+      $http.put("#{resource}/classes/#{courseId}/#{action}").then invalidate
 
     invalidate = ->
-      $http.get("#{resource}/classes")
-        .then (res) ->
-          $scope.currentCourses = res.data.classes.current
-          $scope.newCourses     = res.data.classes.not_current
-          $scope.student        = res.data.student_account
-          Utils.setPageTitle("الطالب - #{$scope.student.fullname}")
-          res
-        .then null, (res) ->
-          $log.debug('/students/:id/classes', res)
-          $location.path('/')
-          res
+      $http.get("#{resource}/classes").then (res) ->
+        $scope.currentCourses = res.data.classes.current
+        $scope.newCourses     = res.data.classes.not_current
+        $scope.student        = res.data.student_account
+        Utils.setPageTitle("الطالب - #{$scope.student.fullname}")
 
       if accountManager.isGuide()
         $scope.guide = accountManager.currentAccount()
       else
-        $http.get("#{resource}/guide")
-          .then (res) ->
-            $scope.guide = res.data.guide
-            res
-          .then null, $log.debug
+        $http.get("#{resource}/guide").then (res) ->
+          $scope.guide = res.data.guide
 
     $scope.isTeacher = accountManager.isTeacher
     $scope.isGuide   = accountManager.isGuide
@@ -55,21 +45,12 @@ angular.module('collegeProjectFrontendApp')
       $location.path("/students/#{studentId}")
 
     $scope.update = (student) ->
-      $http.put(resource, student_account: student)
-        .then $scope.show, (res) ->
-          $scope.usernameConflict = res.status == 409
-          switch res.status
-            when 401 then $location.path('/')
+      $http.put(resource, student_account: student).then $scope.show, (res) ->
+        $scope.usernameConflict = res.status == 409
 
     $scope.destroyStudent = ->
-      $http.delete(resource)
-        .then (res) ->
-          $location.path('/students')
-          res
-        .then null, (res) ->
-          $log.debug(res)
-          $location.path('/students')
-          res
+      $http.delete(resource).then (__) ->
+        $location.path('/students')
 
     $scope.removeCourse = addOrRemoveCourse(false)
     $scope.addCourse    = addOrRemoveCourse(true)

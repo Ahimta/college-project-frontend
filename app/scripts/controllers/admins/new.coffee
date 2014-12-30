@@ -19,11 +19,5 @@ angular.module('collegeProjectFrontendApp')
         .then (res) ->
           $location.path '/admins'
           $scope.usernameConflict = false
-
-          res
-
-        .catch (error) ->
-          $log.debug error
-
-          switch error.status
-            when 409 then $scope.usernameConflict = true
+        .then null, (res) ->
+          $scope.usernameConflict = res.status == 409

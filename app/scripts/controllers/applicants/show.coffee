@@ -11,7 +11,7 @@ angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantshowCtrl', ($scope, $routeParams, $location, $http, BACKEND, Utils) ->
 
     applicantId = $routeParams.id
-    url = "#{BACKEND}/job_requests/#{applicantId}"
+    resource = "#{BACKEND}/job_requests/#{applicantId}"
 
     successCallback = (res) ->
       job_request = res.data.job_request
@@ -20,26 +20,22 @@ angular.module('collegeProjectFrontendApp')
       res
 
     invalidate = ->
-      $http.get(url).then successCallback
+      $http.get(resource).then successCallback
 
-    decide = (decision, id) ->
-      $http.put("#{url}/#{decision}").then successCallback
+    decide = (decision) -> (id) ->
+      $http.put("#{resource}/#{decision}").then successCallback
 
     $scope.update = ->
-      $http.put(url, job_request: $scope.job_request)
+      $http.put(resource, job_request: $scope.job_request)
         .then(successCallback)
-        .then (res) ->
+        .then (__) ->
           $scope.isEditing = false
-          res
 
     $scope.destroy = (id) ->
-      $http.delete(url).then (_) ->
+      $http.delete(resource).then (__) ->
         $location.path '/applicants'
 
-    $scope.accept = (id) ->
-      decide 'accept', id
-
-    $scope.reject = (id) ->
-      decide 'reject', id
+    $scope.accept = decide('accept')
+    $scope.reject = decide('reject')
 
     invalidate()

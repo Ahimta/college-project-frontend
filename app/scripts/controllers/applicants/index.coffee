@@ -11,31 +11,23 @@ angular.module('collegeProjectFrontendApp')
   .controller 'ApplicantsCtrl', ($scope, $http, $location, BACKEND, Utils) ->
 
     Utils.setPageTitle 'المتقدمين'
-    url = "#{BACKEND}/job_requests"
+    resource = "#{BACKEND}/job_requests"
 
     invalidate = ->
-      $http.get(url)
-        .then (response) ->
-          $scope.applicants = response.data.job_requests
-          response
-
-        .catch (response) ->
-          switch response.status
-            when 401 then $location.path('/login/admin')
+      $http.get(resource)
+        .then (res) ->
+          $scope.applicants = res.data.job_requests
 
 
-    decide = (decision, id) ->
-      $http.put("#{url}/#{id}/#{decision}").then invalidate
-
+    decide = (decision) -> (id) ->
+      $http.put("#{resource}/#{id}/#{decision}").then invalidate
 
     $scope.destroy = (id) ->
-      $http.delete("#{url}/#{id}").then invalidate
+      $http.delete("#{resource}/#{id}").then invalidate
 
-    $scope.accept = (id) ->
-      decide 'accept', id
+    $scope.accept = decide('accept')
 
-    $scope.reject = (id) ->
-      decide 'reject', id
+    $scope.reject = decide('reject')
 
     $scope.getClass = (isAccepted) ->
       switch isAccepted

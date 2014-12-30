@@ -13,7 +13,6 @@ angular.module('collegeProjectFrontendApp')
     Utils.setPageTitle 'تقديم طلب'
     resource = "#{BACKEND}/job_requests"
 
-
     uploader = $scope.uploader = new FileUploader
       withCredentials: true
       method: 'PUT'
@@ -26,11 +25,11 @@ angular.module('collegeProjectFrontendApp')
         .then (res) ->
           $scope.isUploading = true
           uploader.onBeforeUploadItem = (item) ->
-            item.url = "#{BACKEND}/job_requests/#{res.data.job_request.id}/files"
+            jobRequest = res.data.job_request
+            item.url = "#{BACKEND}/job_requests/#{jobRequest.id}/files?token=#{jobRequest.token}"
           res
         .then (res) ->
           if uploader.queue and uploader.queue.length == 0
             $location.path '/'
           else
             uploader.uploadAll()
-          res

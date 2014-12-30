@@ -21,20 +21,13 @@ angular.module('collegeProjectFrontendApp')
     url = "#{BACKEND}/#{resource}"
 
     invalidate = ->
-      $http.get(url)
-        .then (response) ->
-          $scope['students'] = response.data['student_accounts']
-          response
-
-        .catch (res) ->
-          $location.path('/')
-          $log.debug res
+      $http.get(url).then (res) ->
+        $scope['students'] = res.data['student_accounts']
 
     $scope.isTeacher = accountManager.isTeacher
     $scope.isGuide   = accountManager.isGuide
 
     $scope.destroy = (id) ->
-      $http.delete("#{url}/#{id}")
-        .then(invalidate)
+      $http.delete("#{url}/#{id}").then(invalidate)
 
     invalidate()

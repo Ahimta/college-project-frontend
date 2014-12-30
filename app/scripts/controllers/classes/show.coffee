@@ -10,10 +10,10 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'ClassesShowCtrl', ($scope, $q, $location, $routeParams, $http, accountManager, Utils, BACKEND) ->
 
-    invalidate = ->
+    invalidateIfSupervisor = ->
       $q.all([
         $http.get("#{BACKEND}/classes/#{$routeParams.id}?expand=true").then (res) ->
-          $scope.teacher  = res.data.teacher
+          $scope.teacher  = res.data.teacher || res.data.teacher_account
           $scope.course   = res.data.course
           $scope.class    = res.data.class
           Utils.setPageTitle("الشعبة - {{$scope.class.name}}")
@@ -28,11 +28,19 @@ angular.module('collegeProjectFrontendApp')
         $http.get("#{BACKEND}/courses").then (res) ->
           $scope.allCourses = res.data.courses
       ])
-        .then (__) ->
-          console.log $scope.allTeachers
-          console.log $scope.allCourses
-        .then null, (__) ->
-          $location.path('/')
+
+    invalidateIfTeacher = ->
+      teacherAccount = accountManager.currentAccount()
+      teacherId      = teacherAccount.id
+      classId        = $routeParams.id
+      $http.get("#{BACKEND}/teacher_accounts/#{teacherId}/classes/#{classId}").then (res) ->
+        $scope.students = res.data.students
+        $scope.teacher  = res.data.teacher_account
+        $scope.course   = res.data.course
+        $scope.class    = res.data.class
+
+    invalidate = if accountManager.isSupervisor() then invalidateIfSupervisor
+    else invalidateIfTeacher
 
     addOrRemoveStudent = (isAdd) -> (studentId) ->
       action  = if isAdd then 'add' else 'remove'
@@ -43,8 +51,15 @@ angular.module('collegeProjectFrontendApp')
     $scope.removeStudent = addOrRemoveStudent(false)
     $scope.addStudent    = addOrRemoveStudent(true)
 
+    $scope.isSupervisor = accountManager.isSupervisor
+    $scope.isTeacher    = accountManager.isTeacher
+
     $scope.isEditing = ->
       $routeParams.action == 'edit'
+
+    $scope.destroy = ->
+      classId = $routeParams.id
+      $http.delete("#{BACKEND}/classes/#{classId}").then invalidate
 
     $scope.update = (klass) ->
       classId = $routeParams.id
