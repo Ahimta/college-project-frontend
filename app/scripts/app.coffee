@@ -16,7 +16,8 @@ angular
     $httpProvider.interceptors.push [
       'localStorageService'
       '$location'
-      (localStorageService, $location) ->
+      '$q'
+      (localStorageService, $location, $q) ->
         request: (config) ->
           config.headers['X-Access-Token'] = localStorageService.get('accessToken')
           config
@@ -28,7 +29,7 @@ angular
               isPublic = ($location.path() in ['/', '/applicants/new'])
               isLogin  = (res.config.method == 'POST' and res.config.url.match(/sessions/))
               $location.path('/') unless isPublic or isLogin
-          res
+          $q.reject(res)
     ]
 
   .config ($routeProvider) ->
@@ -108,5 +109,8 @@ angular
       .when '/teachers/:id/:action?',
         templateUrl: 'views/teachers/show.html'
         controller: 'TeachersShowCtrl'
+      .when '/admins/:id/:action?',
+        templateUrl: 'views/admins/show.html'
+        controller: 'AdminsShowCtrl'
       .otherwise
         redirectTo: '/'

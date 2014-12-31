@@ -26,7 +26,7 @@ block content
       form(name='updateForm' ng-submit='update(student)')
         +student-fields('student', 'usernameConflict', false)
         div.form-group
-          input.btn.btn-success.btn-lg.btn-block(type='submit' value='تحديث'
+          input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
             ng-disabled='updateForm.$invalid || updateForm.$pristine || isTeacher()')
 
     section.row(ng-hide='isEditing()')

@@ -6,7 +6,7 @@ include ../../mixins/progressbar
 
 
 block header
-  | الشعب -&nbsp;{{class.name}}
+  | الشعبة&nbsp;-&nbsp;{{class.name}}
 
 block content
   +progress-bar('class')
@@ -31,7 +31,7 @@ block content
 
     section(ng-hide='isEditing()')
       section(ng-show='class')
-        table.table.hover.table-condensed
+        table.table.hover.table-condensed.table-hover
           thead
           tbody
             tr
@@ -56,7 +56,7 @@ block content
               th.text-right اليوم
               td.text-right(ng-bind='class.day')
       hr(ng-show='isSupervisor()')
-      button.btn.btn-lg.btn-block.btn-danger(ng-click='destroy()' ng-show='isSupervisor()')
+      button.btn.btn-lg.btn-block.btn-danger(ng-click='destroy()' ng-show='isSupervisor()') حذف
       hr
       section
         h2.text-center الطلاب

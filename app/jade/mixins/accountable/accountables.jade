@@ -1,4 +1,4 @@
-mixin accountables(accountables, isUndeletable)
+mixin accountables(accountables, isUndeletable, url)
   include ../progressbar
 
   div.row
@@ -15,10 +15,11 @@ mixin accountables(accountables, isUndeletable)
               th.text-center إدارة
           tbody
             tr(ng-repeat=('accountable in ' + accountables))
-              td(ng-bind='accountable.fullname')
+              td
+                a(ng-href=(url + '/{{accountable.id}}') ng-bind='accountable.fullname')
               td(ng-bind='accountable.username')
               td
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button'
                     ng-click='destroy(accountable.id)' disabled=isUndeletable) حذف
-                  button.btn.btn-xs.btn-primary(type='button' disabled) تعديل
+                  a.btn.btn-xs.btn-primary(ng-href=(url + '/{{accountable.id}}/edit')) تعديل
