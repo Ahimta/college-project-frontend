@@ -1,45 +1,10 @@
 extends ../../layouts/dashboard
 
-include ../../mixins/accountable/usernametakenalert
-include ../../mixins/accountable/fields
-include ../../mixins/conflictalert
+include ../../mixins/accountable/accountable
 
 
 block header
   | المسؤول&nbsp;-&nbsp;{{admin.fullname}}
 
 block content
-  section(ng-show='admin')
-    section
-      ul.nav.nav-tabs.nav-justified(dir='ltr')
-        li(ng-class='{active: isEditing()}')
-          a(ng-href='#/admins/{{admin.id}}/edit') تعديل
-        li(ng-class='{active: !isEditing()}')
-          a(ng-href='#/admins/{{admin.id}}') عرض
-    br
-    section(ng-hide='isEditing()')
-      section
-        table.table.table-condensed.table-hover
-          thead
-          tbody
-            tr
-              th.text-right البريد الإلكتروني
-              td.text-right(ng-bind='admin.email')
-            tr
-              th.text-right اسم المستخدم
-              td.text-right(ng-bind='admin.username')
-            tr
-              th.text-right الاسم الكامل
-              td.text-right(ng-bind='admin.fullname')
-            tr
-              th.text-right الهاتف
-              td.text-right(ng-bind='admin.phone')
-      hr
-      section: button.btn.btn-lg.btn-block.btn-danger(ng-click='destroy' disabled) حذف
-    section(ng-show='isEditing()')
-      +conflict-alert('isUsernameConflict', 'يوجد مسؤول بنفس اسم المستخدم')
-      form(name='editAdminForm' ng-submit='update(admin)')
-        +accountable-fields('admin', 'isUsernameConflict', false)
-        div.form-group
-          input.btn.btn-lg.btn-block.btn-primary(type='submit' value='حفظ'
-            ng-disabled='editAdminForm.$invalid || editAdminForm.$pristine')
+  +accountable('admin', 'isEditing()', 'update', 'destroy()', 'isUsernameConflict', '#/admins', true)

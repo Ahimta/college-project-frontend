@@ -1,0 +1,10 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/accountable
+
+
+block header
+  | وحدة التوظيف&nbsp;-&nbsp;{{recruiter.fullname}}
+
+block content
+  +accountable('recruiter', 'isEditing()', 'update', 'destroy()', 'isUsernameConflict', '#/recruiters')

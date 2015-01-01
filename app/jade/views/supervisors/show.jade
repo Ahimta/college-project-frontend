@@ -1,0 +1,10 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/accountable
+
+
+block header
+  | وحدة الإرشاد&nbsp;-&nbsp;{{supervisor.fullname}}
+
+block content
+  +accountable('supervisor', 'isEditing()', 'update', 'destroy()', 'isUsernameConflict', '#/supervisors')

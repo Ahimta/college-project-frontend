@@ -1,0 +1,41 @@
+mixin accountable(recordName, isEditing, update, destroy, isUsernameConflict, url, isUnDeletable)
+
+  include ../../mixins/accountable/fields
+  include ../../mixins/conflictalert
+
+  section(ng-show=recordName)
+    section
+      ul.nav.nav-tabs.nav-justified(dir='ltr')
+        li(ng-class=('{active: ' + isEditing + '}'))
+          a(ng-href=(url + '/{{' + recordName + '.id}}/edit')) تعديل
+        li(ng-class=('{active: !' + isEditing  + '}'))
+          a(ng-href=(url + '/{{' + recordName + '.id}}')) عرض
+    br
+    section(ng-hide=isEditing)
+      section
+        table.table.table-condensed.table-hover
+          thead
+            tr
+              th(colspan='2').text-center البيانات الشخصية
+          tbody
+            tr
+              th.text-right البريد الإلكتروني
+              td.text-right(ng-bind=(recordName + '.email'))
+            tr
+              th.text-right اسم المستخدم
+              td.text-right(ng-bind=(recordName + '.username'))
+            tr
+              th.text-right الاسم الكامل
+              td.text-right(ng-bind=(recordName + '.fullname'))
+            tr
+              th.text-right الهاتف
+              td.text-right(ng-bind=(recordName + '.phone'))
+      hr
+      section: button.btn.btn-lg.btn-block.btn-danger(ng-click=destroy disabled=isUnDeletable) حذف
+    section(ng-show=isEditing)
+      +conflict-alert(isUsernameConflict, 'يوجد مستخدم بنفس اسم المستخدم')
+      form(name='editAccountForm' ng-submit=(update + '(' + recordName + ')'))
+        +accountable-fields(recordName, isUsernameConflict, false)
+        div.form-group
+          input.btn.btn-lg.btn-block.btn-primary(type='submit' value='حفظ'
+            ng-disabled='editAccountForm.$invalid || editAccountForm.$pristine')

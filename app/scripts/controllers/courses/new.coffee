@@ -12,10 +12,8 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle('إضافة مادة')
 
-    resource = "#{BACKEND}/courses"
-
     $scope.create = (course) ->
-      $http.post(resource, course: course)
+      $http.post("#{BACKEND}/courses", course: course)
         .then (res) ->
           $location.path('/courses')
         .then null, (res) ->

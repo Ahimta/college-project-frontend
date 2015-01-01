@@ -8,16 +8,16 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'ClassesIndexCtrl', ($scope, $http, $location, accountManager, Utils, BACKEND) ->
+  .controller 'ClassesIndexCtrl', ($scope, $http, accountManager, Utils, BACKEND, ROLES) ->
 
     Utils.setPageTitle('الشعب')
 
     resource = switch accountManager.currentRole()
-      when 'supervisor' then "#{BACKEND}/classes"
-      when 'student'
+      when ROLES.supervisor then "#{BACKEND}/classes"
+      when ROLES.student
         studentId = accountManager.currentAccount().id
         "#{BACKEND}/student_accounts/#{studentId}/classes"
-      when 'teacher'
+      when ROLES.teacher
         teacherId = accountManager.currentAccount().id
         "#{BACKEND}/teacher_accounts/#{teacherId}/classes"
 

@@ -8,15 +8,14 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'ApplicantshowCtrl', ($scope, $routeParams, $location, $http, BACKEND, Utils) ->
+  .controller 'ApplicantshowCtrl', ($scope, $routeParams, $location, $http, Utils, BACKEND) ->
 
     applicantId = $routeParams.id
     resource = "#{BACKEND}/job_requests/#{applicantId}"
 
     successCallback = (res) ->
-      job_request = res.data.job_request
-      $scope.job_request = job_request
-      Utils.setPageTitle "المتقدمين - #{job_request.fullname}"
+      $scope.job_request = res.data.job_request
+      Utils.setPageTitle "المتقدمين - #{$scope.job_request.fullname}"
       res
 
     invalidate = ->

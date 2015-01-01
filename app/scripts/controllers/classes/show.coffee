@@ -38,6 +38,7 @@ angular.module('collegeProjectFrontendApp')
         $scope.teacher  = res.data.teacher_account
         $scope.course   = res.data.course
         $scope.class    = res.data.class
+        Utils.setPageTitle("الشعبة - {{$scope.class.name}}")
 
     invalidate = if accountManager.isSupervisor() then invalidateIfSupervisor
     else invalidateIfTeacher

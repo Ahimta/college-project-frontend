@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'CoursesIndexCtrl', ($scope, $http, BACKEND, Utils) ->
+  .controller 'CoursesIndexCtrl', ($scope, $http, Utils, BACKEND) ->
 
     Utils.setPageTitle('المواد')
     resource = "#{BACKEND}/courses"
