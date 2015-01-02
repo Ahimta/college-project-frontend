@@ -72,7 +72,7 @@ block content
                 td.text-center الحضور
                 td.text-center الاختبار الأول
                 td.text-center الاختبار الثاني
-                td.text-center(ng-hide='isTeacher()') إدارة
+                td.text-center إدارة
             tbody
               tr(ng-repeat='student in students')
                 td.text-center
@@ -83,12 +83,34 @@ block content
                   a(ng-href='#/students/{{student.id}}' ng-bind='student.collegial_number'
                     ng-show='isSupervisor()')
                   span(ng-bind='student.collegial_number' ng-hide='isSupervisor()')
-                td.text-center {{student.attendance}}%
-                td.text-center(ng-bind='student.grades.midterm')
-                td.text-center(ng-bind='student.grades.final')
-                td.text-center(ng-show='isSupervisor()')
-                  div.btn-group
+                td.text-center
+                  span(ng-hide='isCurrentEditedStudent(student.id)') {{student.attendance}}%
+                  div.form-group(ng-show='isCurrentEditedStudent(student.id)')
+                    input.form-control(type='number' placeholder='الحضور' required
+                      ng-min='0' ng-max='100' min='0' max='100'
+                      ng-model='student.attendance')
+                td.text-center
+                  span(ng-hide='isCurrentEditedStudent(student.id)'
+                    ng-bind='student.grades.midterm')
+                  div.form-group(ng-show='isCurrentEditedStudent(student.id)')
+                    input.form-control(type='number' placeholder='الاختبار الأول' required
+                      ng-min='0' min='0'
+                      ng-model='student.grades.midterm')
+                td.text-center
+                  span(ng-hide='isCurrentEditedStudent(student.id)'
+                    ng-bind='student.grades.final')
+                  div.form-group(ng-show='isCurrentEditedStudent(student.id)')
+                    input.form-control(type='number' placeholder='الاختبار الثاني' required
+                      ng-min='0' min='0'
+                      ng-model='student.grades.final')
+                td.text-center
+                  div(ng-show='isSupervisor()')
                     button.btn.btn-xs.btn-danger(ng-click='removeStudent(student.id)') حذف
+                  div(ng-show='isTeacher()')
+                    button.btn.btn-xs.btn-primary(ng-hide='isCurrentEditedStudent(student.id)'
+                      ng-click='editStudent(student.id)') تعديل
+                    button.btn.btn-xs.btn-primary(ng-show='isCurrentEditedStudent(student.id)'
+                      ng-click='updateStudent(student)') حفظ
       hr(ng-show='isSupervisor()')
       section(ng-show='isSupervisor()')
         form(name='addStudentForm' ng-submit='addStudent(studentId)')

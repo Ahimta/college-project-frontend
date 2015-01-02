@@ -16,7 +16,7 @@ angular.module('collegeProjectFrontendApp')
           $scope.teacher  = res.data.teacher || res.data.teacher_account
           $scope.course   = res.data.course
           $scope.class    = res.data.class
-          Utils.setPageTitle("الشعبة - {{$scope.class.name}}")
+          Utils.setPageTitle("الشعبة - #{$scope.class.name}")
 
         $http.get("#{BACKEND}/classes/#{$routeParams.id}/students").then (res) ->
           $scope.notStudents = res.data.students.not_current
@@ -38,7 +38,7 @@ angular.module('collegeProjectFrontendApp')
         $scope.teacher  = res.data.teacher_account
         $scope.course   = res.data.course
         $scope.class    = res.data.class
-        Utils.setPageTitle("الشعبة - {{$scope.class.name}}")
+        Utils.setPageTitle("الشعبة - #{$scope.class.name}")
 
     invalidate = if accountManager.isSupervisor() then invalidateIfSupervisor
     else invalidateIfTeacher
@@ -58,6 +58,14 @@ angular.module('collegeProjectFrontendApp')
     $scope.isEditing = ->
       $routeParams.action == 'edit'
 
+    currentEditedStudent = null
+
+    $scope.isCurrentEditedStudent = (id) ->
+      currentEditedStudent == id
+
+    $scope.editStudent = (id) ->
+      currentEditedStudent = id
+
     $scope.destroy = ->
       classId = $routeParams.id
       $http.delete("#{BACKEND}/classes/#{classId}").then invalidate
@@ -69,5 +77,15 @@ angular.module('collegeProjectFrontendApp')
           $location.path("/classes/#{classId}")
         .then null, (res) ->
           $scope.isNameConflict = res.status == 409
+
+    $scope.updateStudent = (student) ->
+      teacherAccount = accountManager.currentAccount()
+      teacherId      = teacherAccount.id
+      classId        = $routeParams.id
+
+      url = "#{BACKEND}/teacher_accounts/#{teacherId}/classes/#{classId}/students/#{student.id}"
+      $http.put(url, student: _.pick(student, 'attendance', 'grades')).then (__) ->
+        currentEditedStudent = null
+        invalidate()
 
     invalidate()
