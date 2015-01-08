@@ -7,7 +7,7 @@ mixin student-fields(recordName, usernameConflict, passwordRequired)
     div.form-group
       label(for='collegialNumber') الرقم الجامعي
       input#collegialNumber.form-control(type='number' name='collegialNumber'
-        placeholder='الرقم الجامعي' required
+        placeholder='الرقم الجامعي' required min='1' ng-min='1'
         ng-model=(recordName + '.collegial_number'))
     div.form-group
       label(for='specialization') التخصص

@@ -24,7 +24,8 @@ angular
 
         responseError: (res) ->
           switch res.status
-            when 404 then $location.path('/')
+            when 404
+              $location.path('/') unless res.config.url.match(/guide$/)
             when 401
               isPublic = ($location.path() in ['/', '/applicants/new'])
               isLogin  = (res.config.method == 'POST' and res.config.url.match(/sessions/))
