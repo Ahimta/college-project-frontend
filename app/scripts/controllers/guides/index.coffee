@@ -47,14 +47,14 @@ angular.module('collegeProjectFrontendApp')
       action = if isAdd then 'add_to_guides' else 'remove_from_guides'
       $http.put("#{teachersResource}/#{teacherId}/#{action}").then (res) ->
         if isAdd then invalidate()
-        else $location.search('guide_id', null)
+        else $location.path('/guides')
 
 
     $scope.removeFromGuide = addOrRemoveStudent(false)
     $scope.addToGuide      = addOrRemoveStudent(true)
 
     $scope.studentsForGuide = (guideId) ->
-      $location.search('guide_id', guideId)
+      $location.path("/guides/#{guideId}")
 
     $scope.isCurrentGuide = (guideId) ->
       guideId == currentGuideId
