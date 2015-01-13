@@ -22,9 +22,9 @@ block content
 
     section(ng-show='isEditing() && isSupervisor()')
       form(name='editClassForm' ng-submit='update(class)')
-        - isNameConflict = 'isNameConflict'
-        +conflict-alert(isNameConflict, 'يوجد شعبة بنفس الاسم')
-        +class-fields('class', 'allTeachers', 'allCourses', isNameConflict)
+        - isCodeConflict = 'isCodeConflict'
+        +conflict-alert(isCodeConflict, 'يوجد شعبة بنفس الاسم')
+        +class-fields('class', 'allTeachers', 'allCourses', isCodeConflict)
         div.form-group
           input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
             ng-disabled='editClassForm.$invalid || editClassForm.$pristine')

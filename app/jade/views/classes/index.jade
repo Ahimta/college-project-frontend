@@ -19,7 +19,7 @@ block content
         table.table.table-hover.table-condensed
           thead
             tr
-              th.text-center اسم الشعبة
+              th.text-center رمز الشعبة
               th.text-center رمز المادة
               th.text-center(ng-hide='isTeacher()') المحاضر
               th.text-center النشاط
@@ -31,9 +31,9 @@ block content
               th.text-center(ng-show='isSupervisor()') إدارة
           tbody.text-center
             tr(ng-repeat='class in classes')
-              td
-                a(ng-href='#/classes/{{class.id}}' ng-show='isSupervisor() || isTeacher()' ng-bind='class.name')
-                span(ng-hide='isSupervisor() || isTeacher()' ng-bind='class.name')
+              td(title='{{class.name}}')
+                a(ng-href='#/classes/{{class.id}}' ng-show='isSupervisor() || isTeacher()' ng-bind='class.code')
+                span(ng-hide='isSupervisor() || isTeacher()' ng-bind='class.code')
               td(title='{{class.course.name}}')
                 a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
                   ng-show='isSupervisor()')

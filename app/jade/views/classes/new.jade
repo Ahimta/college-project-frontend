@@ -9,9 +9,9 @@ block header
 block content
 
   div.row
-    +conflict-alert('isNameConflict', 'يوجد شعبة بنفس الاسم')
+    +conflict-alert('isCodeConflict', 'يوجد شعبة بنفس الاسم')
     form(name='myForm' ng-submit='create(class)')
-      +class-fields('class', 'teachers', 'courses', 'isNameConflict')
+      +class-fields('class', 'teachers', 'courses', 'isCodeConflict')
       div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
           value='إضافة شعبة'
           ng-disabled='myForm.$invalid')

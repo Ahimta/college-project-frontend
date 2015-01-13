@@ -25,4 +25,4 @@ angular.module('collegeProjectFrontendApp')
         .then (__) ->
           $location.path('/classes')
         .then null, (res) ->
-          $scope.isNameConflict = res.status == 409
+          $scope.isCodeConflict = res.status == 409
