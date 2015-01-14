@@ -11,5 +11,5 @@ describe 'Filter: semester', ->
     semester = $filter 'semester'
 
   it 'should return the input prefixed with "semester filter:"', ->
-    input = {from: 16, to: 18}
-    expect(semester(input)).toBe "4م - 6م"
+    input = {order: 1, year: '1436/1437'}
+    expect(semester(input)).toEqual('1436/1437 - الفصل الأول')

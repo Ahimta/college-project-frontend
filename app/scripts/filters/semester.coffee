@@ -11,11 +11,15 @@
 angular.module('collegeProjectFrontendApp')
   .filter 'semester', ->
 
-    hourToString = (hour) ->
-      if hour <= 12 then "#{hour}ص"
-      else "#{(hour - 12)}م"
+    orderToString = (order) ->
+      switch
+        when 1 then 'الفصل الأول'
+        when 2 then 'الفصل الثاني'
+        when 3 then 'الفصل الثالث'
+        when 4 then 'الفصل الرابع'
 
     (semester) ->
-      from = hourToString(semester.from)
-      to   = hourToString(semester.to)
-      "#{from} - #{to}"
+      orderString = orderToString(semester.order)
+      year        = semester.year
+
+      "#{year} - #{orderString}"

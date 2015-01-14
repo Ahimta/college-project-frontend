@@ -47,21 +47,27 @@ block content
           table.table.table-hover.table-condensed
             thead
               tr
-                th.text-center الاسم
+                th.text-center الرمز
                 th.text-center المحاضر
                 th.text-center النشاط
                 th.text-center الساعات
                 th.text-center اليوم
+                th.text-center الوقت
+                th.text-center الفصل الدراسي
+                th.text-center القاعة
                 th.text-center إدارة
             tbody
               tr(ng-repeat='class in classes')
-                td.text-center
-                  a(ng-href='#/classes/{{class.id}}' ng-bind='class.name')
+                td.text-center(title='{{class.name}}')
+                  a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')
                 td.text-center
                   a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname')
                 td.text-center(ng-bind='class.type')
                 td.text-center(ng-bind='class.hours')
                 td.text-center(ng-bind='class.day')
+                td.text-center {{ class.schedule | schedule }}
+                td.text-center {{ class.semester | semester }}
+                td.text-center(ng-bind='class.room')
                 td.text-center
                   div.btn-group
                     button.btn.btn-xs.btn-danger(ng-click='destroyClass(class.id)') حذف

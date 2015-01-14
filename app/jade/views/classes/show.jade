@@ -21,9 +21,9 @@ block content
     br
 
     section(ng-show='isEditing() && isSupervisor()')
+      - isCodeConflict = 'isCodeConflict'
+      +conflict-alert(isCodeConflict, 'يوجد شعبة بنفس الرمز')
       form(name='editClassForm' ng-submit='update(class)')
-        - isCodeConflict = 'isCodeConflict'
-        +conflict-alert(isCodeConflict, 'يوجد شعبة بنفس الاسم')
         +class-fields('class', 'allTeachers', 'allCourses', isCodeConflict)
         div.form-group
           input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
@@ -31,12 +31,15 @@ block content
 
     section(ng-hide='isEditing()')
       section(ng-show='class')
-        table.table.hover.table-condensed.table-hover
+        table.table.table-condensed.table-hover
           thead
           tbody
             tr
-              th.text-right اسم الشعبة
-              td.text-right(ng-bind='class.name')
+              th.text-right الفصل الدراسي
+              td.text-right {{ class.semester | semester }}
+            tr(title='{{class.name}}')
+              th.text-right رمز الشعبة
+              td.text-right(ng-bind='class.code')
             tr(title='{{course.name}}')
               th.text-right رمز المادة
               td.text-right
@@ -53,6 +56,12 @@ block content
               th.text-right النشاط
               td.text-right(ng-bind='class.type')
             tr
+              th.text-right الوقت
+              td.text-right {{ class.schedule | schedule }}
+            tr
+              th.text-right القاعة
+              td.text-right(ng-bind='class.room')
+            tr
               th.text-right اليوم
               td.text-right(ng-bind='class.day')
       hr(ng-show='isSupervisor()')
@@ -67,12 +76,12 @@ block content
           table.table.table-hover.table-condensed
             thead
               tr
-                td.text-center الاسم
-                td.text-center الرقم الجامعي
-                td.text-center الحضور
-                td.text-center الاختبار الأول
-                td.text-center الاختبار الثاني
-                td.text-center إدارة
+                th.text-center الاسم
+                th.text-center الرقم الجامعي
+                th.text-center الحضور
+                th.text-center الاختبار الأول
+                th.text-center الاختبار الثاني
+                th.text-center إدارة
             tbody
               tr(ng-repeat='student in students')
                 td.text-center
