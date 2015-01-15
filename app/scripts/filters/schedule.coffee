@@ -12,10 +12,13 @@ angular.module('collegeProjectFrontendApp')
   .filter 'schedule', ->
 
     hourToString = (hour) ->
-      if hour <= 12 then "#{hour}ص"
-      else "#{(hour - 12)}م"
+      if hour <= 12 then "#{hour}:00ص"
+      else "#{(hour - 12)}:00م"
 
     (schedule) ->
-      from = hourToString(schedule.from)
-      to   = hourToString(schedule.to)
-      "#{from} - #{to}"
+      if schedule and schedule.from and schedule.to
+        from = hourToString(schedule.from)
+        to   = hourToString(schedule.to)
+        "#{from} - #{to}"
+      else
+        ''

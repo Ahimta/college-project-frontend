@@ -13,3 +13,7 @@ describe 'Filter: semester', ->
   it 'should return the input prefixed with "semester filter:"', ->
     input = {order: 1, year: '1436/1437'}
     expect(semester(input)).toEqual('1436/1437 - الفصل الأول')
+
+  it 'should return nothing if the input is falsy', ->
+    input = null
+    expect(semester(input)).toBe ''

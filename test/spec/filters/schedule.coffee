@@ -12,4 +12,8 @@ describe 'Filter: schedule', ->
 
   it 'should return the input prefixed with "schedule filter:"', ->
     input = {from: 16, to: 18}
-    expect(schedule(input)).toBe "4م - 6م"
+    expect(schedule(input)).toBe '4:00م - 6:00م'
+
+  it 'should return nothing if the input is falsy', ->
+    input = null
+    expect(schedule(input)).toBe ''

@@ -1,5 +1,8 @@
 mixin student-fields(recordName, usernameConflict, passwordRequired)
+
+  include ../specializationfield
   include ../accountable/fields
+
   +accountable-fields(recordName, usernameConflict, passwordRequired)
 
   fieldset
@@ -9,8 +12,4 @@ mixin student-fields(recordName, usernameConflict, passwordRequired)
       input#collegialNumber.form-control(type='number' name='collegialNumber'
         placeholder='الرقم الجامعي' required min='1' ng-min='1'
         ng-model=(recordName + '.collegial_number'))
-    div.form-group
-      label(for='specialization') التخصص
-      input#specialization.form-control(type='text' name='specialization'
-        placeholder='التخصص' required
-        ng-model=(recordName + '.specialization'))
+    +specialization-field(recordName)

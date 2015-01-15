@@ -23,6 +23,10 @@ angular.module('collegeProjectFrontendApp')
       $http.put("#{resource}/classes/#{courseId}/#{action}")
         .then invalidate
 
+    $scope.destroy = ->
+      $http.delete(resource).then ->
+        $location.path('/teachers')
+
     $scope.isEditing = ->
       $routeParams.action == 'edit'
 

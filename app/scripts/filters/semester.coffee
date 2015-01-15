@@ -19,7 +19,10 @@ angular.module('collegeProjectFrontendApp')
         when 4 then 'الفصل الرابع'
 
     (semester) ->
-      orderString = orderToString(semester.order)
-      year        = semester.year
+      if semester and semester.order and semester.year
+        orderString = orderToString(semester.order)
+        year        = semester.year
 
-      "#{year} - #{orderString}"
+        "#{year} - #{orderString}"
+      else
+        ''

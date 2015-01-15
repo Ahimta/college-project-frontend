@@ -25,6 +25,8 @@ block content
               th.text-center النشاط
               th.text-center الساعات
               th.text-center اليوم
+              th.text-center الوقت
+              th.text-center الفصل الدراسي
               th.text-center(ng-show='isStudent()') الحضور
               th.text-center(ng-show='isStudent()') الاختبار الأول
               th.text-center(ng-show='isStudent()') الاختبار الثاني
@@ -45,6 +47,8 @@ block content
               td(ng-bind='class.type')
               td(ng-bind='class.hours')
               td(ng-bind='class.day')
+              td {{ class.schedule | schedule }}
+              td {{ class.semester | semester }}
               td(ng-show='isStudent()') {{class.attendance}}%
               td(ng-show='isStudent()' ng-bind='class.grades.midterm')
               td(ng-show='isStudent()' ng-bind='class.grades.final')

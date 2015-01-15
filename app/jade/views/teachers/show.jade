@@ -29,17 +29,17 @@ block content
           thead
           tbody
             tr
-              th.text-right الاسم الكامل
-              td.text-right(ng-bind='teacher.fullname')
-            tr
               th.text-right اسم المستخدم
               td.text-right(ng-bind='teacher.username')
+            tr
+              th.text-right الاسم الكامل
+              td.text-right(ng-bind='teacher.fullname')
             tr
               th.text-right التخصص
               td.text-right(ng-bind='teacher.specialization')
       hr
       section
-        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy(teacher.id)') حذف
+        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy()') حذف
       hr
       section
         article
@@ -48,15 +48,15 @@ block content
           table.table.table-hover.table-condensed
             thead
               tr
-                th.text-center الاسم
+                th.text-center الرمز
                 th.text-center النشاط
                 th.text-center الساعات
                 th.text-center اليوم
                 th.text-center إدارة
             tbody
               tr(ng-repeat='class in classes')
-                td.text-center
-                  a(ng-href='#/classes/{{class.id}}' ng-bind='class.name')
+                td.text-center(title='{{class.name}}')
+                  a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')
                 td.text-center(ng-bind='class.type')
                 td.text-center(ng-bind='class.hours')
                 td.text-center(ng-bind='class.day')

@@ -1,0 +1,24 @@
+mixin specialization-field(recordName)
+  div.form-group
+    label(for='specialization') التخصص
+    select.form-control(id='specialization' type='text' placeholder='التخصص'
+      ng-model=(recordName + '.specialization') required name='specialization')
+      optgroup(label='هندسة')
+        option هندسة ميكانيكية
+        option هندسة كهربائية
+        option هندسة معمارية
+        option هندسة مدنية
+      optgroup(label='علوم')
+        option(selected) حاسب آلي
+        option رياضيات
+        option كيمياء
+        option فيزياء
+      optgroup(label='طب')
+        option تمريض
+        option صيدلة
+        option طب
+      optgroup(label='أخرى')
+        option لغة انجليزية
+        option علوم شرعية
+        option إدارة أعمال
+        option لغة عربية

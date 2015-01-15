@@ -1,6 +1,10 @@
 mixin teacher-fields(teacher, isUsernameConflict, isPasswordRequired)
+
   include ../accountable/fields
+  include ../specializationfield
+
   +accountable-fields(teacher, isUsernameConflict, isPasswordRequired)
+  +specialization-field(teacher)
   div.checkbox
     label(dir='rtl' lang='ar')
       input(type='checkbox' name='is_guide' ng-model=(teacher + '.is_guide'))

@@ -37,7 +37,7 @@ block content
                     span.glyphicon.glyphicon-minus
                     | &nbsp;
                     | مشرف
-                  button.btn.btn-xs.btn-primary(type='button' disabled) تعديل
+                  a.btn.btn-xs.btn-primary(ng-href='#/teachers/{{teacher.id}}') تعديل
                 div.btn-group(ng-show='isEditing(teacher.id)')
                   button.btn.btn-xs.btn-default(type='button'
                     ng-click='reset(teacher.id)') إلغاء
