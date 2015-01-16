@@ -11,7 +11,7 @@ block content
   section(ng-show='teacher')
     section
       ul.nav.nav-tabs.nav-justified(dir='ltr')
-        li(ng-class='{active: isEditing()}')
+        li(ng-class='{active: isEditing()}' ng-show='isSupervisor()')
           a(ng-href='#/teachers/{{teacher.id}}/edit') تعديل
         li(ng-class='{active: !isEditing()}')
           a(ng-href='#/teachers/{{teacher.id}}') عرض
@@ -39,7 +39,8 @@ block content
               td.text-right(ng-bind='teacher.specialization')
       hr
       section
-        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy()') حذف
+        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy()'
+          ng-disabled='!isSupervisor()') حذف
       hr
       section
         article
@@ -61,7 +62,8 @@ block content
                 td.text-center(ng-bind='class.hours')
                 td.text-center(ng-bind='class.day')
                 td.text-center
-                  button.btn.btn-xs.btn-danger(ng-click='removeClass(class.id)') حذف
+                  button.btn.btn-xs.btn-danger(ng-click='removeClass(class.id)'
+                    ng-disabled='!isSupervisor()') حذف
       hr
       form(name='courseForm' ng-submit='addClass(classId)')
         div.form-group

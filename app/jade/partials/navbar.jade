@@ -8,8 +8,9 @@ nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top(role='navigation'
       each _ in [1,2,3]
         span.icon-bar
 
-    button.btn.btn-danger.navbar-btn.pull-left(type='button'
-      ng-click='logout()' ng-show='myAccount') تسجيل خروج
+    div.btn-group.pull-left(ng-show='myAccount')
+      button.btn.btn-danger.navbar-btn(type='button' ng-click='logout()') تسجيل خروج
+      a.btn.btn-primary.navbar-btn(ng-href='{{currentAccountUrl()}}') حسابي
 
     a.btn.btn-success.navbar-btn.pull-left(type='button'
       href='#/login' ng-show='!myAccount') تسجيل دخول

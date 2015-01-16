@@ -21,6 +21,8 @@ angular.module('collegeProjectFrontendApp')
 
           $location.path '/'
 
+    $scope.currentAccountUrl = accountManager.currentAccountUrl
+
     $rootScope.navbarLinks = switch currentRole
       when 'supervisor' then navbarLinks.supervisor
       when 'recruiter' then navbarLinks.recruiter

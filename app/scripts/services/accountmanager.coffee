@@ -21,10 +21,21 @@ angular.module('collegeProjectFrontendApp')
     currentRole = ->
       localStorageService.get(keys.role) || ''
 
-    currentAccount: currentAccount
-    currentRole: currentRole
-    accessToken: ->
+    accessToken = ->
       localStorageService.get(keys.accessToken) || ''
+
+    currentAccount: currentAccount
+    currentRole:    currentRole
+    accessToken:    accessToken
+    currentAccountUrl: ->
+      accountId = currentAccount().id
+      role      = currentRole()
+      switch role
+        when ROLES.supervisor then "#/supervisors/#{accountId}"
+        when ROLES.recruiter  then "#/recruiters/#{accountId}"
+        when ROLES.student    then "#/students/#{accountId}"
+        when ROLES.teacher    then "#/teachers/#{accountId}"
+        when ROLES.admin      then "#/admins/#{accountId}"
     isSupervisor: ->
       currentRole() == ROLES.supervisor
     isTeacher: ->
