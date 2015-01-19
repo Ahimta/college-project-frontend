@@ -32,8 +32,9 @@ angular.module('collegeProjectFrontendApp')
         $http.get("#{resource}/guide").then (res) ->
           $scope.guide = res.data.guide
 
-    $scope.isTeacher = accountManager.isTeacher
-    $scope.isGuide   = accountManager.isGuide
+    $scope.isSupervisor = accountManager.isSupervisor
+    $scope.isTeacher    = accountManager.isTeacher
+    $scope.isGuide      = accountManager.isGuide
 
     $scope.isEditing = ->
       $routeParams.mode == 'edit'

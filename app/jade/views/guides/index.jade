@@ -7,7 +7,7 @@ block header
 
 block content
   div.row
-    
+
     div.col-md-4.col-md-push-8
       +progress-bar('guides.length > -1')
       ul.list-group
@@ -41,8 +41,8 @@ block content
               th.text-center إدارة
           tbody
             tr(ng-repeat='student in students')
-              td.text-center(ng-bind='student.fullname')
-              td.text-center(ng-bind='student.username')
+              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
+              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.username')
               td.text-center
                 div.btn-group
                   button.btn.btn-xs.btn-danger(type='button' ng-click='removeFromGuide(student.id)')

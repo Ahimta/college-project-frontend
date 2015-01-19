@@ -14,7 +14,7 @@ block content
   section.row(ng-show='student')
     section.row
       ul.nav.nav-tabs.nav-justified(dir='ltr')
-        li(ng-class='{active: isEditing()}' ng-hide='isTeacher()')
+        li(ng-class='{active: isEditing()}' ng-show='isSupervisor()')
           a(ng-href='#/students/{{student.id}}/edit') تعديل
         li(ng-class='{active: !isEditing()}')
           a(ng-href='#/students/{{student.id}}') عرض
@@ -27,7 +27,7 @@ block content
         +student-fields('student', 'usernameConflict', false)
         div.form-group
           input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
-            ng-disabled='updateForm.$invalid || updateForm.$pristine || isTeacher()')
+            ng-disabled='updateForm.$invalid || updateForm.$pristine || !isSupervisor()')
 
     section.row(ng-hide='isEditing()')
       table.table.table-hover
@@ -48,17 +48,19 @@ block content
           tr
             th.text-right الاسم
             td.text-right(ng-bind='student.fullname')
-      hr(ng-hide='isTeacher()')
+      hr(ng-hide='!isSupervisor()')
       button.btn.btn-danger.btn-lg.btn-block(type='button'
-        ng-click='destroyStudent()' ng-disabled='isTeacher()'
-        ng-hide='isTeacher()') حذف
+        ng-click='destroyStudent()' ng-disabled='!isSupervisor()'
+        ng-hide='!isSupervisor()') حذف
       hr
       div.page-header.text-center: h2 المواد
       table.table.table-hover.table-condensed
         thead
           th.text-center رمز المادة
-          th.text-center اسم الشعبة
+          th.text-center رمز الشعبة
           th.text-center المحاضر
+          th.text-center الوقت
+          th.text-center الفصل الدراسي
           th.text-center الحضور
           th.text-center الاختبار الأول
           th.text-center الاختبار الثاني
@@ -67,27 +69,29 @@ block content
           tr(ng-repeat='class in currentCourses')
             td.text-center(title='{{class.course.name}}')
               a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
-                ng-hide='isTeacher()')
-              span(ng-bind='class.course.code' ng-show='isTeacher()')
-            td.text-center
-              a(ng-href='#/classes/{{class.id}}' ng-bind='class.name'
-                ng-hide='isTeacher()')
-              span(ng-bind='class.name' ng-show='isTeacher()')
+                ng-hide='!isSupervisor()')
+              span(ng-bind='class.course.code' ng-show='!isSupervisor()')
+            td.text-center(title='{{class.name}}')
+              a(ng-href='#/classes/{{class.id}}' ng-bind='class.code'
+                ng-hide='!isSupervisor()')
+              span(ng-bind='class.code' ng-show='!isSupervisor()')
             td.text-center
               a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname'
-                ng-hide='isTeacher()')
-              span(ng-bind='class.teacher.fullname' ng-show='isTeacher()')
+                ng-hide='!isSupervisor()')
+              span(ng-bind='class.teacher.fullname' ng-show='!isSupervisor()')
+            td.text-center {{ class.schedule | schedule }}
+            td.text-center {{ class.semester | semester }}
             td.text-center {{class.attendance}}%
             td.text-center(ng-bind='class.grades.midterm')
             td.text-center(ng-bind='class.grades.final')
             td.text-center
               button.btn.btn-xs.btn-danger(type='type'
-                ng-click='removeCourse(class.id)' ng-disabled='isTeacher()') حذف
+                ng-click='removeCourse(class.id)' ng-disabled='!isSupervisor()') حذف
       hr
-      form(name='courseForm' ng-submit='addCourse(courseId)' ng-hide='isTeacher()')
+      form(name='courseForm' ng-submit='addCourse(courseId)' ng-hide='!isSupervisor()')
         div.form-group
           select.form-control(name='teacherId' required ng-model='courseId'
             ng-options='newCourse.id as newCourse.name for newCourse in newCourses')
         div.form-group
           input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
-            ng-disabled='courseForm.$invalid || isTeacher()')
+            ng-disabled='courseForm.$invalid || !isSupervisor()')

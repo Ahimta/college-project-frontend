@@ -59,7 +59,7 @@ mixin applicant(recordName, isEditing)
               | &nbsp;
               b(ng-bind=(recordName + '.highschool_name'))
               | &nbsp;
-              | الواقعة في 
+              | الواقعة في
               | &nbsp;
               b(ng-bind=(recordName + '.highschool_location'))
               | .
@@ -106,6 +106,6 @@ mixin applicant(recordName, isEditing)
 
           +applicant-fields(recordName, formName)
 
-          div.form-group: input.btn.btn-success.btn-block.btn-lg(type='submit'
-              value='تعديل الطلب'
-              ng-disabled='myForm.$invalid')
+          div.form-group: input.btn.btn-primary.btn-block.btn-lg(type='submit'
+              value='حفظ'
+              ng-disabled='myForm.$invalid || myForm.$pristine')
