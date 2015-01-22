@@ -1,4 +1,4 @@
-mixin student-fields(recordName, usernameConflict, passwordRequired)
+mixin student-fields(recordName, allGuides, usernameConflict, passwordRequired)
 
   include ../specializationfield
   include ../accountable/fields
@@ -9,7 +9,12 @@ mixin student-fields(recordName, usernameConflict, passwordRequired)
     legend: h2 البيانات الأكاديمية
     div.form-group
       label(for='collegialNumber') الرقم الجامعي
-      input#collegialNumber.form-control(type='number' name='collegialNumber'
-        placeholder='الرقم الجامعي' required min='1' ng-min='1'
+      input#collegialNumber.form-control(type='text' name='collegialNumber'
+        placeholder='الرقم الجامعي' required
         ng-model=(recordName + '.collegial_number'))
+    div.form-group
+      label(for='studentGuide') المشرف الأكاديمي
+      select#studentGuide.form-control(placeholder='المشرف الأكاديمي' required
+        ng-model=(recordName + '.guide_id')
+        ng-options=('guide.id as guide.fullname for guide in ' + allGuides))
     +specialization-field(recordName)

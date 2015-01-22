@@ -36,19 +36,6 @@ angular.module('collegeProjectFrontendApp')
     $scope.isTeacher    = accountManager.isTeacher
     $scope.isGuide      = accountManager.isGuide
 
-    $scope.isEditing = ->
-      $routeParams.mode == 'edit'
-
-    $scope.edit = ->
-      $location.path("/students/#{studentId}/edit")
-
-    $scope.show = ->
-      $location.path("/students/#{studentId}")
-
-    $scope.update = (student) ->
-      $http.put(resource, student_account: student).then $scope.show, (res) ->
-        $scope.usernameConflict = res.status == 409
-
     $scope.destroyStudent = ->
       $http.delete(resource).then (__) ->
         $location.path('/students')

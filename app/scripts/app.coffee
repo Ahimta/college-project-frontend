@@ -86,7 +86,10 @@ angular
       .when '/guides/:guide_id?',
         templateUrl: 'views/guides/index.html'
         controller: 'GuidesIndexCtrl'
-      .when '/students/:id/:mode?',
+      .when '/students/:id/edit',
+        templateUrl: 'views/students/edit.html'
+        controller: 'StudentsEditCtrl'
+      .when '/students/:id',
         templateUrl: 'views/students/show.html'
         controller: 'StudentsShowCtrl'
       .when '/courses',

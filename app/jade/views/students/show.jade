@@ -1,35 +1,21 @@
 extends ../../layouts/dashboard
 
-include ../../mixins/accountable/usernametakenalert
-include ../../mixins/students/fields
-include ../../mixins/progressbar
-
 
 block header
   | الطالب -&nbsp;{{student.fullname}}
 
 block content
-  +progress-bar('student')
-
   section.row(ng-show='student')
     section.row
       ul.nav.nav-tabs.nav-justified(dir='ltr')
-        li(ng-class='{active: isEditing()}' ng-show='isSupervisor()')
+        li(ng-show='isSupervisor()')
           a(ng-href='#/students/{{student.id}}/edit') تعديل
-        li(ng-class='{active: !isEditing()}')
+        li.active
           a(ng-href='#/students/{{student.id}}') عرض
 
     br
 
-    section.row(ng-show='isEditing()')
-      +username-taken-alert('usernameConflict')
-      form(name='updateForm' ng-submit='update(student)')
-        +student-fields('student', 'usernameConflict', false)
-        div.form-group
-          input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
-            ng-disabled='updateForm.$invalid || updateForm.$pristine || !isSupervisor()')
-
-    section.row(ng-hide='isEditing()')
+    section.row
       table.table.table-hover
         tbody
           tr(ng-hide='isGuide()')

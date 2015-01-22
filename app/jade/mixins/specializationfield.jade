@@ -1,7 +1,7 @@
 mixin specialization-field(recordName)
   div.form-group
     label(for='specialization') التخصص
-    select.form-control(id='specialization' type='text' placeholder='التخصص'
+    select.form-control(id='specialization' placeholder='التخصص'
       ng-model=(recordName + '.specialization') required name='specialization')
       optgroup(label='هندسة')
         option هندسة ميكانيكية

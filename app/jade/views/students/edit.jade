@@ -1,0 +1,28 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/usernametakenalert
+include ../../mixins/students/fields
+include ../../mixins/progressbar
+
+
+block header
+  | الطالب -&nbsp;{{student.fullname}}
+
+block content
+  section.row(ng-show='student')
+    section.row
+      ul.nav.nav-tabs.nav-justified(dir='ltr')
+        li.active
+          a(ng-href='#/students/{{student.id}}/edit') تعديل
+        li
+          a(ng-href='#/students/{{student.id}}') عرض
+
+    br
+
+    section.row
+      +username-taken-alert('usernameConflict')
+      form(name='updateForm' ng-submit='update(student)')
+        +student-fields('student', 'guides', 'usernameConflict', false)
+        div.form-group
+          input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
+            ng-disabled='updateForm.$invalid || updateForm.$pristine || !isSupervisor()')
