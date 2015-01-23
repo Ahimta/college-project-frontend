@@ -29,11 +29,29 @@ block content
     div.col-md-8.col-md-pull-4(ng-hide='currentGuideId')
       p.lead.text-center اختر مرشد أكاديمي
     div.col-md-8.col-md-pull-4(ng-show='currentGuideId')
+      section.table-responsive
+        table.table.table-hover
+          thead
+            tr
+              th.text-center(colspan='2') المعلومات الشخصية
+          tbody
+            tr
+              th.text-right البريد الإلكتروني
+              td.text-right(ng-bind='currentGuide.email')
+            tr
+              th.text-right اسم المستخدم
+              td.text-right(ng-bind='currentGuide.username')
+            tr
+              th.text-right الاسم الكامل
+              td.text-right(ng-bind='currentGuide.fullname')
+            tr
+              th.text-right الهاتف
+              td.text-right(ng-bind='currentGuide.phone')
+      hr
       div.page-header: h2.text-center الطلاب
-      +progress-bar('students.length > -1')
       p.lead.text-center(ng-show='students && students.length == 0') لا يوجد طلاب
       div(ng-show='students')
-        table.table.table-hovered(ng-show='students.length > 0')
+        table.table.table-hover(ng-show='students.length > 0')
           thead
             tr
               th.text-center الاسم
