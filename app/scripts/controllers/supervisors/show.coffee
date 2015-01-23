@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'SupervisorsShowCtrl', ($scope, $http, $location, $routeParams, Utils, BACKEND) ->
+  .controller 'SupervisorsShowCtrl', ($scope, $http, $location, $routeParams, accountManager, Utils, BACKEND) ->
 
     resource = "#{BACKEND}/supervisor_accounts/#{$routeParams.id}"
 
@@ -26,3 +26,5 @@ angular.module('collegeProjectFrontendApp')
     $scope.destroy = ->
       $http.delete(resource).then (__) ->
         $location.path('/supervisors')
+
+    $scope.isAdmin = accountManager.isAdmin

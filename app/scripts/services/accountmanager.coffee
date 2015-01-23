@@ -44,6 +44,8 @@ angular.module('collegeProjectFrontendApp')
       currentRole() == ROLES.student
     isGuide: ->
       currentAccount().is_guide and currentRole() == ROLES.teacher
+    isAdmin: ->
+      currentRole() == ROLES.admin
 
     login: (role, username, password) ->
       $http.post("#{BACKEND}/sessions", username: username, password: password, role: role)

@@ -43,4 +43,6 @@ angular.module('collegeProjectFrontendApp')
     $scope.removeCourse = addOrRemoveCourse(false)
     $scope.addCourse    = addOrRemoveCourse(true)
 
+    $scope.isAdmin = accountManager.isAdmin
+
     invalidate()

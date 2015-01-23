@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'AdminsShowCtrl', ($scope, $http, $location, $routeParams, Utils, BACKEND) ->
+  .controller 'AdminsShowCtrl', ($scope, $http, $location, $routeParams, accountManager, Utils, BACKEND) ->
 
     resource = "#{BACKEND}/admin_accounts/#{$routeParams.id}"
 
@@ -22,3 +22,5 @@ angular.module('collegeProjectFrontendApp')
     $scope.update = (adminAccount) ->
       $http.put(resource, admin_account: adminAccount).then (__) ->
         $location.path("/admins/#{$routeParams.id}")
+
+    $scope.isAdmin = accountManager.isAdmin

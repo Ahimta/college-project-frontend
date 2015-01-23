@@ -30,8 +30,9 @@ mixin accountable(recordName, isEditing, update, destroy, isUsernameConflict, ur
             tr
               th.text-right الهاتف
               td.text-right(ng-bind=(recordName + '.phone'))
-      hr
-      section: button.btn.btn-lg.btn-block.btn-danger(ng-click=destroy disabled=isUnDeletable) حذف
+      hr(ng-show='isAdmin()')
+      section(ng-show='isAdmin()')
+        button.btn.btn-lg.btn-block.btn-danger(ng-click=destroy disabled=isUnDeletable) حذف
     section(ng-show=isEditing)
       +conflict-alert(isUsernameConflict, 'يوجد مستخدم بنفس اسم المستخدم')
       form(name='editAccountForm' ng-submit=(update + '(' + recordName + ')'))
