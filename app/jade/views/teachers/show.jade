@@ -27,6 +27,9 @@ block content
       section
         table.table.table-hover
           thead
+          tfoot(ng-show='teacher.is_guide')
+            tr
+              th.text-center(colspan='2'): a(ng-href='#/guides/{{teacher.id}}') صفحة المشرف الأكاديمي
           tbody
             tr
               th.text-right اسم المستخدم

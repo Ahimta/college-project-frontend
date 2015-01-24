@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'TeachersShowCtrl', ($scope, $q, $http, $location, $routeParams, Restangular, BACKEND) ->
+  .controller 'TeachersShowCtrl', ($scope, $q, $http, $location, $routeParams, BACKEND) ->
 
     resource = "#{BACKEND}/teacher_accounts/#{$routeParams.id}"
 

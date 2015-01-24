@@ -3,75 +3,38 @@ extends ../../layouts/dashboard
 include ../../mixins/accountable/accountables
 
 block header
-  | المرشدين الأكادميين
+  | المشرفين الأكادميين
 
 block content
-  div.row
+  section(ng-show='guides')
+    div.table-responsive
+      table.table.table-condensed.table-hover
+        thead
+          tr
+            th.text-center البريد الإلكتروني
+            th.text-center اسم المستخدم
+            th.text-center الاسم الكامل
+            th.text-center الهاتف
+            th.text-center صفحة الأستاذ
+            th.text-center إدارة
+        tbody
+          tr(ng-repeat='guide in guides')
+            td.text-center(ng-bind='guide.email')
+            td.text-center: a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.username')
+            td.text-center: a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.fullname')
+            td.text-center(ng-bind='guide.phone')
+            td.text-center: a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
+            td.text-center
+              div.btn-group
+                button.btn.btn-xs.btn-danger.glyphicon.glyphicon-minus(type='button'
+                  ng-click='removeGuide(guide.id)')
 
-    div.col-md-4.col-md-push-8
-      +progress-bar('guides.length > -1')
-      ul.list-group
-        li.list-group-item(ng-repeat='guide in guides'
-          ng-class='{active: isCurrentGuide(guide.id)}' ng-click='studentsForGuide(guide.id)')
-          span.glyphicon.glyphicon-minus.pull-left(ng-click='removeGuide(guide.id)')
-          span(ng-bind='guide.username')
+    hr
 
-      hr
-
-      form(name='addGuideForm' ng-submit='addGuide(teacherId)')
-        div.form-group: select.form-control(name='teacherId' required
-          ng-options='teacher.id as teacher.username for teacher in teachersNotGuides'
-          ng-model='teacherId')
-        div.form-group
-          input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف الأستاذ'
-            ng-disabled='addGuideForm.$invalid')
-
-    div.col-md-8.col-md-pull-4(ng-hide='currentGuideId')
-      p.lead.text-center اختر مرشد أكاديمي
-    div.col-md-8.col-md-pull-4(ng-show='currentGuideId')
-      section.table-responsive
-        table.table.table-hover
-          thead
-            tr
-              th.text-center(colspan='2') المعلومات الشخصية
-          tbody
-            tr
-              th.text-right البريد الإلكتروني
-              td.text-right(ng-bind='currentGuide.email')
-            tr
-              th.text-right اسم المستخدم
-              td.text-right(ng-bind='currentGuide.username')
-            tr
-              th.text-right الاسم الكامل
-              td.text-right(ng-bind='currentGuide.fullname')
-            tr
-              th.text-right الهاتف
-              td.text-right(ng-bind='currentGuide.phone')
-      hr
-      div.page-header: h2.text-center الطلاب
-      p.lead.text-center(ng-show='students && students.length == 0') لا يوجد طلاب
-      div(ng-show='students')
-        table.table.table-hover(ng-show='students.length > 0')
-          thead
-            tr
-              th.text-center الاسم
-              th.text-center اسم المستخدم
-              th.text-center إدارة
-          tbody
-            tr(ng-repeat='student in students')
-              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
-              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.username')
-              td.text-center
-                div.btn-group
-                  button.btn.btn-xs.btn-danger(type='button' ng-click='removeFromGuide(student.id)')
-                    | حذف
-
-      hr
-
-      form(name='addStudentForm' ng-submit='addToGuide(studentId)')
-        div.form-group
-          div.form-group: select.form-control(required name='studentId' ng-model='studentId'
-            ng-options='student.id as student.username for student in studentsWithoutGuide')
-          div.form-group
-            input.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
-              ng-disabled='addStudentForm.$invalid')
+    section(ng-show='teachersNotGuides'): form(name='addGuideForm' ng-submit='addGuide(teacherId)')
+      div.form-group: select.form-control(name='teacherId' required
+        ng-options='teacher.id as teacher.username for teacher in teachersNotGuides'
+        ng-model='teacherId')
+      div.form-group
+        input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف الأستاذ'
+          ng-disabled='addGuideForm.$invalid')

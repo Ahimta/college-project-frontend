@@ -1,0 +1,59 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/accountable/accountables
+
+block header
+  | المشرفين الأكادميين&nbsp; - {{ guide.fullname }}
+
+block content
+  div.row
+    section(ng-show='guide')
+      section.table-responsive
+        table.table.table-hover
+          thead
+            tr
+              th.text-center(colspan='2') المعلومات الشخصية
+          tfoot
+            tr
+              th.text-center(colspan='2'): a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
+          tbody
+            tr
+              th.text-right البريد الإلكتروني
+              td.text-right(ng-bind='guide.email')
+            tr
+              th.text-right اسم المستخدم
+              td.text-right(ng-bind='guide.username')
+            tr
+              th.text-right الاسم الكامل
+              td.text-right(ng-bind='guide.fullname')
+            tr
+              th.text-right الهاتف
+              td.text-right(ng-bind='guide.phone')
+      hr
+      div.page-header: h2.text-center الطلاب
+      p.lead.text-center(ng-show='students && students.length == 0') لا يوجد طلاب
+      section(ng-show='students')
+        table.table.table-hover(ng-show='students.length > 0')
+          thead
+            tr
+              th.text-center الاسم
+              th.text-center اسم المستخدم
+              th.text-center إدارة
+          tbody
+            tr(ng-repeat='student in students')
+              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
+              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.username')
+              td.text-center
+                div.btn-group
+                  button.btn.btn-xs.btn-danger(type='button' ng-click='removeFromGuide(student.id)')
+                    | حذف
+
+      hr
+
+      form(name='addStudentForm' ng-submit='addToGuide(studentId)')
+        div.form-group
+          div.form-group: select.form-control(required name='studentId' ng-model='studentId'
+            ng-options='student.id as student.username for student in studentsWithoutGuide')
+          div.form-group
+            input.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
+              ng-disabled='addStudentForm.$invalid || addStudentForm.$pristine')
