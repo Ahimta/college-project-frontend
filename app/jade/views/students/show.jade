@@ -76,7 +76,7 @@ block content
       hr
       form(name='courseForm' ng-submit='addCourse(courseId)' ng-hide='!isSupervisor()')
         div.form-group
-          select.form-control(name='teacherId' required ng-model='courseId'
+          select.form-control(name='courseId' required ng-model='courseId'
             ng-options='newCourse.id as newCourse.name for newCourse in newCourses')
         div.form-group
           input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'

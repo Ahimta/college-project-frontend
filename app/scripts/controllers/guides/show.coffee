@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'GuidesShowCtrl', ($scope, $q, $location, $routeParams, $http, Utils, BACKEND) ->
+  .controller 'GuidesShowCtrl', ($scope, $q, $location, $routeParams, $http, accountManager, Utils, BACKEND) ->
 
     studentsResource = "#{BACKEND}/student_accounts/without_guide"
     guidesResource   = "#{BACKEND}/guides"
@@ -25,8 +25,9 @@ angular.module('collegeProjectFrontendApp')
             $scope.guide = guide
             Utils.setPageTitle("المرشدين الأكادميين - #{guide.fullname}")
 
-          $http.get(studentsResource).then (res) ->
-            $scope.studentsWithoutGuide = res.data.student_accounts
+          unless accountManager.isStudent()
+            $http.get(studentsResource).then (res) ->
+              $scope.studentsWithoutGuide = res.data.student_accounts
         ])
 
     addOrRemoveStudent = (isAdd) -> (studentId) ->
@@ -36,5 +37,7 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.removeFromGuide = addOrRemoveStudent(false)
     $scope.addToGuide      = addOrRemoveStudent(true)
+
+    $scope.isStudent = accountManager.isStudent
 
     invalidate()

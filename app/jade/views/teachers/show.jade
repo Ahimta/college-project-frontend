@@ -40,12 +40,11 @@ block content
             tr
               th.text-right التخصص
               td.text-right(ng-bind='teacher.specialization')
-      hr
-      section
-        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy()'
-          ng-disabled='!isSupervisor()') حذف
-      hr
-      section
+      section(ng-show='isSupervisor()')
+        hr
+        button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy()') حذف
+      section(ng-show='classes')
+        hr
         article
           header: h2.text-center الشعب
           hr
@@ -67,11 +66,12 @@ block content
                 td.text-center
                   button.btn.btn-xs.btn-danger(ng-click='removeClass(class.id)'
                     ng-disabled='!isSupervisor()') حذف
-      hr
-      form(name='courseForm' ng-submit='addClass(classId)')
-        div.form-group
-          select.form-control(name='classId' required ng-model='classId'
-            ng-options='newClass.id as newClass.name for newClass in newClasses')
-        div.form-group
-          input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
-            ng-disabled='courseForm.$invalid || isTeacher()')
+      section(ng-show='isSupervisor()')
+        hr
+        form(name='courseForm' ng-submit='addClass(classId)')
+          div.form-group
+            select.form-control(name='classId' required ng-model='classId'
+              ng-options='newClass.id as newClass.name for newClass in newClasses')
+          div.form-group
+            input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
+              ng-disabled='courseForm.$invalid || courseForm.$pristine')

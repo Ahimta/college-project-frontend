@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'TeachersShowCtrl', ($scope, $q, $http, $location, $routeParams, BACKEND) ->
+  .controller 'TeachersShowCtrl', ($scope, $q, $http, $location, $routeParams, accountManager, BACKEND) ->
 
     resource = "#{BACKEND}/teacher_accounts/#{$routeParams.id}"
 
@@ -39,5 +39,9 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.removeClass = addOrRemoveClass(false)
     $scope.addClass    = addOrRemoveClass(true)
+
+    $scope.isSupervisor = accountManager.isSupervisor
+    $scope.isTeacher    = accountManager.isTeacher
+    $scope.isStudent    = accountManager.isStudent
 
     invalidate()

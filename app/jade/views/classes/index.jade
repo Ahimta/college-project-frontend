@@ -6,59 +6,61 @@ block header
   | الشعب
 
 block content
+  section(ng-show='classes')
+    div.table-responsive
+      table.table.table-hover.table-condensed
+        thead
+          tr
+            th.text-center رمز الشعبة
+            th.text-center رمز المادة
+            th.text-center(ng-hide='isTeacher()') المحاضر
+            th.text-center النشاط
+            th.text-center الساعات
+            th.text-center اليوم
+            th.text-center الوقت
+            th.text-center الفصل الدراسي
+            th.text-center(ng-show='isStudent()') الحضور
+            th.text-center(ng-show='isStudent()') الاختبار الأول
+            th.text-center(ng-show='isStudent()') الاختبار الثاني
+            th.text-center(ng-show='isSupervisor() || isStudent()') إدارة
+        tbody.text-center
+          tr(ng-repeat='class in classes')
+            td(title='{{class.name}}')
+              a(ng-href='#/classes/{{class.id}}' ng-show='isSupervisor() || isTeacher()' ng-bind='class.code')
+              span(ng-hide='isSupervisor() || isTeacher()' ng-bind='class.code')
+            td(title='{{class.course.name}}')
+              a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
+                ng-show='isSupervisor()')
+              span(ng-hide='isSupervisor()' ng-bind='class.course.code')
+            td(ng-hide='isTeacher()')
+              a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname'
+                ng-hide='isStudent()')
+              span(ng-show='isStudent()' ng-bind='class.teacher.fullname')
+            td(ng-bind='class.type')
+            td(ng-bind='class.hours')
+            td(ng-bind='class.day')
+            td {{ class.schedule | schedule }}
+            td {{ class.semester | semester }}
+            td(ng-show='isStudent()') {{class.attendance}}%
+            td(ng-show='isStudent()' ng-bind='class.grades.midterm')
+            td(ng-show='isStudent()' ng-bind='class.grades.final')
+            td(ng-show='isStudent()')
+              div.btn-group
+                button.btn.btn-xs.btn-danger(type='button' ng-click='removeClass(class.id)') حذف
+            td(ng-show='isSupervisor()')
+              div.btn-group
+                button.btn.btn-xs.btn-danger(type='button'
+                  ng-click='destroy(class.id)'
+                  ng-disabled='!isSupervisor()') حذف
+                a.btn.btn-xs.btn-primary(ng-href='#/classes/{{class.id}}/edit') تعديل
 
-  div.row
-    +progress-bar('classes.length > -1')
-  div.row
-    h2.text-center(ng-show='classes && classes.length == 0').
-      لا يوجد شعب حالياً
-    br
-  div(ng-show='classes')
-    div.row
-      div.table-responsive
-        table.table.table-hover.table-condensed
-          thead
-            tr
-              th.text-center رمز الشعبة
-              th.text-center رمز المادة
-              th.text-center(ng-hide='isTeacher()') المحاضر
-              th.text-center النشاط
-              th.text-center الساعات
-              th.text-center اليوم
-              th.text-center الوقت
-              th.text-center الفصل الدراسي
-              th.text-center(ng-show='isStudent()') الحضور
-              th.text-center(ng-show='isStudent()') الاختبار الأول
-              th.text-center(ng-show='isStudent()') الاختبار الثاني
-              th.text-center(ng-show='isSupervisor()') إدارة
-          tbody.text-center
-            tr(ng-repeat='class in classes')
-              td(title='{{class.name}}')
-                a(ng-href='#/classes/{{class.id}}' ng-show='isSupervisor() || isTeacher()' ng-bind='class.code')
-                span(ng-hide='isSupervisor() || isTeacher()' ng-bind='class.code')
-              td(title='{{class.course.name}}')
-                a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
-                  ng-show='isSupervisor()')
-                span(ng-hide='isSupervisor()' ng-bind='class.course.code')
-              td(ng-hide='isTeacher()')
-                a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname'
-                  ng-hide='isStudent()')
-                span(ng-show='isStudent()' ng-bind='class.teacher.fullname')
-              td(ng-bind='class.type')
-              td(ng-bind='class.hours')
-              td(ng-bind='class.day')
-              td {{ class.schedule | schedule }}
-              td {{ class.semester | semester }}
-              td(ng-show='isStudent()') {{class.attendance}}%
-              td(ng-show='isStudent()' ng-bind='class.grades.midterm')
-              td(ng-show='isStudent()' ng-bind='class.grades.final')
-              td(ng-show='isSupervisor()')
-                div.btn-group
-                  button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(class.id)'
-                    ng-disabled='!isSupervisor()') حذف
-                  a.btn.btn-xs.btn-primary(ng-href='#/classes/{{class.id}}/edit') تعديل
+  section(ng-show='isStudent() && nonCurrentClasses')
+    form(name='addClassForm' ng-submit='addClass(classId)')
+      div.form-group
+        select.form-control(name='classId' required ng-model='classId'
+          ng-options='c.id as c.name for c in nonCurrentClasses')
+      div.form-group: input.btn.btn-success.btn-lg.btn-block(type='submit' value='إضافة المادة'
+        ng-disabled='addClassForm.$pristine || addClassForm.$invalid')
 
-  div.row(ng-show='isSupervisor()')
-    div.row
-      a.btn.btn-success.btn-lg.btn-block(href='#/classes/new') إضافة شعبة
+  section(ng-show='isSupervisor()')
+    a.btn.btn-success.btn-lg.btn-block(href='#/classes/new') إضافة شعبة

@@ -6,30 +6,29 @@ block header
   | المشرفين الأكادميين&nbsp; - {{ guide.fullname }}
 
 block content
-  div.row
-    section(ng-show='guide')
-      section.table-responsive
-        table.table.table-hover
-          thead
-            tr
-              th.text-center(colspan='2') المعلومات الشخصية
-          tfoot
-            tr
-              th.text-center(colspan='2'): a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
-          tbody
-            tr
-              th.text-right البريد الإلكتروني
-              td.text-right(ng-bind='guide.email')
-            tr
-              th.text-right اسم المستخدم
-              td.text-right(ng-bind='guide.username')
-            tr
-              th.text-right الاسم الكامل
-              td.text-right(ng-bind='guide.fullname')
-            tr
-              th.text-right الهاتف
-              td.text-right(ng-bind='guide.phone')
-      hr
+  section(ng-show='guide')
+    section.table-responsive
+      table.table.table-hover
+        thead
+          tr
+            th.text-center(colspan='2') المعلومات الشخصية
+        tfoot
+          tr
+            th.text-center(colspan='2'): a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
+        tbody
+          tr
+            th.text-right البريد الإلكتروني
+            td.text-right(ng-bind='guide.email')
+          tr
+            th.text-right اسم المستخدم
+            td.text-right(ng-bind='guide.username')
+          tr
+            th.text-right الاسم الكامل
+            td.text-right(ng-bind='guide.fullname')
+          tr
+            th.text-right الهاتف
+            td.text-right(ng-bind='guide.phone')
+    section(ng-hide='isStudent()')
       div.page-header: h2.text-center الطلاب
       p.lead.text-center(ng-show='students && students.length == 0') لا يوجد طلاب
       section(ng-show='students')
