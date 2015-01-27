@@ -64,8 +64,9 @@ angular.module('collegeProjectFrontendApp')
           $location.path switch role
             when ROLES.supervisor then '/students'
             when ROLES.recruiter  then '/applicants'
-            when ROLES.teacher    then '/'
-            when ROLES.student    then '/'
+            when ROLES.teacher
+              if account.is_guide then "/guides/#{account.id}" else "/teachers/#{account.id}"
+            when ROLES.student    then "/students/#{account.id}"
             when ROLES.admin      then '/recruiters'
 
           account: account

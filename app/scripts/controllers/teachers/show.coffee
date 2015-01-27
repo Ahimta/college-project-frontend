@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'TeachersShowCtrl', ($scope, $q, $http, $location, $routeParams, accountManager, BACKEND) ->
+  .controller 'TeachersShowCtrl', ($scope, $q, $http, $location, $routeParams, accountManager, Utils, BACKEND) ->
 
     resource = "#{BACKEND}/teacher_accounts/#{$routeParams.id}"
 
@@ -17,6 +17,7 @@ angular.module('collegeProjectFrontendApp')
         $scope.newClasses = res.data.classes.not_current
         $scope.classes    = res.data.classes.current
         $scope.teacher    = res.data.teacher_account
+        Utils.setPageTitle("الأستاذ - #{$scope.teacher.fullname}")
 
     addOrRemoveClass = (isAdd) -> (courseId) ->
       action = if isAdd then 'add' else 'remove'

@@ -33,8 +33,10 @@ angular.module('collegeProjectFrontendApp')
           $scope.guide = res.data.guide
 
     $scope.isSupervisor = accountManager.isSupervisor
+    $scope.isStudent    = accountManager.isStudent
     $scope.isTeacher    = accountManager.isTeacher
     $scope.isGuide      = accountManager.isGuide
+    $scope.isAdmin      = accountManager.isAdmin
 
     $scope.destroyStudent = ->
       $http.delete(resource).then (__) ->
@@ -42,7 +44,5 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.removeCourse = addOrRemoveCourse(false)
     $scope.addCourse    = addOrRemoveCourse(true)
-
-    $scope.isAdmin = accountManager.isAdmin
 
     invalidate()

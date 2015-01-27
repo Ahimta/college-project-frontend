@@ -5,79 +5,82 @@ block header
   | الطالب -&nbsp;{{student.fullname}}
 
 block content
-  section.row(ng-show='student')
-    section.row
-      ul.nav.nav-tabs.nav-justified(dir='ltr')
-        li(ng-show='isSupervisor()')
-          a(ng-href='#/students/{{student.id}}/edit') تعديل
-        li.active
-          a(ng-href='#/students/{{student.id}}') عرض
+  section
+    ul.nav.nav-tabs.nav-justified(dir='ltr')
+      li(ng-show='isSupervisor()')
+        a(ng-href='#/students/{{student.id}}/edit') تعديل
+      li.active
+        a(ng-href='#/students/{{student.id}}') عرض
 
-    br
+  br
 
-    section.row
-      table.table.table-hover
-        tbody
-          tr(ng-hide='isGuide()')
-            th.text-right المشرف الأكاديمي
-            td.text-right
-              a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.fullname')
-          tr
-            th.text-right اسم المستخدم
-            td.text-right(ng-bind='student.username')
-          tr
-            th.text-right الرقم الجامعي
-            td.text-right(ng-bind='student.collegial_number')
-          tr
-            th.text-right التخصص
-            td.text-right(ng-bind='student.specialization')
-          tr
-            th.text-right الاسم
-            td.text-right(ng-bind='student.fullname')
-      hr(ng-hide='!isSupervisor()')
+  section(ng-show='student')
+    div.table-responsive: table.table.table-hover
+      tbody
+        tr(ng-hide='isGuide()')
+          th.text-right المشرف الأكاديمي
+          td.text-right
+            a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.fullname')
+        tr
+          th.text-right اسم المستخدم
+          td.text-right(ng-bind='student.username')
+        tr
+          th.text-right الرقم الجامعي
+          td.text-right(ng-bind='student.collegial_number')
+        tr
+          th.text-right التخصص
+          td.text-right(ng-bind='student.specialization')
+        tr
+          th.text-right الاسم
+          td.text-right(ng-bind='student.fullname')
+    section(ng-hide='!isSupervisor()')
+      hr
       button.btn.btn-danger.btn-lg.btn-block(type='button'
-        ng-click='destroyStudent()' ng-disabled='!isSupervisor()'
-        ng-hide='!isSupervisor()') حذف
-      hr
-      div.page-header.text-center: h2 المواد
-      table.table.table-hover.table-condensed
-        thead
-          th.text-center رمز المادة
-          th.text-center رمز الشعبة
-          th.text-center المحاضر
-          th.text-center الوقت
-          th.text-center الفصل الدراسي
-          th.text-center الحضور
-          th.text-center الاختبار الأول
-          th.text-center الاختبار الثاني
-          th.text-center إدارة
-        tbody
-          tr(ng-repeat='class in currentCourses')
-            td.text-center(title='{{class.course.name}}')
-              a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
-                ng-hide='!isSupervisor()')
-              span(ng-bind='class.course.code' ng-show='!isSupervisor()')
-            td.text-center(title='{{class.name}}')
-              a(ng-href='#/classes/{{class.id}}' ng-bind='class.code'
-                ng-hide='!isSupervisor()')
-              span(ng-bind='class.code' ng-show='!isSupervisor()')
-            td.text-center
-              a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname'
-                ng-hide='!isSupervisor()')
-              span(ng-bind='class.teacher.fullname' ng-show='!isSupervisor()')
-            td.text-center {{ class.schedule | schedule }}
-            td.text-center {{ class.semester | semester }}
-            td.text-center {{class.attendance}}%
-            td.text-center(ng-bind='class.grades.midterm')
-            td.text-center(ng-bind='class.grades.final')
-            td.text-center
-              button.btn.btn-xs.btn-danger(type='type'
-                ng-click='removeCourse(class.id)' ng-disabled='!isSupervisor()') حذف
-      hr
-      form(name='courseForm' ng-submit='addCourse(courseId)' ng-hide='!isSupervisor()')
-        div.form-group
-          select.form-control(name='courseId' required ng-model='courseId'
-            ng-options='newCourse.id as newCourse.name for newCourse in newCourses')
-        div.form-group
-          input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
-            ng-disabled='courseForm.$invalid || !isSupervisor()')
+        ng-click='destroyStudent()' ng-disabled='!isSupervisor()') حذف
+
+  section(ng-show='currentCourses')
+    hr
+    div.page-header.text-center: h2 الشعب
+    div.table-responsive: table.table.table-striped.table-condensed
+      thead
+        th.text-center رمز المادة
+        th.text-center رمز الشعبة
+        th.text-center المحاضر
+        th.text-center الوقت
+        th.text-center الفصل الدراسي
+        th.text-center الحضور
+        th.text-center الاختبار الأول
+        th.text-center الاختبار الثاني
+        th.text-center إدارة
+      tbody
+        tr(ng-repeat='class in currentCourses')
+          td.text-center(title='{{class.course.name}}')
+            a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
+              ng-hide='!isSupervisor()')
+            span(ng-bind='class.course.code' ng-show='!isSupervisor()')
+          td.text-center(title='{{class.name}}')
+            a(ng-href='#/classes/{{class.id}}' ng-bind='class.code'
+              ng-hide='!isSupervisor()')
+            span(ng-bind='class.code' ng-show='!isSupervisor()')
+          td.text-center
+            a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname'
+              ng-hide='!isSupervisor()')
+            span(ng-bind='class.teacher.fullname' ng-show='!isSupervisor()')
+          td.text-center {{ class.schedule | schedule }}
+          td.text-center {{ class.semester | semester }}
+          td.text-center {{class.attendance}}%
+          td.text-center(ng-bind='class.grades.midterm')
+          td.text-center(ng-bind='class.grades.final')
+          td.text-center
+            button.btn.btn-xs.btn-danger(type='type'
+              ng-click='removeCourse(class.id)' ng-disabled='!isSupervisor() && !isStudent()') حذف
+
+  section(ng-show='newCourses && (isSupervisor() || isStudent())')
+    hr
+    form(name='courseForm' ng-submit='addCourse(courseId)')
+      div.form-group
+        select.form-control(name='courseId' required ng-model='courseId'
+          ng-options='newCourse.id as newCourse.name for newCourse in newCourses')
+      div.form-group
+        input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
+          ng-disabled='courseForm.$invalid || courseForm.$pristine')

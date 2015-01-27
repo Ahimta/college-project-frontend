@@ -28,31 +28,39 @@ block content
           tr
             th.text-right الهاتف
             td.text-right(ng-bind='guide.phone')
-    section(ng-hide='isStudent()')
-      div.page-header: h2.text-center الطلاب
-      p.lead.text-center(ng-show='students && students.length == 0') لا يوجد طلاب
-      section(ng-show='students')
-        table.table.table-hover(ng-show='students.length > 0')
-          thead
-            tr
-              th.text-center الاسم
-              th.text-center اسم المستخدم
-              th.text-center إدارة
-          tbody
-            tr(ng-repeat='student in students')
-              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
-              td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.username')
-              td.text-center
-                div.btn-group
-                  button.btn.btn-xs.btn-danger(type='button' ng-click='removeFromGuide(student.id)')
-                    | حذف
 
-      hr
+  section(ng-hide='isStudent()')
+    hr
+    div.page-header: h2.text-center الطلاب
+    p.lead.text-center(ng-show='students && students.length == 0') لا يوجد طلاب
+    section.table-responsive(ng-show='students')
+      table.table.table-striped.table-condensed(ng-show='students.length > 0')
+        thead
+          tr
+            th.text-center الاسم
+            th.text-center اسم المستخدم
+            th.text-center الرقم الجامعي
+            th.text-center البريد الإلكتروني
+            th.text-center الهاتف
+            th.text-center(ng-show='isSupervisor()') إدارة
+        tbody
+          tr(ng-repeat='student in students')
+            td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname')
+            td.text-center: a(ng-href='#/students/{{student.id}}' ng-bind='student.username')
+            td.text-center(ng-bind='student.collegial_number')
+            td.text-center(ng-bind='student.email')
+            td.text-center(ng-bind='student.phone')
+            td.text-center(ng-show='isSupervisor()')
+              div.btn-group
+                button.btn.btn-xs.btn-danger(type='button' ng-click='removeFromGuide(student.id)').
+                  حذف
 
-      form(name='addStudentForm' ng-submit='addToGuide(studentId)')
+  section(ng-show='isSupervisor()')
+    hr
+    form(name='addStudentForm' ng-submit='addToGuide(studentId)')
+      div.form-group
+        div.form-group: select.form-control(required name='studentId' ng-model='studentId'
+          ng-options='student.id as student.username for student in studentsWithoutGuide')
         div.form-group
-          div.form-group: select.form-control(required name='studentId' ng-model='studentId'
-            ng-options='student.id as student.username for student in studentsWithoutGuide')
-          div.form-group
-            input.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
-              ng-disabled='addStudentForm.$invalid || addStudentForm.$pristine')
+          input.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
+            ng-disabled='addStudentForm.$invalid || addStudentForm.$pristine')

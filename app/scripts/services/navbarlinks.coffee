@@ -56,10 +56,6 @@ angular.module('collegeProjectFrontendApp')
 
     student: [
       {
-        title: 'المواد'
-        path: '#/classes'
-      }
-      {
         title: 'الصفحة الرئيسية'
         path: '#/'
       }
@@ -67,24 +63,12 @@ angular.module('collegeProjectFrontendApp')
 
     teacher: [
       {
-        title: 'المواد'
-        path: '#/classes'
-      }
-      {
         title: 'الصفحة الرئيسية'
         path: '#/'
       }
     ]
 
     guide: [
-      {
-        title: 'المواد'
-        path: '#/classes'
-      }
-      {
-        title: 'الطلاب'
-        path: '#/students'
-      }
       {
         title: 'الصفحة الرئيسية'
         path: '#/'

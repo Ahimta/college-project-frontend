@@ -48,24 +48,30 @@ block content
         article
           header: h2.text-center الشعب
           hr
-          table.table.table-hover.table-condensed
+          table.table.table-striped.table-condensed
             thead
               tr
-                th.text-center الرمز
+                th.text-center رمز الشعبة
+                th.text-center رمز المادة
                 th.text-center النشاط
                 th.text-center الساعات
                 th.text-center اليوم
-                th.text-center إدارة
+                th.text-center الوقت
+                th.text-center الفصل الدراسي
+                th.text-center(ng-show='isSupervisor()') إدارة
             tbody
               tr(ng-repeat='class in classes')
                 td.text-center(title='{{class.name}}')
                   a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')
+                td.text-center(title='{{class.course.name}}')
+                  a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code')
                 td.text-center(ng-bind='class.type')
                 td.text-center(ng-bind='class.hours')
                 td.text-center(ng-bind='class.day')
-                td.text-center
-                  button.btn.btn-xs.btn-danger(ng-click='removeClass(class.id)'
-                    ng-disabled='!isSupervisor()') حذف
+                td.text-center {{ class.schedule | schedule }}
+                td.text-center {{ class.semester | semester }}
+                td.text-center(ng-show='isSupervisor()')
+                  button.btn.btn-xs.btn-danger(ng-click='removeClass(class.id)') حذف
       section(ng-show='isSupervisor()')
         hr
         form(name='courseForm' ng-submit='addClass(classId)')

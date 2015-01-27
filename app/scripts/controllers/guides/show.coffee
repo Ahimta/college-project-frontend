@@ -18,14 +18,12 @@ angular.module('collegeProjectFrontendApp')
     invalidate = ->
         $q.all([
           $http.get("#{guidesResource}/#{guideId}/students").then (res) ->
+            guide           = res.data.teacher_account
             $scope.students = res.data.student_accounts
-
-          $http.get("#{guidesResource}/#{guideId}").then (res) ->
-            guide        = res.data.guide
-            $scope.guide = guide
+            $scope.guide    = guide
             Utils.setPageTitle("المرشدين الأكادميين - #{guide.fullname}")
 
-          unless accountManager.isStudent()
+          if accountManager.isSupervisor()
             $http.get(studentsResource).then (res) ->
               $scope.studentsWithoutGuide = res.data.student_accounts
         ])
@@ -38,6 +36,7 @@ angular.module('collegeProjectFrontendApp')
     $scope.removeFromGuide = addOrRemoveStudent(false)
     $scope.addToGuide      = addOrRemoveStudent(true)
 
-    $scope.isStudent = accountManager.isStudent
+    $scope.isSupervisor = accountManager.isSupervisor
+    $scope.isStudent    = accountManager.isStudent
 
     invalidate()
