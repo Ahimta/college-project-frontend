@@ -9,7 +9,6 @@ block header
   | الشعبة&nbsp;-&nbsp;{{class.name}}
 
 block content
-  +progress-bar('class')
   section(ng-show='class')
     section
       ul.nav.nav-tabs.nav-justified(dir='ltr')
@@ -21,10 +20,9 @@ block content
     br
 
     section(ng-show='isEditing() && isSupervisor()')
-      - isCodeConflict = 'isCodeConflict'
-      +conflict-alert(isCodeConflict, 'يوجد شعبة بنفس الرمز')
+      +conflict-alert('isCodeConflict', 'يوجد شعبة بنفس الرمز')
       form(name='editClassForm' ng-submit='update(class)')
-        +class-fields('class', 'allTeachers', 'allCourses', isCodeConflict)
+        +class-fields('class', 'allTeachers', 'allCourses', 'isCodeConflict')
         div.form-group
           input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
             ng-disabled='editClassForm.$invalid || editClassForm.$pristine')

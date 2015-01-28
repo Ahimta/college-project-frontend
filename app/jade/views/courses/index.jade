@@ -7,28 +7,23 @@ block header
 
 block content
 
-  +progress-bar('courses.length > -1')
-
-  section(ng-show='courses')
-    section
-      div.table-responsive
-        table.table.table-hover.table-condensed.text-center
-          thead
-            tr
-              th.text-center الاسم
-              th.text-center الرمز
-              th.text-center إدارة
-          tbody
-            tr(ng-repeat='course in courses')
-              td.text-center
-                a(ng-href='#/courses/{{course.id}}' ng-bind='course.name')
-              td.text-center
-                a(ng-href='#/courses/{{course.id}}' ng-bind='course.code')
-              td.text-center
-                div.btn-group
-                  button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(course.id)') حذف
-                  a.btn.btn-xs.btn-primary(ng-href='#/courses/{{course.id}}/edit') تعديل
+  section.table-responsive(ng-show='courses')
+    table.table.table-striped.table-condensed
+      thead
+        tr
+          th.text-center الاسم
+          th.text-center الرمز
+          th.text-center إدارة
+      tbody
+        tr(ng-repeat='course in courses')
+          td.text-center
+            a(ng-href='#/courses/{{course.id}}' ng-bind='course.name')
+          td.text-center
+            a(ng-href='#/courses/{{course.id}}' ng-bind='course.code')
+          td.text-center
+            div.btn-group
+              button.btn.btn-xs.btn-danger(type='button' ng-click='destroy(course.id)') حذف
+              a.btn.btn-xs.btn-primary(ng-href='#/courses/{{course.id}}/edit') تعديل
 
   section
     a.btn.btn-success.btn-lg.btn-block(href='#/courses/new') إضافة مادة

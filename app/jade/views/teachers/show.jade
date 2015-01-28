@@ -15,7 +15,9 @@ block content
           a(ng-href='#/teachers/{{teacher.id}}/edit') تعديل
         li(ng-class='{active: !isEditing()}')
           a(ng-href='#/teachers/{{teacher.id}}') عرض
+
     br
+
     section(ng-show='isEditing()')
       +conflict-alert('isUsernameConflict', 'يوجد استاذ بنفس اسم المستخدم')
       form(name='editTeacherForm' ng-submit='update(teacher)')
@@ -23,32 +25,34 @@ block content
         div.form-group
           input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
             ng-disabled='editTeacherForm.$invalid || editTeacherForm.$pristine')
+
     section(ng-hide='isEditing()')
-      section
-        table.table.table-hover
-          thead
-          tfoot(ng-show='teacher.is_guide')
-            tr
-              th.text-center(colspan='2'): a(ng-href='#/guides/{{teacher.id}}') صفحة المشرف الأكاديمي
-          tbody
-            tr
-              th.text-right اسم المستخدم
-              td.text-right(ng-bind='teacher.username')
-            tr
-              th.text-right الاسم الكامل
-              td.text-right(ng-bind='teacher.fullname')
-            tr
-              th.text-right التخصص
-              td.text-right(ng-bind='teacher.specialization')
+      div.table-responsive: table.table.table-hover
+        thead
+        tfoot(ng-show='teacher.is_guide')
+          tr
+            th.text-center(colspan='2'): a(ng-href='#/guides/{{teacher.id}}') صفحة المشرف الأكاديمي
+        tbody
+          tr
+            th.text-right اسم المستخدم
+            td.text-right(ng-bind='teacher.username')
+          tr
+            th.text-right الاسم الكامل
+            td.text-right(ng-bind='teacher.fullname')
+          tr
+            th.text-right التخصص
+            td.text-right(ng-bind='teacher.specialization')
+
       section(ng-show='isSupervisor()')
         hr
         button.btn.btn-danger.btn-lg.btn-block(ng-click='destroy()') حذف
+
       section(ng-show='classes')
         hr
         article
           header: h2.text-center الشعب
           hr
-          table.table.table-striped.table-condensed
+          div.table-responsive: table.table.table-striped.table-condensed
             thead
               tr
                 th.text-center رمز الشعبة
@@ -72,7 +76,8 @@ block content
                 td.text-center {{ class.semester | semester }}
                 td.text-center(ng-show='isSupervisor()')
                   button.btn.btn-xs.btn-danger(ng-click='removeClass(class.id)') حذف
-      section(ng-show='isSupervisor()')
+
+      section(ng-show='newClasses && isSupervisor()')
         hr
         form(name='courseForm' ng-submit='addClass(classId)')
           div.form-group

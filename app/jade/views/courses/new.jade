@@ -7,7 +7,7 @@ block header
 
 block content
 
-  div.row
+  section
     +conflict-alert('codeConflict', 'يوجد مادة بنفس الرمز')
     form(name='myForm' ng-submit='create(course)')
       +course-fields('course', 'codeConflict')

@@ -6,9 +6,6 @@ block header
   | وحدة الإرشاد
 
 block content
-  div.row
-    +accountables('supervisors', '#/supervisors')
+  section: +accountables('supervisors', '#/supervisors')
 
-  div.row
-    div.row
-      a.btn.btn-success.btn-lg.btn-block(href='#/supervisors/new') إضافة مستخدم
+  section: a.btn.btn-success.btn-lg.btn-block(href='#/supervisors/new') إضافة مستخدم

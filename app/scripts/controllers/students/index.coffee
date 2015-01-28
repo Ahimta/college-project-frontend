@@ -12,16 +12,10 @@ angular.module('collegeProjectFrontendApp')
 
     Utils.setPageTitle 'الطلاب'
 
-    resource = if accountManager.isGuide()
-      guideId = accountManager.currentAccount().id
-      "guides/#{guideId}/students"
-    else
-      'student_accounts'
-
-    url = "#{BACKEND}/#{resource}"
+    url = "#{BACKEND}/student_accounts"
 
     invalidate = ->
-      $http.get(url).then (res) ->
+      $http.get("#{url}?expand=true").then (res) ->
         $scope['students'] = res.data['student_accounts']
 
     $scope.isTeacher = accountManager.isTeacher

@@ -8,7 +8,7 @@ block header
 
 block content
 
-  div.row
+  section
     +conflict-alert('isCodeConflict', 'يوجد شعبة بنفس الرمز')
     form(name='myForm' ng-submit='create(class)')
       +class-fields('class', 'teachers', 'courses', 'isCodeConflict')

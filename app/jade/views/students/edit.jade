@@ -9,8 +9,8 @@ block header
   | الطالب -&nbsp;{{student.fullname}}
 
 block content
-  section.row(ng-show='student')
-    section.row
+  section(ng-show='student')
+    section
       ul.nav.nav-tabs.nav-justified(dir='ltr')
         li.active
           a(ng-href='#/students/{{student.id}}/edit') تعديل
@@ -19,7 +19,7 @@ block content
 
     br
 
-    section.row
+    section(ng-show='guides && student')
       +username-taken-alert('usernameConflict')
       form(name='updateForm' ng-submit='update(student)')
         +student-fields('student', 'guides', 'usernameConflict', false)

@@ -6,9 +6,6 @@ block header
   | وحدة التوظيف
 
 block content
-  div.row
-    +accountables('recruiters', '#/recruiters')
+  section: +accountables('recruiters', '#/recruiters')
 
-  div.row
-    div.row
-      a.btn.btn-success.btn-lg.btn-block(href='#/recruiters/new') إضافة مستخدم
+  section: a.btn.btn-success.btn-lg.btn-block(href='#/recruiters/new') إضافة مستخدم

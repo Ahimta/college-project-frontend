@@ -6,44 +6,37 @@ block header
   | الأساتذة
 
 block content
-  div.row
-    +progress-bar('teachers.length > -1')
+  section(ng-show='teachers')
+    div.table-responsive: table.table.table-striped.table-condensed
+      thead
+        tr
+          th.text-center الاسم
+          th.text-center التخصص
+          th.text-center إدارة
+      tbody
+        tr(ng-repeat='teacher in teachers')
+          td.text-center
+            a(ng-href='#/teachers/{{teacher.id}}' ng-bind='teacher.fullname')
+          td.text-center(ng-bind='teacher.specialization')
+          td.text-center
+            div.btn-group(ng-show='!isEditing(teacher.id)')
+              button.btn.btn-xs.btn-danger(type='button'
+                ng-click='destroy(teacher.id)') حذف
+              button.btn.btn-xs.btn-success(type='button' ng-click='addToGuides(teacher.id)'
+                ng-show='!teacher.is_guide')
+                span.glyphicon.glyphicon-plus
+                | &nbsp;
+                | مشرف
+              button.btn.btn-xs.btn-danger(type='button'
+                ng-click='removeFromGuides(teacher.id)' ng-show='teacher.is_guide')
+                span.glyphicon.glyphicon-minus
+                | &nbsp;
+                | مشرف
+              a.btn.btn-xs.btn-primary(ng-href='#/teachers/{{teacher.id}}') تعديل
+            div.btn-group(ng-show='isEditing(teacher.id)')
+              button.btn.btn-xs.btn-default(type='button'
+                ng-click='reset(teacher.id)') إلغاء
+              button.btn.btn-xs.btn-primary(type='button'
+                ng-click='update(teacher.id, teacher)') حفظ
 
-  div(ng-show='teachers')
-    div.row
-      div.table-responsive
-        table.table.table-hover.table-condensed.text-center
-          thead
-            tr
-              th.text-center الاسم
-              th.text-center التخصص
-              th.text-center إدارة
-          tbody
-            tr(ng-repeat='teacher in teachers')
-              td
-                a(ng-href='#/teachers/{{teacher.id}}' ng-bind='teacher.fullname')
-              td(ng-bind='teacher.specialization')
-              td
-                div.btn-group(ng-show='!isEditing(teacher.id)')
-                  button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(teacher.id)') حذف
-                  button.btn.btn-xs.btn-success(type='button' ng-click='addToGuides(teacher.id)'
-                    ng-show='!teacher.is_guide')
-                    span.glyphicon.glyphicon-plus
-                    | &nbsp;
-                    | مشرف
-                  button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='removeFromGuides(teacher.id)' ng-show='teacher.is_guide')
-                    span.glyphicon.glyphicon-minus
-                    | &nbsp;
-                    | مشرف
-                  a.btn.btn-xs.btn-primary(ng-href='#/teachers/{{teacher.id}}') تعديل
-                div.btn-group(ng-show='isEditing(teacher.id)')
-                  button.btn.btn-xs.btn-default(type='button'
-                    ng-click='reset(teacher.id)') إلغاء
-                  button.btn.btn-xs.btn-primary(type='button'
-                    ng-click='update(teacher.id, teacher)') حفظ
-
-  div.row
-    div.row
-      a.btn.btn-success.btn-lg.btn-block(href='#/teachers/new') إضافة أستاذ
+  section: a.btn.btn-success.btn-lg.btn-block(href='#/teachers/new') إضافة أستاذ

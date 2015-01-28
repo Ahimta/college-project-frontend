@@ -8,18 +8,11 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'ClassesIndexCtrl', ($scope, $http, accountManager, Utils, BACKEND, ROLES) ->
+  .controller 'ClassesIndexCtrl', ($scope, $http, Utils, BACKEND, ROLES) ->
 
     Utils.setPageTitle('الشعب')
 
-    resource = switch accountManager.currentRole()
-      when ROLES.supervisor then "#{BACKEND}/classes"
-      when ROLES.student
-        studentId = accountManager.currentAccount().id
-        "#{BACKEND}/student_accounts/#{studentId}/classes"
-      when ROLES.teacher
-        teacherId = accountManager.currentAccount().id
-        "#{BACKEND}/teacher_accounts/#{teacherId}/classes"
+    resource = "#{BACKEND}/classes"
 
     invalidate = ->
       $http.get("#{resource}?expand=true").then (res) ->
@@ -35,9 +28,5 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.removeClass = addOrRemoveClass(false)
     $scope.addClass    = addOrRemoveClass(true)
-
-    $scope.isSupervisor = accountManager.isSupervisor
-    $scope.isTeacher    = accountManager.isTeacher
-    $scope.isStudent    = accountManager.isStudent
 
     invalidate()

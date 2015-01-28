@@ -7,7 +7,7 @@ block header
   | إضافة أستاذ
 
 block content
-  div.row
+  section
     +username-taken-alert('usernameConflict')
     form(name='myForm' ng-submit='create()')
       +teacher-fields('teacher_account', 'usernameConflict', true)

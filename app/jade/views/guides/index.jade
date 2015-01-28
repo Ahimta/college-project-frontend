@@ -7,27 +7,26 @@ block header
 
 block content
   section(ng-show='guides')
-    div.table-responsive
-      table.table.table-condensed.table-hover
-        thead
-          tr
-            th.text-center البريد الإلكتروني
-            th.text-center اسم المستخدم
-            th.text-center الاسم الكامل
-            th.text-center الهاتف
-            th.text-center صفحة الأستاذ
-            th.text-center إدارة
-        tbody
-          tr(ng-repeat='guide in guides')
-            td.text-center(ng-bind='guide.email')
-            td.text-center: a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.username')
-            td.text-center: a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.fullname')
-            td.text-center(ng-bind='guide.phone')
-            td.text-center: a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
-            td.text-center
-              div.btn-group
-                button.btn.btn-xs.btn-danger.glyphicon.glyphicon-minus(type='button'
-                  ng-click='removeGuide(guide.id)')
+    div.table-responsive: table.table.table-condensed.table-hover
+      thead
+        tr
+          th.text-center البريد الإلكتروني
+          th.text-center اسم المستخدم
+          th.text-center الاسم الكامل
+          th.text-center الهاتف
+          th.text-center صفحة الأستاذ
+          th.text-center إدارة
+      tbody
+        tr(ng-repeat='guide in guides')
+          td.text-center(ng-bind='guide.email')
+          td.text-center: a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.username')
+          td.text-center: a(ng-href='#/guides/{{guide.id}}' ng-bind='guide.fullname')
+          td.text-center(ng-bind='guide.phone')
+          td.text-center: a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
+          td.text-center
+            div.btn-group
+              button.btn.btn-xs.btn-danger.glyphicon.glyphicon-minus(type='button'
+                ng-click='removeGuide(guide.id)')
 
     hr
 

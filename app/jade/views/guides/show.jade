@@ -7,27 +7,26 @@ block header
 
 block content
   section(ng-show='guide')
-    section.table-responsive
-      table.table.table-hover
-        thead
-          tr
-            th.text-center(colspan='2') المعلومات الشخصية
-        tfoot
-          tr
-            th.text-center(colspan='2'): a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
-        tbody
-          tr
-            th.text-right البريد الإلكتروني
-            td.text-right(ng-bind='guide.email')
-          tr
-            th.text-right اسم المستخدم
-            td.text-right(ng-bind='guide.username')
-          tr
-            th.text-right الاسم الكامل
-            td.text-right(ng-bind='guide.fullname')
-          tr
-            th.text-right الهاتف
-            td.text-right(ng-bind='guide.phone')
+    div.table-responsive: table.table.table-hover
+      thead
+        tr
+          th.text-center(colspan='2') المعلومات الشخصية
+      tfoot
+        tr
+          th.text-center(colspan='2'): a(ng-href='#/teachers/{{guide.id}}') صفحة الأستاذ
+      tbody
+        tr
+          th.text-right البريد الإلكتروني
+          td.text-right(ng-bind='guide.email')
+        tr
+          th.text-right اسم المستخدم
+          td.text-right(ng-bind='guide.username')
+        tr
+          th.text-right الاسم الكامل
+          td.text-right(ng-bind='guide.fullname')
+        tr
+          th.text-right الهاتف
+          td.text-right(ng-bind='guide.phone')
 
   section(ng-hide='isStudent()')
     hr
@@ -58,9 +57,8 @@ block content
   section(ng-show='isSupervisor()')
     hr
     form(name='addStudentForm' ng-submit='addToGuide(studentId)')
+      div.form-group: select.form-control(required name='studentId' ng-model='studentId'
+        ng-options='student.id as student.username for student in studentsWithoutGuide')
       div.form-group
-        div.form-group: select.form-control(required name='studentId' ng-model='studentId'
-          ng-options='student.id as student.username for student in studentsWithoutGuide')
-        div.form-group
-          input.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
-            ng-disabled='addStudentForm.$invalid || addStudentForm.$pristine')
+        input.btn.btn-lg.btn-block.btn-success(type='submit' value='أضف الطالب'
+          ng-disabled='addStudentForm.$invalid || addStudentForm.$pristine')

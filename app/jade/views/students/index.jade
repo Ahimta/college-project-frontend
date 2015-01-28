@@ -6,35 +6,32 @@ block header
   | الطلاب
 
 block content
-  div.row
-    +progress-bar('students.length > -1')
-
   h2.text-center(ng-show='students && students.length == 0') لا يوجد طلاب حالياً
-  div(ng-show='students')
-    div.row
-      div.table-responsive
-        table.table.table-hover.table-condensed.text-center
-          thead
-            tr
-              th.text-center الاسم
-              th.text-center الرقم الجامعي
-              th.text-center إدارة
-          tbody
-            tr(ng-repeat='accountable in students')
-              td
-                a(ng-href='#/students/{{accountable.id}}'
-                  ng-bind='accountable.fullname')
-              td
-                a(ng-href='#/students/{{accountable.id}}'
-                  ng-bind='accountable.collegial_number')
-              td
-                div.btn-group
-                  button.btn.btn-xs.btn-danger(type='button'
-                    ng-click='destroy(accountable.id)' ng-disabled='isTeacher()') حذف
-                  a.btn.btn-xs.btn-primary(ng-href='#/students/{{accountable.id}}/edit'
-                    ng-disabled='isTeacher()') تعديل
+  section(ng-show='students')
+    div.table-responsive: table.table.table-hover.table-condensed.text-center
+      thead
+        tr
+          th.text-center الاسم
+          th.text-center الرقم الجامعي
+          th.text-center المشرف الأكاديمي
+          th.text-center إدارة
+      tbody
+        tr(ng-repeat='accountable in students')
+          td
+            a(ng-href='#/students/{{accountable.id}}'
+              ng-bind='accountable.fullname')
+          td
+            a(ng-href='#/students/{{accountable.id}}'
+              ng-bind='accountable.collegial_number')
+          td
+            a(ng-href='#/guides/{{accountable.guide.id}}'
+              ng-bind='accountable.guide.fullname')
+          td
+            div.btn-group
+              button.btn.btn-xs.btn-danger(type='button'
+                ng-click='destroy(accountable.id)' ng-disabled='isTeacher()') حذف
+              a.btn.btn-xs.btn-primary(ng-href='#/students/{{accountable.id}}/edit'
+                ng-disabled='isTeacher()') تعديل
 
-  div.row(ng-hide='isTeacher()')
-    div.row
-      a.btn.btn-success.btn-lg.btn-block(href='#/students/new'
-        ng-disabled='isTeacher()') إضافة طالب
+  section(ng-hide='isTeacher()'): a.btn.btn-success.btn-lg.btn-block(href='#/students/new'
+    ng-disabled='isTeacher()') إضافة طالب
