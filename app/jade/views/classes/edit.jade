@@ -1,0 +1,25 @@
+extends ../../layouts/dashboard
+
+include ../../mixins/classes/fields
+include ../../mixins/conflictalert
+
+block header
+  | الشعبة&nbsp;-&nbsp;{{class.name}}
+
+block content
+  section
+    ul.nav.nav-tabs.nav-justified(dir='ltr')
+      li.active
+        a(ng-href='#/classes/{{class.id}}/edit') تعديل
+      li
+        a(ng-href='#/classes/{{class.id}}') عرض
+
+  br
+
+  section(ng-show='class')
+    +conflict-alert('isCodeConflict', 'يوجد شعبة بنفس الرمز')
+    form(name='editClassForm' ng-submit='update(class)')
+      +class-fields('class', 'allTeachers', 'allCourses', 'isCodeConflict')
+      div.form-group
+        input.btn.btn-primary.btn-lg.btn-block(type='submit' value='حفظ'
+          ng-disabled='editClassForm.$invalid || editClassForm.$pristine')

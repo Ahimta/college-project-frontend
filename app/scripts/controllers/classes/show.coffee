@@ -10,29 +10,24 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'ClassesShowCtrl', ($scope, $q, $location, $routeParams, $http, accountManager, Utils, BACKEND) ->
 
+    classId = $routeParams.id
+
     invalidateIfSupervisor = ->
       $q.all([
-        $http.get("#{BACKEND}/classes/#{$routeParams.id}?expand=true").then (res) ->
+        $http.get("#{BACKEND}/classes/#{classId}?expand=true").then (res) ->
           $scope.teacher  = res.data.teacher || res.data.teacher_account
           $scope.course   = res.data.course
           $scope.class    = res.data.class
           Utils.setPageTitle("الشعبة - #{$scope.class.name}")
 
-        $http.get("#{BACKEND}/classes/#{$routeParams.id}/students").then (res) ->
+        $http.get("#{BACKEND}/classes/#{classId}/students").then (res) ->
           $scope.notStudents = res.data.students.not_current
           $scope.students    = res.data.students.current
-
-        $http.get("#{BACKEND}/teacher_accounts").then (res) ->
-          $scope.allTeachers = res.data.teacher_accounts
-
-        $http.get("#{BACKEND}/courses").then (res) ->
-          $scope.allCourses = res.data.courses
       ])
 
     invalidateIfTeacher = ->
       teacherAccount = accountManager.currentAccount()
       teacherId      = teacherAccount.id
-      classId        = $routeParams.id
       $http.get("#{BACKEND}/teacher_accounts/#{teacherId}/classes/#{classId}").then (res) ->
         $scope.students = res.data.students
         $scope.teacher  = res.data.teacher_account
@@ -45,7 +40,6 @@ angular.module('collegeProjectFrontendApp')
 
     addOrRemoveStudent = (isAdd) -> (studentId) ->
       action  = if isAdd then 'add' else 'remove'
-      classId = $routeParams.id
       $http.put("#{BACKEND}/student_accounts/#{studentId}/classes/#{classId}/#{action}")
         .then invalidate
 
@@ -54,9 +48,6 @@ angular.module('collegeProjectFrontendApp')
 
     $scope.isSupervisor = accountManager.isSupervisor
     $scope.isTeacher    = accountManager.isTeacher
-
-    $scope.isEditing = ->
-      $routeParams.action == 'edit'
 
     currentEditedStudent = null
 
@@ -67,21 +58,11 @@ angular.module('collegeProjectFrontendApp')
       currentEditedStudent = id
 
     $scope.destroy = ->
-      classId = $routeParams.id
       $http.delete("#{BACKEND}/classes/#{classId}").then invalidate
-
-    $scope.update = (klass) ->
-      classId = $routeParams.id
-      $http.put("#{BACKEND}/classes/#{classId}", class: klass)
-        .then (__) ->
-          $location.path("/classes/#{classId}")
-        .then null, (res) ->
-          $scope.isNameConflict = res.status == 409
 
     $scope.updateStudent = (student) ->
       teacherAccount = accountManager.currentAccount()
       teacherId      = teacherAccount.id
-      classId        = $routeParams.id
 
       url = "#{BACKEND}/teacher_accounts/#{teacherId}/classes/#{classId}/students/#{student.id}"
       $http.put(url, student: _.pick(student, 'attendance', 'grades')).then (__) ->

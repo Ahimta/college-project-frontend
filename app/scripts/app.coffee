@@ -107,7 +107,10 @@ angular
       .when '/classes/new',
         templateUrl: 'views/classes/new.html'
         controller: 'ClassesNewCtrl'
-      .when '/classes/:id/:action?',
+      .when '/classes/:id/edit',
+        templateUrl: 'views/classes/edit.html'
+        controller: 'ClassesEditCtrl'
+      .when '/classes/:id',
         templateUrl: 'views/classes/show.html'
         controller: 'ClassesShowCtrl'
       .when '/courses/:id/:action?',

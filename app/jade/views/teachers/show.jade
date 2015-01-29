@@ -68,7 +68,9 @@ block content
                 td.text-center(title='{{class.name}}')
                   a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')
                 td.text-center(title='{{class.course.name}}')
-                  a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code')
+                  a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
+                    ng-show='isSupervisor()')
+                  span(ng-bind='class.course.code' ng-hide='isSupervisor()')
                 td.text-center(ng-bind='class.type')
                 td.text-center(ng-bind='class.hours')
                 td.text-center(ng-bind='class.day')
