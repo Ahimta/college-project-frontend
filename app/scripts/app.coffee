@@ -128,5 +128,8 @@ angular
       .when '/recruiters/:id/:action?',
         templateUrl: 'views/recruiters/show.html'
         controller: 'RecruitersShowCtrl'
+      .when '/students/:id/alerts',
+        templateUrl: 'views/students/show/alerts/index.html'
+        controller: 'StudentsShowAlertsIndexCtrl'
       .otherwise
         redirectTo: '/'

@@ -1,0 +1,29 @@
+extends ../../../../layouts/dashboard
+
+
+block header
+  | الطالب -&nbsp;{{student.fullname}}
+
+block content
+  section
+    ul.nav.nav-tabs.nav-justified(dir='ltr')
+      li(ng-show='isSupervisor()')
+        a(ng-href='#/students/{{student.id}}/edit') تعديل
+      li.active
+        a(ng-href='#/students/{{student.id}}/alerts') الملاحظات
+      li
+        a(ng-href='#/students/{{student.id}}') عرض
+
+  br
+
+  section.text-center(ng-show='studentAlerts && studentAlerts.length == 0')
+    h2.lead لا يوجد ملاحظات
+
+  section(ng-show='studentAlerts')
+    article.panel.panel-primary(ng-repeat='studentAlert in studentAlerts')
+      header.panel-heading(ng-bind='studentAlert.title')
+      div.panel-body(ng-bind='studentAlert.body')
+
+  section(ng-show='isGuide()')
+    hr
+    button.btn.btn-success.btn-lg.btn-block(type='button') إضافة ملاحظة

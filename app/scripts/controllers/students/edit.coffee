@@ -8,7 +8,7 @@
  # Controller of the collegeProjectFrontendApp
 ###
 angular.module('collegeProjectFrontendApp')
-  .controller 'StudentsEditCtrl', ($scope, $q, $routeParams, $location, $http, Utils, BACKEND) ->
+  .controller 'StudentsEditCtrl', ($scope, $q, $routeParams, $location, $http, accountManager, Utils, BACKEND) ->
 
     $q.all([
       $http.get("#{BACKEND}/student_accounts/#{$routeParams.id}").then (res) ->
@@ -25,3 +25,6 @@ angular.module('collegeProjectFrontendApp')
           $location.path("/students/#{$routeParams.id}")
         .then (res) ->
           $scope.usernameConflict = res.status == 409
+
+    $scope.isSupervisor = accountManager.isSupervisor
+    $scope.isGuide      = accountManager.isGuide

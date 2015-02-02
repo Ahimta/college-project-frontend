@@ -9,6 +9,8 @@ block content
     ul.nav.nav-tabs.nav-justified(dir='ltr')
       li(ng-show='isSupervisor()')
         a(ng-href='#/students/{{student.id}}/edit') تعديل
+      li(ng-show='isSupervisor() || isGuide()')
+        a(ng-href='#/students/{{student.id}}/alerts') الملاحظات
       li.active
         a(ng-href='#/students/{{student.id}}') عرض
 
