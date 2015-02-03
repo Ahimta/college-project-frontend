@@ -23,7 +23,20 @@ block content
     article.panel.panel-primary(ng-repeat='studentAlert in studentAlerts')
       header.panel-heading(ng-bind='studentAlert.title')
       div.panel-body(ng-bind='studentAlert.body')
+      footer.panel-footer(ng-show='isGuide()')
+        button.btn.btn-sm.btn-danger(type='button' ng-click='destroy(studentAlert.id)') حذف
 
   section(ng-show='isGuide()')
     hr
-    button.btn.btn-success.btn-lg.btn-block(type='button') إضافة ملاحظة
+    form(name='addAlertForm' ng-submit='addAlert(studentAlert)')
+      div.form-group
+        label(for='alertTitle') العنوان
+        input#alertTitle.form-control(type='text' name='alertTitle' placeholder='العنوان' required
+          autofocus ng-model='studentAlert.title')
+      div.form-group
+        label(for='alertBody') المحتوى
+        textarea#alertBody.form-control(type='text' name='alertBody' placeholder='المحتوى' required
+          ng-model='studentAlert.body')
+      div.form-group
+        input.btn.btn-success.btn-lg.btn-block(type='submit' value='إضافة ملاحظة'
+          ng-disabled='addAlertForm.$invalid')

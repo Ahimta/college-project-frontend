@@ -73,7 +73,7 @@ block content
               th.text-center الاختبار الثاني
               th.text-center إدارة
           tbody
-            tr(ng-repeat='student in students')
+            tr(ng-repeat='student in students' ng-class='{danger: (student.attendance < 30)}')
               td.text-center
                 a(ng-href='#/students/{{student.id}}' ng-bind='student.fullname'
                   ng-show='isSupervisor()')
