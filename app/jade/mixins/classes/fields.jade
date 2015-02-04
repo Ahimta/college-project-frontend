@@ -21,11 +21,11 @@ mixin class-fields(recordName, teachers, courses, isCodeConflict)
     label(for='classDay') اليوم
     select#classDay.form-control(name='classDay' placeholder='اليوم' required
       ng-model=(recordName + '.day'))
-      option(selected) الأحد
-      option الإثنين
-      option الثلاثاء
-      option الأربعاء
-      option الخميس
+      option(value='0' selected) الأحد
+      option(value='1') الإثنين
+      option(value='2') الثلاثاء
+      option(value='3') الأربعاء
+      option(value='4') الخميس
   div.form-group
     label(for='classType') النشاط
     select#classType.form-control(name='classType' placeholder='النشاط' required

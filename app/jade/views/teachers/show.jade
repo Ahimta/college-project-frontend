@@ -73,7 +73,7 @@ block content
                   span(ng-bind='class.course.code' ng-hide='isSupervisor()')
                 td.text-center(ng-bind='class.type')
                 td.text-center(ng-bind='class.hours')
-                td.text-center(ng-bind='class.day')
+                td.text-center {{ class.day      | day }}
                 td.text-center {{ class.schedule | schedule }}
                 td.text-center {{ class.semester | semester }}
                 td.text-center(ng-show='isSupervisor()')

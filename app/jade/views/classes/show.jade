@@ -49,7 +49,7 @@ block content
           td.text-right(ng-bind='class.room')
         tr
           th.text-right اليوم
-          td.text-right(ng-bind='class.day')
+          td.text-right {{ class.day | day }}
 
     section(ng-show='isSupervisor()')
       hr
