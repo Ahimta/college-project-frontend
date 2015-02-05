@@ -22,9 +22,14 @@ angular.module('collegeProjectFrontendApp')
     invalidate = ->
       $http.get("#{resource}/classes").then (res) ->
         $scope.currentCourses = res.data.classes.current
-        $scope.studentSchedule = _.groupBy($scope.currentCourses, 'day')
-        $scope.newCourses     = res.data.classes.not_current
-        $scope.student        = res.data.student_account
+        $scope.studentSchedule = _.map (_.groupBy $scope.currentCourses, 'day'), (day) ->
+          _.groupBy day, ((klass) -> klass.schedule.from)
+
+        $scope.hours = [8..22]
+        $scope.days  = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس']
+
+        $scope.newCourses = res.data.classes.not_current
+        $scope.student    = res.data.student_account
         Utils.setPageTitle("الطالب - #{$scope.student.fullname}")
 
       if accountManager.isGuide()
