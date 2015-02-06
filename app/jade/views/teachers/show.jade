@@ -64,7 +64,8 @@ block content
                 th.text-center الفصل الدراسي
                 th.text-center(ng-show='isSupervisor()') إدارة
             tbody
-              tr(ng-repeat='class in classes')
+              tr(ng-repeat='class in classes'
+                ng-class='{danger: hasCollision(class)}')
                 td.text-center(title='{{class.name}}')
                   a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')
                 td.text-center(title='{{class.course.name}}')
@@ -88,3 +89,21 @@ block content
           div.form-group
             input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
               ng-disabled='courseForm.$invalid || courseForm.$pristine')
+
+      section(ng-show='schedule')
+        hr
+        header: h2.text-center جدول الأستاذ
+        hr
+        div.table-responsive: table.table.table-hover
+          thead
+            tr
+              th.text-center اليوم/الوقت
+              th.text-center(ng-repeat='hour in hours') {{ hour }}:00
+          tbody
+            tr(ng-repeat='day in days' ng-init='daySchedule = schedule[$index]')
+              th.text-center(ng-bind='day')
+              td.text-center(ng-repeat='hour in hours'
+                ng-init='hourSchedule = daySchedule[hour]; class = hourSchedule[0]'
+                colspan='{{class ? (class.schedule.to - class.schedule.from) : 1}}'
+                ng-class='{danger: (hourSchedule.length > 1)}')
+                a(ng-show='class' ng-href='#/class/{{class.id}}' ng-bind='class.course.name')

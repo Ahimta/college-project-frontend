@@ -57,7 +57,8 @@ block content
         th.text-center الاختبار الثاني
         th.text-center إدارة
       tbody
-        tr(ng-repeat='class in currentCourses')
+        tr(ng-repeat='class in currentCourses'
+          ng-class='{danger: (studentSchedule[class.day][class.schedule.from].length > 1)}')
           td.text-center(title='{{class.course.name}}')
             a(ng-href='#/courses/{{class.course.id}}' ng-bind='class.course.code'
               ng-hide='!isSupervisor()')
@@ -91,9 +92,9 @@ block content
         input.btn.btn-success.btn-lg.btn-block(type='submit' value='أضف المادة'
           ng-disabled='courseForm.$invalid || courseForm.$pristine')
 
-  section
+  section(ng-show='studentSchedule')
     hr
-    header: h2 جدول الطالب
+    header: h2.text-center جدول الطالب
     hr
     div.table-responsive: table.table.table-hover
       thead

@@ -14,9 +14,17 @@ angular.module('collegeProjectFrontendApp')
 
     invalidate = ->
       $http.get("#{resource}/classes").then (res) ->
+        currentClasses = res.data.classes.current
+
         $scope.newClasses = res.data.classes.not_current
-        $scope.classes    = res.data.classes.current
+        $scope.schedule   = Utils.getSchedule(currentClasses)
+        $scope.classes    = currentClasses
         $scope.teacher    = res.data.teacher_account
+
+        $scope.hours = [8..22]
+        $scope.days  = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس']
+
+        $scope.hasCollision = Utils.class.hasCollision($scope.schedule)
         Utils.setPageTitle("الأستاذ - #{$scope.teacher.fullname}")
 
     addOrRemoveClass = (isAdd) -> (courseId) ->
