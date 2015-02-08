@@ -20,7 +20,7 @@ block content
           th.text-center الفصل الدراسي
           th.text-center إدارة
       tbody.text-center
-        tr(ng-repeat='class in classes')
+        tr(ng-repeat='class in classes | orderBy:"day"')
           td.text-center(title='{{class.name}}')
             a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')
           td.text-center(title='{{class.course.name}}')

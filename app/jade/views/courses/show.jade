@@ -54,6 +54,7 @@ block content
             thead
               tr
                 th.text-center الرمز
+                th.text-center الاسم
                 th.text-center المحاضر
                 th.text-center النشاط
                 th.text-center الساعات
@@ -63,9 +64,11 @@ block content
                 th.text-center القاعة
                 th.text-center إدارة
             tbody
-              tr(ng-repeat='class in classes')
+              tr(ng-repeat='class in classes | orderBy:"day"'
+                ng-class='{warning: (schedule[class.day][class.schedule.from].length > 1)}')
                 td.text-center(title='{{class.name}}')
                   a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')
+                td.text-center(ng-bind='class.name')
                 td.text-center
                   a(ng-href='#/teachers/{{class.teacher.id}}' ng-bind='class.teacher.fullname')
                 td.text-center(ng-bind='class.type')
@@ -78,3 +81,21 @@ block content
                   div.btn-group
                     button.btn.btn-xs.btn-danger(ng-click='destroyClass(class.id)') حذف
                     a.btn.btn-xs.btn-primary(ng-href='#/classes/{{class.id}}/edit') تعديل
+
+      section(ng-show='schedule')
+        hr
+        header: h2.text-center جدول المادة
+        hr
+        div.table-responsive: table.table.table-hover
+          thead
+            tr
+              th.text-center اليوم/الوقت
+              th.text-center(ng-repeat='hour in hours') {{ hour }}:00
+          tbody
+            tr(ng-repeat='day in days' ng-init='daySchedule = schedule[$index]')
+              th.text-center(ng-bind='day')
+              td.text-center(ng-repeat='hour in hours'
+                ng-init='hourSchedule = daySchedule[hour]; class = hourSchedule[0]'
+                colspan='{{class ? (class.schedule.to - class.schedule.from) : 1}}'
+                ng-class='{warning: (hourSchedule.length > 1)}')
+                a(ng-show='class' ng-href='#/class/{{class.id}}' ng-bind='course.name')

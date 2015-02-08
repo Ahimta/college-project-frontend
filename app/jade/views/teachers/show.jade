@@ -64,7 +64,7 @@ block content
                 th.text-center الفصل الدراسي
                 th.text-center(ng-show='isSupervisor()') إدارة
             tbody
-              tr(ng-repeat='class in classes'
+              tr(ng-repeat='class in classes | orderBy:"day"'
                 ng-class='{danger: hasCollision(class)}')
                 td.text-center(title='{{class.name}}')
                   a(ng-href='#/classes/{{class.id}}' ng-bind='class.code')

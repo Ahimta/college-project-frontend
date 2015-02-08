@@ -12,8 +12,15 @@ angular.module('collegeProjectFrontendApp')
 
     invalidate = ->
       $http.get("#{BACKEND}/courses/#{$routeParams.id}/classes").then (res) ->
-        $scope.classes = res.data.classes
-        $scope.course  = res.data.course
+        classes = res.data.classes
+
+        $scope.schedule = Utils.getSchedule(classes)
+        $scope.classes  = classes
+        $scope.course   = res.data.course
+
+        $scope.hours = [8..22]
+        $scope.days  = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس']
+
         Utils.setPageTitle("المادة - #{$scope.course.name}")
 
     $scope.isEditing = ->
