@@ -46,7 +46,7 @@ block content
           td.text-right {{ class.schedule | schedule }}
         tr
           th.text-right القاعة
-          td.text-right(ng-bind='class.room')
+          td.text-right: a(ng-href='#/rooms/{{class.room}}' ng-bind='class.room')
         tr
           th.text-right اليوم
           td.text-right {{ class.day | day }}
