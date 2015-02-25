@@ -10,8 +10,10 @@
 angular.module('collegeProjectFrontendApp')
   .controller 'StudentsEditCtrl', ($scope, $q, $routeParams, $location, $http, accountManager, Utils, BACKEND) ->
 
+    resource = "#{BACKEND}/student_accounts/#{$routeParams.id}"
+
     $q.all([
-      $http.get("#{BACKEND}/student_accounts/#{$routeParams.id}").then (res) ->
+      $http.get(resource).then (res) ->
         $scope.student = res.data.student_account
         Utils.setPageTitle("الطالب - #{$scope.student.fullname}")
 
