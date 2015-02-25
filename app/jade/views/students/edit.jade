@@ -1,7 +1,7 @@
 extends ../../layouts/dashboard
 
-include ../../mixins/accountable/usernametakenalert
 include ../../mixins/students/fields
+include ../../mixins/conflictalert
 include ../../mixins/progressbar
 
 
@@ -22,7 +22,8 @@ block content
     br
 
     section(ng-show='guides && student')
-      +username-taken-alert('usernameConflict')
+
+      +conflict-alert('usernameConflict', 'اسم المستخدم أو الرقم الجامعي موجودة سابقاً')
       form(name='updateForm' ng-submit='update(student)')
         +student-fields('student', 'guides', 'usernameConflict', false)
         div.form-group

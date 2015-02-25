@@ -25,7 +25,8 @@ angular.module('collegeProjectFrontendApp')
       $http.put(resource, student_account: student)
         .then (__)  ->
           $location.path("/students/#{$routeParams.id}")
-        .then (res) ->
+        .then null, (res) ->
+          console.log('hi')
           $scope.usernameConflict = res.status == 409
 
     $scope.isSupervisor = accountManager.isSupervisor

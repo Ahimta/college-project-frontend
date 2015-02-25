@@ -8,8 +8,8 @@ mixin applicant-fields(recordName, formName)
       - id_num = 'id_num'
       div.col-md-6: div.form-group(ng-class=g(id_num))
         label(for=id_num) رقم الهوية الوطنية
-        input.form-control(id=id_num type='text' placeholder="رقم الهوية الوطنية" name=id_num
-          ng-model=f(id_num) required autofocus)
+        input.form-control(id=id_num type='number' min='1' placeholder="رقم الهوية الوطنية" name=id_num
+          ng-model=f(id_num) required)
 
       - fn = 'fullname'
       div.col-md-6: div.form-group(ng-class=g(fn))
@@ -27,7 +27,7 @@ mixin applicant-fields(recordName, formName)
       - phone = 'phone'
       div.col-md-6: div.form-group(ng-class=g(phone))
         label(for=phone) رقم الهاتف
-        input.form-control(id=phone type='text' placeholder="رقم الهاتف" name=phone
+        input.form-control(id=phone type='tel' placeholder="رقم الهاتف" name=phone
           ng-model=f(phone) required)
 
     div.row

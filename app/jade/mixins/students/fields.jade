@@ -7,9 +7,9 @@ mixin student-fields(recordName, allGuides, usernameConflict, passwordRequired)
 
   fieldset
     legend: h2 البيانات الأكاديمية
-    div.form-group
+    div.form-group(ng-class=("{'has-warning': " + usernameConflict + '}'))
       label(for='collegialNumber') الرقم الجامعي
-      input#collegialNumber.form-control(type='text' name='collegialNumber'
+      input#collegialNumber.form-control(type='number' min='1' name='collegialNumber'
         placeholder='الرقم الجامعي' required
         ng-model=(recordName + '.collegial_number'))
     div.form-group

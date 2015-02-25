@@ -1,6 +1,7 @@
 extends ../../layouts/dashboard
 
 include ../../mixins/accountable/usernametakenalert
+include ../../mixins/conflictalert
 include ../../mixins/students/fields
 
 block header
@@ -8,7 +9,7 @@ block header
 
 block content
   section
-    +username-taken-alert('usernameConflict')
+    +conflict-alert('usernameConflict', 'اسم المستخدم أو الرقم الجامعي موجودة سابقاً')
 
     form(name='myForm' ng-submit='create()')
       +student-fields('student_account', 'guides', 'usernameConflict', true)
